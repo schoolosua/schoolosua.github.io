@@ -195,6 +195,19 @@ button, input, select {
   font-size: 0.78rem;
 }
 
+.entry-date {
+  flex-shrink: 0;
+  min-width: 56px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-neon);
+}
+
+.entry-date.is-empty {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
 .entry-dash {
   color: var(--text-muted);
   font-size: 0.8rem;

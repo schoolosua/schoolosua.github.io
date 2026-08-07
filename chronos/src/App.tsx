@@ -213,6 +213,9 @@ function App() {
                     value={h.date}
                     onChange={(e) => updateHoliday(h.id, { date: e.target.value })}
                   />
+                  <span className={h.date ? 'entry-date' : 'entry-date is-empty'}>
+                    {h.date ? formatDateForDisplay(h.date) : '—'}
+                  </span>
                   <input
                     type="text"
                     className="entry-name"
