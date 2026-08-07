@@ -170,6 +170,8 @@ function App() {
     [settings.weekdays],
   )
 
+  const groupedWeeks = useMemo(() => groupLessonsByWeek(lessons), [lessons])
+
   return (
     <div className="page">
       <header className="topbar">
@@ -463,12 +465,27 @@ function App() {
 
           {lessons.length > 0 && (
             <section className="card">
-              <div className="results-header">
-                <h3 className="section-label">Результат</h3>
-                <span className="results-count">{lessons.length} уроків</span>
+              <div className="results-head">
+                <div className="results-title-block">
+                  <h3 className="section-label">Календарний план уроків</h3>
+                  <p className="results-meta">
+                    {academicYearLabel} навчальний рік · {formatDateForDisplay(settings.rangeStart)} –{' '}
+                    {formatDateForDisplay(settings.rangeEnd)}
+                  </p>
+                </div>
+                <div className="results-stats">
+                  <div className="result-stat">
+                    <span className="result-stat-label">Уроків</span>
+                    <span className="result-stat-value">{lessons.length}</span>
+                  </div>
+                  <div className="result-stat">
+                    <span className="result-stat-label">Тижнів</span>
+                    <span className="result-stat-value">{groupedWeeks.length}</span>
+                  </div>
+                </div>
               </div>
               <div className="results-groups">
-                {groupLessonsByWeek(lessons).map((group) => (
+                {groupedWeeks.map((group) => (
                   <div className="week-group" key={group.week}>
                     <div className="week-group-header">
                       <span className="week-group-title">Тиждень {group.week}</span>
