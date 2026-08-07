@@ -177,6 +177,31 @@ button, input, select {
   gap: 6px;
 }
 
+.entry-row-stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+}
+
+.entry-row-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.entry-row-top input[type='date'] {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.78rem;
+}
+
 .entry-row input[type='date'],
 .entry-row select {
   flex: 1;
@@ -188,11 +213,16 @@ button, input, select {
 }
 
 .entry-name {
-  flex: 1.4;
   padding: 6px 8px;
   border: 1px solid var(--card-border);
   border-radius: 8px;
   font-size: 0.78rem;
+  width: 100%;
+}
+
+.entry-row .entry-name {
+  flex: 1.4;
+  width: auto;
 }
 
 .entry-date {

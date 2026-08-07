@@ -207,15 +207,20 @@ function App() {
             {holidaysError && <p className="error-text">{holidaysError}</p>}
             <div className="entry-list">
               {settings.holidays.map((h) => (
-                <div className="entry-row" key={h.id}>
-                  <input
-                    type="date"
-                    value={h.date}
-                    onChange={(e) => updateHoliday(h.id, { date: e.target.value })}
-                  />
-                  <span className={h.date ? 'entry-date' : 'entry-date is-empty'}>
-                    {h.date ? formatDateForDisplay(h.date) : '—'}
-                  </span>
+                <div className="entry-row entry-row-stack" key={h.id}>
+                  <div className="entry-row-top">
+                    <input
+                      type="date"
+                      value={h.date}
+                      onChange={(e) => updateHoliday(h.id, { date: e.target.value })}
+                    />
+                    <span className={h.date ? 'entry-date' : 'entry-date is-empty'}>
+                      {h.date ? formatDateForDisplay(h.date) : '—'}
+                    </span>
+                    <button aria-label="Видалити" className="icon-btn" onClick={() => removeHoliday(h.id)}>
+                      ✕
+                    </button>
+                  </div>
                   <input
                     type="text"
                     className="entry-name"
@@ -223,9 +228,6 @@ function App() {
                     value={h.name}
                     onChange={(e) => updateHoliday(h.id, { name: e.target.value })}
                   />
-                  <button aria-label="Видалити" className="icon-btn" onClick={() => removeHoliday(h.id)}>
-                    ✕
-                  </button>
                 </div>
               ))}
             </div>
