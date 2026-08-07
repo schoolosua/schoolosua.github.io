@@ -352,6 +352,8 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      text-decoration: none;
+      color: inherit;
       transition: transform var(--dur-base), box-shadow var(--dur-base);
     }
 
@@ -440,13 +442,12 @@
       color: var(--text-muted);
       font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 20px;
-      flex-grow: 1;
+      margin: 0 0 14px;
     }
 
     .module-features {
       list-style: none;
-      margin-bottom: 28px;
+      margin: 0 0 20px;
     }
 
     .module-features li {
@@ -723,7 +724,7 @@
 
     <div class="modules-grid">
 
-      <div class="module-card reveal">
+      <a class="module-card reveal" href="https://school-schedule-one.vercel.app/" title="Перейти до Scheduler">
         <span class="module-badge audience-zavuch">Для завуча</span>
         <div class="module-head">
           <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">⚡</div>
@@ -738,10 +739,10 @@
           <li>Чисельник / знаменник</li>
           <li>Drag-and-drop редактор</li>
         </ul>
-        <a href="https://school-schedule-one.vercel.app/" class="module-link">Перейти до Scheduler →</a>
-      </div>
+        <span class="module-link">Перейти до Scheduler →</span>
+      </a>
 
-      <div class="module-card reveal">
+      <a class="module-card reveal" href="https://schoolos-test.vercel.app/" title="Перейти до Integrity">
         <span class="module-badge audience-teacher">Для вчителя</span>
         <div class="module-head">
           <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">🛡️</div>
@@ -756,10 +757,10 @@
           <li>Аналітика й heat map</li>
           <li>Експорт в XLSX та PDF</li>
         </ul>
-        <a href="https://schoolos-test.vercel.app/" class="module-link">Перейти до Integrity →</a>
-      </div>
+        <span class="module-link">Перейти до Integrity →</span>
+      </a>
 
-      <div class="module-card featured reveal">
+      <a class="module-card featured reveal" href="/chronos/" title="Перейти до Chronos">
         <span class="module-badge audience-teacher">Для вчителя</span>
         <div class="module-head">
           <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">📅</div>
@@ -774,8 +775,8 @@
           <li>Перенесення вихідних днів</li>
           <li>Експорт в Excel</li>
         </ul>
-        <a href="/chronos/" class="module-link">Перейти до Chronos →</a>
-      </div>
+        <span class="module-link">Перейти до Chronos →</span>
+      </a>
 
     </div>
   </section>
