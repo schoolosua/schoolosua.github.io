@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SchoolOS — Екосистема інструментів для сучасної школи</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+
+  <style>
+    :root {
+      --bg: #f3f7fa;
+      --glass-bg: rgba(255, 255, 255, 0.94);
+      --glass-border: rgba(255, 255, 255, 0.75);
+      --card-border-flat: rgba(226, 232, 240, 0.9);
+      --primary: #1e40af;
+      --primary-neon: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.15);
+      --accent: #0ea5e9;
+      --gold: #d4a13d;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+
+      --shadow-premium:
+        0 40px 80px rgba(15, 23, 42, 0.05),
+        0 10px 30px rgba(15, 23, 42, 0.03),
+        inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      --shadow-clay:
+        inset 0 -4px 12px rgba(0, 0, 0, 0.02),
+        inset 0 2px 6px rgba(255, 255, 255, 0.9),
+        0 20px 40px rgba(15, 23, 42, 0.03);
+      --dur-fast:.15s;--dur-base:.2s;--dur-slow:.3s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
+      z-index: 0;
+      pointer-events: none;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-2%, 2%) scale(1.06); }
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #090d16;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 90px;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      font-size: 1.4rem;
+      font-family: 'Clash Display', sans-serif;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      border-radius: 10px;
+      transform: rotate(45deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px var(--primary-glow), inset 0 2px 4px rgba(255,255,255,0.4);
+      flex-shrink: 0;
+      animation: pulse-glow 3.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 10px 25px var(--primary-glow), inset 0 2px 4px rgba(255,255,255,0.4); }
+      50%      { box-shadow: 0 10px 34px rgba(37, 99, 235, 0.32), inset 0 2px 4px rgba(255,255,255,0.4); }
+    }
+
+    .logo-mark::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: #ffffff;
+      border-radius: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--dur-fast);
+    }
+
+    .nav-links a:hover { color: var(--primary-neon); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--dur-fast), box-shadow var(--dur-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      color: #ffffff;
+      box-shadow: 0 12px 24px var(--primary-glow);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); }
+
+    /* Scroll-reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero */
+    .hero-section {
+      padding: 96px 24px 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-text { text-align: left; }
+
+    .hero-illustration {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-illustration svg { width: 100%; max-width: 420px; height: auto; }
+
+    .floaty { animation: floaty 5s ease-in-out infinite; }
+    .floaty-delay-1 { animation-delay: .6s; }
+    .floaty-delay-2 { animation-delay: 1.3s; }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    .marketing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      box-shadow: var(--shadow-clay);
+      margin-bottom: 28px;
+      animation: float-badge 4s ease-in-out infinite;
+    }
+
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      line-height: 1.12;
+      margin: 0 0 24px;
+    }
+
+    .hero-section h1 span {
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-section p {
+      max-width: 480px;
+      margin: 0 0 36px;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      justify-content: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-ghost {
+      background: var(--glass-bg);
+      color: var(--text);
+      border: 1px solid var(--card-border-flat);
+      box-shadow: var(--shadow-clay);
+    }
+
+    /* Stats strip */
+    .stats-section {
+      padding: 8px 24px 80px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-clay);
+    }
+
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stat-card p {
+      margin-top: 6px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Modules */
+    .modules-section {
+      padding: 40px 24px 100px;
+    }
+
+    .section-eyebrow {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary-neon);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 56px;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .module-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      border-radius: var(--radius-xl);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-premium);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform var(--dur-base), box-shadow var(--dur-base);
+    }
+
+    .module-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 50px 90px rgba(15, 23, 42, 0.09), 0 14px 34px rgba(15, 23, 42, 0.05);
+    }
+
+    .module-card.featured {
+      border: 1.5px solid var(--primary-neon);
+    }
+
+    .module-badge {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 999px;
+      box-shadow: 0 8px 16px var(--primary-glow);
+    }
+
+    .module-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-clay);
+      transition: transform var(--dur-base);
+    }
+
+    .module-card:hover .module-icon {
+      transform: rotate(-8deg) scale(1.08);
+    }
+
+    .module-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .module-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .module-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .module-features li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .module-features li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary-neon);
+      flex-shrink: 0;
+    }
+
+    .module-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--primary-neon);
+      transition: gap var(--dur-fast);
+    }
+
+    .module-link:hover { gap: 10px; }
+
+    .module-link.disabled {
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Chart / comparison section */
+    .chart-section {
+      padding: 0 24px 100px;
+    }
+
+    .chart-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-premium);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .chart-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+    }
+
+    .chart-card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .chart-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.manual { background: #cbd5e1; }
+    .dot.schoolos { background: var(--primary-neon); }
+
+    .chart-canvas-wrap { position: relative; height: 280px; }
+
+    /* Trust section */
+    .trust-section {
+      padding: 0 24px 100px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .trust-item {
+      text-align: center;
+      padding: 28px 16px;
+    }
+
+    .trust-item .trust-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .trust-item h4 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .trust-item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border-flat);
+      padding: 40px 24px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-row p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-row a {
+      color: var(--primary-neon);
+      font-weight: 500;
+    }
+
+    .module-tagline {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary-neon);
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .modules-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .chart-card { grid-template-columns: 1fr; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-text { text-align: center; }
+      .hero-cta-group { justify-content: center; }
+      .hero-illustration { order: -1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="/" class="logo">
+        <div class="logo-mark"></div>
+        <div>SchoolOS</div>
+      </a>
+      <div class="nav-links">
+        <a href="#modules">Модулі</a>
+        <a href="mailto:info@schoolos.app">Контакти</a>
+      </div>
+      <a href="#modules" class="btn btn-primary">Переглянути модулі</a>
+    </div>
+  </header>
+
+  <section class="container hero-section">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="marketing-badge">🏫 Екосистема для сучасної школи</div>
+        <h1>Один майданчик. <span>Усі інструменти для школи.</span></h1>
+        <p>SchoolOS об'єднує розклад, тестування та планування уроків в одну систему — без паперу, без ручного підрахунку, без зайвої рутини.</p>
+        <div class="hero-cta-group">
+          <a href="#modules" class="btn btn-primary">Переглянути модулі</a>
+          <a href="mailto:info@schoolos.app" class="btn btn-ghost">Написати нам</a>
+        </div>
+      </div>
+
+      <div class="hero-illustration">
+        <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ілюстрація: панель розкладу з іконками модулів SchoolOS">
+          <defs>
+            <linearGradient id="blobGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2563eb" stop-opacity="0.14"/>
+              <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.14"/>
+            </linearGradient>
+            <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2563eb"/>
+              <stop offset="100%" stop-color="#0ea5e9"/>
+            </linearGradient>
+            <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+              <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#1e3a8a" flood-opacity="0.18"/>
+            </filter>
+          </defs>
+
+          <circle cx="210" cy="210" r="190" fill="url(#blobGrad)"/>
+
+          <g filter="url(#softShadow)">
+            <rect x="90" y="120" width="240" height="190" rx="24" fill="#ffffff"/>
+          </g>
+          <rect x="90" y="120" width="240" height="46" rx="24" fill="url(#cardGrad)"/>
+          <rect x="112" y="136" width="70" height="14" rx="7" fill="#ffffff" opacity="0.9"/>
+          <circle cx="306" cy="143" r="6" fill="#ffffff" opacity="0.85"/>
+
+          <g fill="none" stroke="#dbe3ef" stroke-width="1.5">
+            <line x1="90" y1="200" x2="330" y2="200"/>
+            <line x1="90" y1="240" x2="330" y2="240"/>
+            <line x1="90" y1="280" x2="330" y2="280"/>
+            <line x1="150" y1="166" x2="150" y2="310"/>
+            <line x1="210" y1="166" x2="210" y2="310"/>
+            <line x1="270" y1="166" x2="270" y2="310"/>
+          </g>
+          <rect x="152" y="204" width="46" height="30" rx="7" fill="#2563eb" opacity="0.16"/>
+          <rect x="212" y="244" width="46" height="30" rx="7" fill="#0ea5e9" opacity="0.2"/>
+          <rect x="92" y="284" width="46" height="20" rx="7" fill="#2563eb" opacity="0.12"/>
+
+          <g class="floaty">
+            <circle cx="76" cy="150" r="30" fill="#ffffff" filter="url(#softShadow)"/>
+            <path d="M64 150l8 8 16-16" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+
+          <g class="floaty floaty-delay-1">
+            <circle cx="352" cy="200" r="28" fill="#ffffff" filter="url(#softShadow)"/>
+            <circle cx="352" cy="200" r="12" fill="none" stroke="#0ea5e9" stroke-width="3.5"/>
+            <line x1="352" y1="200" x2="352" y2="191" stroke="#0ea5e9" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="352" y1="200" x2="358" y2="200" stroke="#0ea5e9" stroke-width="3.5" stroke-linecap="round"/>
+          </g>
+
+          <g class="floaty floaty-delay-2">
+            <circle cx="120" cy="330" r="26" fill="#ffffff" filter="url(#softShadow)"/>
+            <path d="M108 330h24M120 318v24" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="container stats-section">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="3">0</div>
+        <p>модулі в екосистемі</p>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="30" data-suffix=" сек">0</div>
+        <p>на генерацію розкладу</p>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="100" data-suffix="%">0</div>
+        <p>онлайн, без встановлення</p>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number" data-count="0" data-suffix=" папір">0</div>
+        <p>паперової рутини</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container modules-section" id="modules">
+    <p class="section-eyebrow reveal">Модулі SchoolOS</p>
+    <h2 class="section-title reveal">Кожен інструмент — окремий модуль, що працює як частина цілого</h2>
+
+    <div class="modules-grid">
+
+      <div class="module-card reveal">
+        <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">⚡</div>
+        <p class="module-tagline">Генератор розкладу</p>
+        <h3>Scheduler</h3>
+        <p>Автоматизований розклад для школи — алгоритм враховує 18+ обмежень і генерує розклад за 30 секунд.</p>
+        <ul class="module-features">
+          <li>Групи та підгрупи</li>
+          <li>Чисельник / знаменник</li>
+          <li>Drag-and-drop редактор</li>
+        </ul>
+        <a href="https://school-schedule-one.vercel.app/" class="module-link">Перейти до Scheduler →</a>
+      </div>
+
+      <div class="module-card reveal">
+        <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">🛡️</div>
+        <p class="module-tagline">Тести з захистом від списування</p>
+        <h3>Integrity</h3>
+        <p>Чесні онлайн-тести з захистом від списування та миттєвими результатами для вчителя і учня.</p>
+        <ul class="module-features">
+          <li>Anti-cheat моніторинг</li>
+          <li>Аналітика й heat map</li>
+          <li>Експорт в XLSX та PDF</li>
+        </ul>
+        <a href="https://schoolos-test.vercel.app/" class="module-link">Перейти до Integrity →</a>
+      </div>
+
+      <div class="module-card featured reveal">
+        <span class="module-badge">Новий</span>
+        <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">📅</div>
+        <p class="module-tagline">Календарний план уроків</p>
+        <h3>Chronos</h3>
+        <p>Календарний план уроків — автоматичний розрахунок дат на семестр з урахуванням канікул і свят.</p>
+        <ul class="module-features">
+          <li>Кілька періодів канікул</li>
+          <li>Перенесення вихідних днів</li>
+          <li>Експорт в Excel</li>
+        </ul>
+        <span class="module-link disabled">Скоро →</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="container chart-section">
+    <div class="chart-card reveal">
+      <div>
+        <h3>Скільки часу економить SchoolOS</h3>
+        <p>Порівняння середньої кількості годин на тиждень, які вчитель витрачає на розклад, перевірку тестів і складання КТП — вручну проти роботи через модулі SchoolOS.</p>
+        <div class="chart-legend">
+          <span><i class="dot manual"></i>Вручну</span>
+          <span><i class="dot schoolos"></i>З SchoolOS</span>
+        </div>
+      </div>
+      <div class="chart-canvas-wrap">
+        <canvas id="comparisonChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="container trust-section">
+    <div class="trust-grid">
+      <div class="trust-item reveal">
+        <div class="trust-icon">☁️</div>
+        <h4>Хмарний сервіс</h4>
+        <p>Працює у браузері, нічого встановлювати не потрібно.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">🇺🇦</div>
+        <h4>Зроблено в Україні</h4>
+        <p>Створено з урахуванням реалій українських шкіл.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">🔐</div>
+        <h4>Дані в безпеці</h4>
+        <p>Хмарне зберігання з резервним копіюванням.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">🧩</div>
+        <h4>Модульна архітектура</h4>
+        <p>Використовуйте лише ті модулі, які потрібні школі.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-row">
+      <p>© 2026 SchoolOS</p>
+      <a href="mailto:info@schoolos.app">info@schoolos.app</a>
+    </div>
+  </footer>
+
+  <script>
+    // Плавна поява блоків при скролі
+    document.addEventListener('DOMContentLoaded', function () {
+      var revealItems = document.querySelectorAll('.reveal');
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealItems.forEach(function (el) { observer.observe(el); });
+
+      // Анімовані цифри у статистиці
+      var counters = document.querySelectorAll('.stat-number');
+      var countObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-count'), 10);
+          var suffix = el.getAttribute('data-suffix') || '';
+          var current = 0;
+          var duration = 1200;
+          var startTime = null;
+
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            current = Math.floor(progress * target);
+            el.textContent = current + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent = target + suffix;
+            }
+          }
+          requestAnimationFrame(step);
+          countObserver.unobserve(el);
+        });
+      }, { threshold: 0.4 });
+      counters.forEach(function (el) { countObserver.observe(el); });
+
+      // Графік-порівняння часу
+      var chartEl = document.getElementById('comparisonChart');
+      if (chartEl && window.Chart) {
+        new Chart(chartEl, {
+          type: 'bar',
+          data: {
+            labels: ['Розклад', 'Перевірка тестів', 'Складання КТП'],
+            datasets: [
+              {
+                label: 'Вручну (год/тиждень)',
+                data: [6, 5, 4],
+                backgroundColor: '#cbd5e1',
+                borderRadius: 8,
+                maxBarThickness: 34
+              },
+              {
+                label: 'З SchoolOS (год/тиждень)',
+                data: [0.5, 0.5, 0.2],
+                backgroundColor: '#2563eb',
+                borderRadius: 8,
+                maxBarThickness: 34
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 1100, easing: 'easeOutQuart' },
+            plugins: { legend: { display: false } },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: { display: true, text: 'годин на тиждень' },
+                grid: { color: '#e2e8f0' }
+              },
+              x: { grid: { display: false } }
+            }
+          }
+        });
+      } else if (chartEl) {
+        // якщо Chart.js ще не встиг завантажитись — пробуємо ще раз трохи пізніше
+        window.addEventListener('load', function () {
+          if (window.Chart) {
+            new Chart(chartEl, {
+              type: 'bar',
+              data: {
+                labels: ['Розклад', 'Перевірка тестів', 'Складання КТП'],
+                datasets: [
+                  { label: 'Вручну (год/тиждень)', data: [6, 5, 4], backgroundColor: '#cbd5e1', borderRadius: 8, maxBarThickness: 34 },
+                  { label: 'З SchoolOS (год/тиждень)', data: [0.5, 0.5, 0.2], backgroundColor: '#2563eb', borderRadius: 8, maxBarThickness: 34 }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 1100, easing: 'easeOutQuart' },
+                plugins: { legend: { display: false } },
+                scales: {
+                  y: { beginAtZero: true, title: { display: true, text: 'годин на тиждень' }, grid: { color: '#e2e8f0' } },
+                  x: { grid: { display: false } }
+                }
+              }
+            });
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
