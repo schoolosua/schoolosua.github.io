@@ -351,16 +351,16 @@ button, input, select {
 
 .weekday-cell-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 10px;
-  margin-top: 10px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .weekday-cell {
   background: #f8fafc;
   border: 1px solid var(--card-border);
   border-radius: 10px;
-  padding: 10px;
+  padding: 8px 6px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -372,26 +372,29 @@ button, input, select {
 
 .weekday-cell-head {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 6px;
 }
 
 .weekday-cell-label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text);
+  text-align: center;
 }
 
 .weekday-pattern-btn {
   border: 1px solid var(--card-border);
   background: #fff;
   color: var(--text-muted);
-  font-size: 0.7rem;
-  padding: 4px 8px;
+  font-size: 0.62rem;
+  padding: 3px 6px;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
+  width: 100%;
 }
 
 .weekday-pattern-btn.active {
@@ -416,7 +419,8 @@ button, input, select {
 
 .weekday-pair {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .weekday-pair label {
