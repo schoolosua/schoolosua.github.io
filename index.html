@@ -400,6 +400,33 @@
       transition: transform var(--dur-base);
     }
 
+    .module-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .module-head .module-icon {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .module-head-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .module-head-text h3 {
+      margin-bottom: 0;
+    }
+
+    .module-head-text .module-tagline {
+      margin-bottom: 0;
+    }
+
     .module-card:hover .module-icon {
       transform: rotate(-8deg) scale(1.08);
     }
@@ -698,9 +725,13 @@
 
       <div class="module-card reveal">
         <span class="module-badge audience-zavuch">Для завуча</span>
-        <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">⚡</div>
-        <p class="module-tagline">Генератор розкладу</p>
-        <h3>Scheduler</h3>
+        <div class="module-head">
+          <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">⚡</div>
+          <div class="module-head-text">
+            <p class="module-tagline">Генератор розкладу</p>
+            <h3>Scheduler</h3>
+          </div>
+        </div>
         <p>Автоматизований розклад для школи — алгоритм враховує 18+ обмежень і генерує розклад за 30 секунд.</p>
         <ul class="module-features">
           <li>Групи та підгрупи</li>
@@ -712,9 +743,13 @@
 
       <div class="module-card reveal">
         <span class="module-badge audience-teacher">Для вчителя</span>
-        <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">🛡️</div>
-        <p class="module-tagline">Тести з захистом від списування</p>
-        <h3>Integrity</h3>
+        <div class="module-head">
+          <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">🛡️</div>
+          <div class="module-head-text">
+            <p class="module-tagline">Тести з захистом від списування</p>
+            <h3>Integrity</h3>
+          </div>
+        </div>
         <p>Чесні онлайн-тести з захистом від списування та миттєвими результатами для вчителя і учня.</p>
         <ul class="module-features">
           <li>Anti-cheat моніторинг</li>
@@ -726,9 +761,13 @@
 
       <div class="module-card featured reveal">
         <span class="module-badge audience-teacher">Для вчителя</span>
-        <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">📅</div>
-        <p class="module-tagline">Календарний план уроків</p>
-        <h3>Chronos</h3>
+        <div class="module-head">
+          <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">📅</div>
+          <div class="module-head-text">
+            <p class="module-tagline">Календарний план уроків</p>
+            <h3>Chronos</h3>
+          </div>
+        </div>
         <p>Календарний план уроків — автоматичний розрахунок дат на семестр з урахуванням канікул і свят.</p>
         <ul class="module-features">
           <li>Кілька періодів канікул</li>
