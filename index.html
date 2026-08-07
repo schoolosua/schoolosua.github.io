@@ -377,6 +377,16 @@
       box-shadow: 0 8px 16px var(--primary-glow);
     }
 
+    .module-badge.audience-zavuch {
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      box-shadow: 0 8px 16px rgba(124, 58, 237, 0.2);
+    }
+
+    .module-badge.audience-teacher {
+      background: linear-gradient(135deg, #059669, #10b981);
+      box-shadow: 0 8px 16px rgba(5, 150, 105, 0.2);
+    }
+
     .module-icon {
       width: 52px;
       height: 52px;
@@ -687,6 +697,7 @@
     <div class="modules-grid">
 
       <div class="module-card reveal">
+        <span class="module-badge audience-zavuch">Для завуча</span>
         <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">⚡</div>
         <p class="module-tagline">Генератор розкладу</p>
         <h3>Scheduler</h3>
@@ -700,6 +711,7 @@
       </div>
 
       <div class="module-card reveal">
+        <span class="module-badge audience-teacher">Для вчителя</span>
         <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">🛡️</div>
         <p class="module-tagline">Тести з захистом від списування</p>
         <h3>Integrity</h3>
@@ -713,7 +725,7 @@
       </div>
 
       <div class="module-card featured reveal">
-        <span class="module-badge">Новий</span>
+        <span class="module-badge audience-teacher">Для вчителя</span>
         <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">📅</div>
         <p class="module-tagline">Календарний план уроків</p>
         <h3>Chronos</h3>
