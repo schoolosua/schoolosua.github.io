@@ -105,6 +105,7 @@ export function generateLessons(settings: ChronosSettings): LessonEntry[] {
       date: entry.date,
       weekdayShort: WEEKDAY_SHORT[entry.weekdayIdx],
       numberLabel: String(settings.startingLessonNumber + i),
+      week: weekOrdinal(toDate(entry.date), start),
     }))
   }
 
@@ -132,6 +133,7 @@ export function generateLessons(settings: ChronosSettings): LessonEntry[] {
       date: entry.date,
       weekdayShort: WEEKDAY_SHORT[entry.weekdayIdx],
       numberLabel: `${weekIndex}.${nextInWeek}`,
+      week: weekIndex,
     }
   })
 }

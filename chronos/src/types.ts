@@ -50,6 +50,7 @@ export interface LessonEntry {
   date: string
   weekdayShort: string
   numberLabel: string
+  week: number // порядковий номер тижня (1+, використовується для групування в результатах)
 }
 
 export const WEEKDAY_LABELS = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', "П'ятниця", 'Субота']

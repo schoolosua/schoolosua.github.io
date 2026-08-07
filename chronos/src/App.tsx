@@ -13,6 +13,19 @@ function newId(): string {
 const CURRENT_YEAR = new Date().getFullYear()
 const YEAR_OPTIONS = [CURRENT_YEAR - 1, CURRENT_YEAR, CURRENT_YEAR + 1, CURRENT_YEAR + 2]
 
+function groupLessonsByWeek(lessons: LessonEntry[]) {
+  const groups: { week: number; entries: LessonEntry[] }[] = []
+  for (const lesson of lessons) {
+    const last = groups[groups.length - 1]
+    if (last && last.week === lesson.week) {
+      last.entries.push(lesson)
+    } else {
+      groups.push({ week: lesson.week, entries: [lesson] })
+    }
+  }
+  return groups
+}
+
 function App() {
   const [settings, setSettings] = useLocalStorage<ChronosSettings>(
     'chronos-settings',
@@ -454,24 +467,32 @@ function App() {
                 <h3 className="section-label">Результат</h3>
                 <span className="results-count">{lessons.length} уроків</span>
               </div>
-              <table className="results-table">
-                <thead>
-                  <tr>
-                    <th>№</th>
-                    <th>Дата</th>
-                    <th>Д/Т</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {lessons.map((lesson, i) => (
-                    <tr key={i}>
-                      <td className="num-cell">{lesson.numberLabel}</td>
-                      <td>{formatDateForDisplay(lesson.date)}</td>
-                      <td className="dow-cell">{lesson.weekdayShort}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="results-groups">
+                {groupLessonsByWeek(lessons).map((group) => (
+                  <div className="week-group" key={group.week}>
+                    <div className="week-group-header">
+                      <span className="week-group-title">Тиждень {group.week}</span>
+                      <span className="week-group-dates">
+                        {formatDateForDisplay(group.entries[0].date)}
+                        {group.entries.length > 1
+                          ? ` – ${formatDateForDisplay(group.entries[group.entries.length - 1].date)}`
+                          : ''}
+                      </span>
+                    </div>
+                    <table className="results-table">
+                      <tbody>
+                        {group.entries.map((lesson, i) => (
+                          <tr key={i} className={lesson.weekdayShort === 'сб' ? 'row-sat' : ''}>
+                            <td className="num-cell">{lesson.numberLabel}</td>
+                            <td>{formatDateForDisplay(lesson.date)}</td>
+                            <td className="dow-cell">{lesson.weekdayShort}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ))}
+              </div>
               <button className="btn-primary btn-block" onClick={handleExport}>
                 Завантажити як XLSX
               </button>
