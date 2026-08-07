@@ -209,6 +209,15 @@ function App() {
         </div>
       </header>
 
+      <div className="page-hero">
+        <p className="page-hero-eyebrow">Модуль SchoolOS</p>
+        <h1 className="page-hero-title">Chronos — календарний план уроків</h1>
+        <p className="page-hero-subtitle">
+          Налаштуй семестр, дні тижня, канікули та свята — і отримай готовий календарний план
+          уроків на кожен тиждень. Експортуй його в Excel.
+        </p>
+      </div>
+
       <div className="layout">
         <aside className="sidebar">
           <section className="sidebar-block">
