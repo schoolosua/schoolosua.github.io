@@ -343,6 +343,12 @@ button, input, select {
   border-radius: 8px;
 }
 
+.weekday-toggle-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
 .weekday-cell-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -445,14 +451,6 @@ button, input, select {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
   border: none;
-}
-
-.weekday-count-row input {
-  width: 100%;
-  padding: 8px 4px;
-  text-align: center;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
 }
 
 .switch-row {
