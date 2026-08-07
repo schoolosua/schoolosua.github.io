@@ -450,6 +450,26 @@
       margin: 0 0 20px;
     }
 
+    .module-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #b45309;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 14px;
+      align-self: flex-start;
+    }
+
+    .module-note::before {
+      content: '🔒';
+      font-size: 0.7rem;
+    }
+
     .module-features li {
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -734,6 +754,7 @@
           </div>
         </div>
         <p>Автоматизований розклад для школи — алгоритм враховує 18+ обмежень і генерує розклад за 30 секунд.</p>
+        <span class="module-note">Реєстрація обмежена</span>
         <ul class="module-features">
           <li>Групи та підгрупи</li>
           <li>Чисельник / знаменник</li>
@@ -752,6 +773,7 @@
           </div>
         </div>
         <p>Чесні онлайн-тести з захистом від списування та миттєвими результатами для вчителя і учня.</p>
+        <span class="module-note">Реєстрація обмежена</span>
         <ul class="module-features">
           <li>Anti-cheat моніторинг</li>
           <li>Аналітика й heat map</li>
