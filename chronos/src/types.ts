@@ -21,7 +21,16 @@ export interface DayTransfer {
 }
 
 // Ключі 0..5 відповідають дням тижня Пн..Сб (неділя ніколи не буває навчальним днем)
-export type WeekdaySettings = Record<number, number> // значення = кількість уроків цього предмета в цей день (0 = день не обрано)
+export type WeekdaySettings = Record<number, number> // значення = кількість уроків (0 = день не обрано)
+
+// Опція "Через тиждень" (непарні/в/парні тижні): окрема кількість уроків для непарних і парних тижнів
+export interface WeekPattern {
+  alternate: boolean // true = уроки через тиждень (парні/непарні)
+  oddCount: number // кількість уроків у непарний тиждень
+  evenCount: number // кількість уроків у парний тиждень
+}
+
+export type WeekPatterns = Record<number, WeekPattern>
 
 export interface ChronosSettings {
   academicYearStart: number // рік початку навчального року, напр. 2026 означає "2026/2027"
@@ -32,6 +41,7 @@ export interface ChronosSettings {
   martialLawMode: boolean // true = воєнний стан: свята НЕ виключаються, перенесення не застосовуються
   dayTransfers: DayTransfer[]
   weekdays: WeekdaySettings
+  weekPatterns: WeekPatterns
   startingLessonNumber: number
   adaptiveWeekNumbering: boolean
 }
@@ -56,6 +66,7 @@ export function defaultSettings(academicYearStart: number): ChronosSettings {
     martialLawMode: true,
     dayTransfers: [],
     weekdays: { 0: 1, 2: 1, 4: 1 },
+    weekPatterns: {},
     startingLessonNumber: 1,
     adaptiveWeekNumbering: false,
   }

@@ -343,15 +343,92 @@ button, input, select {
   border-radius: 8px;
 }
 
-.weekday-toggle-row,
-.weekday-count-row {
+.weekday-cell-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.weekday-cell {
+  background: #f8fafc;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
-.weekday-count-row {
-  margin-top: 8px;
+.weekday-cell.dim {
+  opacity: 0.55;
+}
+
+.weekday-cell-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.weekday-cell-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.weekday-pattern-btn {
+  border: 1px solid var(--card-border);
+  background: #fff;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.weekday-pattern-btn.active {
+  background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+  color: #fff;
+  border: none;
+}
+
+.weekday-pattern-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.weekday-cell input[type='number'] {
+  width: 100%;
+  padding: 8px 6px;
+  text-align: center;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.weekday-pair {
+  display: flex;
+  gap: 8px;
+}
+
+.weekday-pair label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.weekday-pair input[type='number'] {
+  width: 100%;
+  padding: 7px 4px;
+  text-align: center;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.8rem;
 }
 
 .weekday-btn {

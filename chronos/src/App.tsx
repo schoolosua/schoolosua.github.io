@@ -53,17 +53,35 @@ function App() {
   function toggleWeekday(idx: number) {
     const current = settings.weekdays[idx] ?? 0
     const next = { ...settings.weekdays }
+    const nextPatterns = { ...settings.weekPatterns }
     if (current > 0) {
       next[idx] = 0
+      delete nextPatterns[idx]
     } else {
       next[idx] = 1
     }
-    updateSettings({ weekdays: next })
+    updateSettings({ weekdays: next, weekPatterns: nextPatterns })
   }
 
   function setLessonsPerDay(idx: number, value: number) {
     const next = { ...settings.weekdays, [idx]: value }
     updateSettings({ weekdays: next })
+  }
+
+  function toggleWeekPattern(idx: number) {
+    const pattern = settings.weekPatterns && settings.weekPatterns[idx]
+      ? settings.weekPatterns[idx]
+      : { alternate: false, oddCount: 1, evenCount: 1 }
+    const next = { ...settings.weekPatterns, [idx]: { ...pattern, alternate: !pattern.alternate } }
+    updateSettings({ weekPatterns: next })
+  }
+
+  function setPatternCount(idx: number, field: 'oddCount' | 'evenCount', value: number) {
+    const pattern = settings.weekPatterns && settings.weekPatterns[idx]
+      ? settings.weekPatterns[idx]
+      : { alternate: false, oddCount: 1, evenCount: 1 }
+    const next = { ...settings.weekPatterns, [idx]: { ...pattern, [field]: Math.max(0, Number(value)) } }
+    updateSettings({ weekPatterns: next })
   }
 
   // --- Канікули ---
@@ -339,17 +357,56 @@ function App() {
             </div>
 
             <p className="section-sublabel">Кількість уроків на день</p>
-            <div className="weekday-count-row">
-              {WEEKDAY_BUTTON_LABELS.map((_, idx) => (
-                <input
-                  key={idx}
-                  type="number"
-                  min={0}
-                  disabled={settings.weekdays[idx] === 0}
-                  value={settings.weekdays[idx] ?? 0}
-                  onChange={(e) => setLessonsPerDay(idx, Math.max(0, Number(e.target.value)))}
-                />
-              ))}
+            <div className="weekday-cell-grid">
+              {WEEKDAY_BUTTON_LABELS.map((label, idx) => {
+                const isSelected = (settings.weekdays[idx] ?? 0) > 0
+                const pattern = settings.weekPatterns && settings.weekPatterns[idx]
+                const isAlternate = !!pattern?.alternate
+                return (
+                  <div key={idx} className={isSelected ? 'weekday-cell' : 'weekday-cell dim'}>
+                    <div className="weekday-cell-head">
+                      <span className="weekday-cell-label">{WEEKDAY_LABELS[idx]}</span>
+                      <button
+                        className={isSelected && isAlternate ? 'weekday-pattern-btn active' : 'weekday-pattern-btn'}
+                        disabled={!isSelected}
+                        onClick={() => toggleWeekPattern(idx)}
+                      >
+                        {isAlternate ? 'Через тиждень' : 'Кожен тиждень'}
+                      </button>
+                    </div>
+                    {isSelected && isAlternate ? (
+                      <div className="weekday-pair">
+                        <label>
+                          Непарні тижні
+                          <input
+                            type="number"
+                            min={0}
+                            value={pattern?.oddCount ?? 0}
+                            onChange={(e) => setPatternCount(idx, 'oddCount', Number(e.target.value))}
+                          />
+                        </label>
+                        <label>
+                          Парні тижні
+                          <input
+                            type="number"
+                            min={0}
+                            value={pattern?.evenCount ?? 0}
+                            onChange={(e) => setPatternCount(idx, 'evenCount', Number(e.target.value))}
+                          />
+                        </label>
+                      </div>
+                    ) : (
+                      <input
+                        type="number"
+                        min={0}
+                        disabled={!isSelected}
+                        value={settings.weekdays[idx] ?? 0}
+                        onChange={(e) => setLessonsPerDay(idx, Math.max(0, Number(e.target.value)))}
+                      />
+                    )}
+                  </div>
+                )
+              })}
             </div>
             {selectedWeekdaysCount === 0 && (
               <p className="hint">Обери хоча б один день тижня вище.</p>

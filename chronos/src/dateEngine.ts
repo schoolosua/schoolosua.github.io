@@ -42,6 +42,24 @@ function mondayOfWeek(date: Date): string {
   return toIso(addDays(date, -dow))
 }
 
+// Порядковий номер тижня (1=перший тиждень діапазону). Перший недільний понеділок — тиждень 1.
+function weekOrdinal(date: Date, rangeStart: Date): number {
+  const weekStart = mondayOfWeek(rangeStart)
+  const iso = toIso(date)
+  const diffDays = Math.round((toDate(iso).getTime() - toDate(weekStart).getTime()) / 86400000)
+  return Math.floor(diffDays / 7) + 1
+}
+
+// Кількість уроків у обраний день у даний тиждень (враховує "через тиждень" та парадокс парних тижнів)
+function lessonsForDay(settings: ChronosSettings, dow: number, order: number): number {
+  const base = settings.weekdays[dow] ?? 0
+  const pattern = settings.weekPatterns && settings.weekPatterns[dow]
+  if (pattern && pattern.alternate) {
+    return order % 2 === 1 ? pattern.oddCount : pattern.evenCount
+  }
+  return base
+}
+
 export function generateLessons(settings: ChronosSettings): LessonEntry[] {
   const start = toDate(settings.rangeStart)
   const end = toDate(settings.rangeEnd)
@@ -75,8 +93,8 @@ export function generateLessons(settings: ChronosSettings): LessonEntry[] {
     }
 
     if (isNormallySelected) {
-      const lessonsCount = settings.weekdays[dow] ?? 0
-      for (let i = 0; i < lessonsCount; i++) {
+      const lessonCount = lessonsForDay(settings, dow, weekOrdinal(cursor, start))
+      for (let i = 0; i < lessonCount; i++) {
         raw.push({ date: iso, weekdayIdx: dow })
       }
     }
