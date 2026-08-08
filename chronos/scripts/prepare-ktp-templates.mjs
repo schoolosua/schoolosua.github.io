@@ -23,13 +23,20 @@ const zip = new PizZip(readFileSync(source))
 const xml = zip.file('word/document.xml').asText()
 
 // ---------- 1. Шапкові заміни (усі тексти в одному <w:t>, точні підрядки) ----------
-const headerReplacements = [
-  ['на 20___ / 20___ навчальний рік', 'на {yearStart} / {yearEnd} навчальний рік'],
-  ['Заклад освіти: ____________________________________________________________', 'Заклад освіти: {school}'],
-  ['Предмет (інтегрований курс): _______________________________________________________', 'Предмет (інтегрований курс): {subject}'],
-  ['Клас(и): _______________________________________________________', 'Клас(и): {grade}'],
-  ['Вчитель (ПІБ): _______________________________________________________', 'Вчитель (ПІБ): {teacher}'],
-]
+function headerReplacements(sem) {
+  const month = sem === 'sem1' ? 'вересень' : 'січень'
+  const year = sem === 'sem1' ? '{yearStart}' : '{yearEnd}'
+  return [
+    ['на 20___ / 20___ навчальний рік', 'на {yearStart} / {yearEnd} навчальний рік'],
+    ['Заклад освіти: ____________________________________________________________', 'Заклад освіти: {school}'],
+    ['Предмет (інтегрований курс): _______________________________________________________', 'Предмет (інтегрований курс): {subject}'],
+    ['Клас(и): _______________________________________________________', 'Клас(и): {grade}'],
+    ['Вчитель (ПІБ): _______________________________________________________', 'Вчитель (ПІБ): {teacher}'],
+    ['Директор ________________________________ (назва закладу освіти)', 'Директор {school}'],
+    ['Вчитель: _______________________ /____________________/', `Вчитель: _______________________ /{teacher}`],
+    ['«___» _____________ 20___ р.', `«___» ${month} ${year} р.`],
+  ]
+}
 
 // ---------- 2. Виділення двох таблиць ----------
 function findTable(xml, startFrom) {
@@ -82,6 +89,12 @@ function prepareTable(table) {
     sample = sample.slice(0, i) + `<w:t>${text}</w:t>` + sample.slice(i + cellText.length)
   }
 
+  // Вміст клітинок зразкового рядка — по центру
+  sample = sample.replace(
+    /<w:p w14:paraId="[^"]+" w14:textId="[^"]+" w:rsidR="[^"]+" w:rsidRDefault="[^"]+">/g,
+    (m) => m + '<w:pPr><w:jc w:val="center"/></w:pPr>',
+  )
+
   return body.slice(0, headerEnd) + sample + '</w:tbl>'
 }
 
@@ -94,7 +107,8 @@ function build(keepTable) {
   const suffix = xml.slice(tbl2.end)
 
   let out = prefix + middle + suffix
-  for (const [from, to] of headerReplacements) {
+  const sem = keepTable === 'tbl1' ? 'sem1' : 'sem2'
+  for (const [from, to] of headerReplacements(sem)) {
     if (!out.includes(from)) throw new Error('Не знайдено текст для заміни: ' + from.slice(0, 40))
     out = out.split(from).join(to)
   }
