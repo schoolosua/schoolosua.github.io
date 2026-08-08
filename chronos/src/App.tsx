@@ -4,6 +4,7 @@ import { defaultSettings, WEEKDAY_LABELS, WEEKDAY_BUTTON_LABELS } from './types'
 import { generateLessons, formatDateForDisplay, weekdayShortForDate } from './dateEngine'
 import { fetchOfficialHolidays } from './holidaysApi'
 import { exportLessonsToXlsx } from './xlsxExport'
+import { exportLessonsToWord } from './wordExport'
 import { useLocalStorage } from './useLocalStorage'
 
 function newId(): string {
@@ -173,6 +174,14 @@ function App() {
     exportLessonsToXlsx(lessons, `chronos-${settings.academicYearStart}-${settings.academicYearStart + 1}.xlsx`)
   }
 
+  async function handleExportWord() {
+    try {
+      await exportLessonsToWord(settings, lessons)
+    } catch {
+      alert('Не вдалося створити Word-файл. Спробуй ще раз.')
+    }
+  }
+
   const selectedWeekdaysCount = useMemo(
     () => Object.values(settings.weekdays).filter((v) => v > 0).length,
     [settings.weekdays],
@@ -339,6 +348,53 @@ function App() {
             <button className="btn-secondary btn-block" onClick={addVacation}>
               + Додати канікули
             </button>
+          </section>
+
+          <section className="sidebar-block">
+            <div className="sidebar-block-header">
+              <h3>Дані для КТП</h3>
+            </div>
+            <p className="hint">
+              Підставляться в шапку Word-файлу. Решту (програму, підручник, підписи) допишеш
+              у документі.
+            </p>
+            <div className="entry-list">
+              <input
+                type="text"
+                placeholder="Заклад освіти"
+                value={settings.school}
+                onChange={(e) => updateSettings({ school: e.target.value })}
+              />
+              <input
+                type="text"
+                placeholder="Предмет"
+                value={settings.subject}
+                onChange={(e) => updateSettings({ subject: e.target.value })}
+              />
+              <input
+                type="text"
+                placeholder="Клас(и)"
+                value={settings.grade}
+                onChange={(e) => updateSettings({ grade: e.target.value })}
+              />
+              <input
+                type="text"
+                placeholder="Вчитель (ПІБ)"
+                value={settings.teacher}
+                onChange={(e) => updateSettings({ teacher: e.target.value })}
+              />
+            </div>
+            <div className="starting-number-row">
+              <span>Годин на урок</span>
+              <input
+                type="number"
+                min={1}
+                value={settings.hoursPerLesson}
+                onChange={(e) =>
+                  updateSettings({ hoursPerLesson: Math.max(1, Number(e.target.value)) })
+                }
+              />
+            </div>
           </section>
         </aside>
 
@@ -537,6 +593,9 @@ function App() {
               </div>
               <button className="btn-primary btn-block" onClick={handleExport}>
                 Завантажити як XLSX
+              </button>
+              <button className="btn-secondary btn-block" onClick={handleExportWord}>
+                Завантажити як Word (КТП)
               </button>
             </section>
           )}

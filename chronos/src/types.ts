@@ -44,6 +44,11 @@ export interface ChronosSettings {
   weekPatterns: WeekPatterns
   startingLessonNumber: number
   adaptiveWeekNumbering: boolean
+  school: string // заклад освіти (для шапки КТП)
+  subject: string // предмет (інтегрований курс)
+  grade: string // клас(и)
+  teacher: string // вчитель (ПІБ)
+  hoursPerLesson: number // годин на один урок (колонка «Кількість годин» у КТП)
 }
 
 export interface LessonEntry {
@@ -70,5 +75,10 @@ export function defaultSettings(academicYearStart: number): ChronosSettings {
     weekPatterns: {},
     startingLessonNumber: 1,
     adaptiveWeekNumbering: false,
+    school: '',
+    subject: '',
+    grade: '',
+    teacher: '',
+    hoursPerLesson: 1,
   }
 }
