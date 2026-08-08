@@ -405,7 +405,6 @@
     .module-icon svg {
       width: 34px;
       height: 34px;
-      filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.28));
     }
 
     .module-head {
@@ -754,27 +753,23 @@
         <span class="module-badge audience-zavuch">Для завуча</span>
         <div class="module-head">
           <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">
-            <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad-scheduler)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad-scheduler)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <defs>
                 <linearGradient id="grad-scheduler" x1="0" y1="0" x2="24" y2="24">
                   <stop offset="0%" stop-color="#2563eb"/>
                   <stop offset="100%" stop-color="#0ea5e9"/>
                 </linearGradient>
-                <linearGradient id="fill-scheduler" x1="0" y1="0" x2="24" y2="24">
-                  <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.4"/>
-                  <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.35"/>
-                </linearGradient>
               </defs>
-              <rect x="3" y="4.5" width="18" height="16" rx="2.6" fill="url(#fill-scheduler)"/>
-              <rect x="3" y="4.5" width="18" height="4.4" rx="2.1" fill="url(#grad-scheduler)"/>
+              <rect x="3" y="4.5" width="18" height="16" rx="2.5" fill="url(#grad-scheduler)" fill-opacity="0.22"/>
+              <line x1="3" y1="9.5" x2="21" y2="9.5"/>
               <line x1="8" y1="2.5" x2="8" y2="6.5"/>
               <line x1="16" y1="2.5" x2="16" y2="6.5"/>
-              <circle cx="7.5" cy="13" r="1" fill="#8b5cf6" stroke="none"/>
-              <circle cx="12" cy="13" r="1" fill="#0ea5e9" stroke="none"/>
-              <circle cx="16.5" cy="13" r="1" fill="#14b8a6" stroke="none"/>
-              <circle cx="7.5" cy="17" r="1" fill="#14b8a6" stroke="none"/>
-              <circle cx="12" cy="17" r="1" fill="#8b5cf6" stroke="none"/>
-              <circle cx="16.5" cy="17" r="1" fill="#0ea5e9" stroke="none"/>
+              <circle cx="7.5" cy="13" r="0.9" fill="url(#grad-scheduler)"/>
+              <circle cx="12" cy="13" r="0.9" fill="url(#grad-scheduler)"/>
+              <circle cx="16.5" cy="13" r="0.9" fill="url(#grad-scheduler)"/>
+              <circle cx="7.5" cy="17" r="0.9" fill="url(#grad-scheduler)"/>
+              <circle cx="12" cy="17" r="0.9" fill="url(#grad-scheduler)"/>
+              <circle cx="16.5" cy="17" r="0.9" fill="url(#grad-scheduler)"/>
             </svg>
           </div>
           <div class="module-head-text">
@@ -795,25 +790,16 @@
       <a class="module-card reveal" href="https://schoolos-test.vercel.app/" title="Перейти до Integrity">
         <span class="module-badge audience-teacher">Для вчителя</span>
         <div class="module-head">
-          <div class="module-icon" style="background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(37,99,235,0.12));">
-            <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad-integrity)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad-integrity)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <defs>
                 <linearGradient id="grad-integrity" x1="0" y1="0" x2="24" y2="24">
-                  <stop offset="0%" stop-color="#8b5cf6"/>
-                  <stop offset="100%" stop-color="#2563eb"/>
-                </linearGradient>
-                <linearGradient id="fill-integrity" x1="0" y1="0" x2="24" y2="24">
-                  <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.38"/>
-                  <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.32"/>
-                </linearGradient>
-                <linearGradient id="grad-check" x1="0" y1="0" x2="24" y2="24">
-                  <stop offset="0%" stop-color="#34d399"/>
-                  <stop offset="100%" stop-color="#10b981"/>
+                  <stop offset="0%" stop-color="#2563eb"/>
+                  <stop offset="100%" stop-color="#0ea5e9"/>
                 </linearGradient>
               </defs>
-              <path d="M12 3l7.5 2.6v5.2c0 4.5-3.1 8.3-7.5 10.2-4.4-1.9-7.5-5.7-7.5-10.2V5.6z" fill="url(#fill-integrity)"/>
-              <path d="M12 3l7.5 2.6v5.2c0 4.5-3.1 8.3-7.5 10.2-4.4-1.9-7.5-5.7-7.5-10.2V5.6z" fill="none"/>
-              <polyline points="8.4 12.1 11 14.7 15.9 9.7" stroke="url(#grad-check)" stroke-width="2.2"/>
+              <path d="M12 3l7.5 2.6v5.2c0 4.5-3.1 8.3-7.5 10.2-4.4-1.9-7.5-5.7-7.5-10.2V5.6z" fill="url(#grad-integrity)" fill-opacity="0.22"/>
+              <polyline points="8.5 12 11 14.5 15.8 9.8"/>
             </svg>
           </div>
           <div class="module-head-text">
@@ -834,31 +820,20 @@
       <a class="module-card featured reveal" href="/chronos/" title="Перейти до Chronos">
         <span class="module-badge audience-teacher">Для вчителя</span>
         <div class="module-head">
-          <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(20,184,166,0.12));">
-            <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad-chronos)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad-chronos)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <defs>
                 <linearGradient id="grad-chronos" x1="0" y1="0" x2="24" y2="24">
                   <stop offset="0%" stop-color="#2563eb"/>
-                  <stop offset="100%" stop-color="#14b8a6"/>
-                </linearGradient>
-                <linearGradient id="fill-chronos" x1="0" y1="0" x2="24" y2="24">
-                  <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.38"/>
-                  <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.32"/>
-                </linearGradient>
-                <linearGradient id="hand-chronos" x1="0" y1="0" x2="24" y2="24">
-                  <stop offset="0%" stop-color="#8b5cf6"/>
-                  <stop offset="100%" stop-color="#6366f1"/>
+                  <stop offset="100%" stop-color="#0ea5e9"/>
                 </linearGradient>
               </defs>
-              <circle cx="12" cy="12" r="8.5" fill="url(#fill-chronos)"/>
-              <circle cx="12" cy="12" r="8.5"/>
-              <line x1="12" y1="12" x2="12" y2="7.6" stroke-width="2.2"/>
-              <line x1="12" y1="12" x2="15.4" y2="14.2" stroke="url(#hand-chronos)" stroke-width="1.7"/>
-              <line x1="12" y1="3.6" x2="12" y2="5.4" stroke-width="2.2"/>
-              <line x1="12" y1="18.6" x2="12" y2="20.4" stroke-width="2.2"/>
-              <line x1="3.6" y1="12" x2="5.4" y2="12" stroke-width="2.2"/>
-              <line x1="18.6" y1="12" x2="20.4" y2="12" stroke-width="2.2"/>
-              <circle cx="12" cy="12" r="1.15" fill="#f59e0b" stroke="none"/>
+              <circle cx="12" cy="12" r="8.5" fill="url(#grad-chronos)" fill-opacity="0.22"/>
+              <polyline points="12 7.5 12 12 15.5 14"/>
+              <line x1="12" y1="3.5" x2="12" y2="5.5"/>
+              <line x1="12" y1="18.5" x2="12" y2="20.5"/>
+              <line x1="3.5" y1="12" x2="5.5" y2="12"/>
+              <line x1="18.5" y1="12" x2="20.5" y2="12"/>
             </svg>
           </div>
           <div class="module-head-text">
