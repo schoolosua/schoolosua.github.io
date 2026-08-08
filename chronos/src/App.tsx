@@ -26,6 +26,14 @@ function groupLessonsByWeek(lessons: LessonEntry[]) {
   return groups
 }
 
+// Який семестр відповідає поточному діапазону дат (якщо діапазон збігається точно)
+function activeSemesterKey(settings: ChronosSettings): 'sem1' | 'sem2' | null {
+  const y = settings.academicYearStart
+  if (settings.rangeStart === `${y}-09-01` && settings.rangeEnd === `${y}-12-30`) return 'sem1'
+  if (settings.rangeStart === `${y + 1}-01-09` && settings.rangeEnd === `${y + 1}-05-31`) return 'sem2'
+  return null
+}
+
 function App() {
   const [settings, setSettings] = useLocalStorage<ChronosSettings>(
     'chronos-settings',
@@ -338,10 +346,16 @@ function App() {
           <section className="card">
             <h3 className="section-label">Вибір семестру</h3>
             <div className="btn-row">
-              <button className="btn-choice" onClick={applySemesterOne}>
+              <button
+                className={activeSemesterKey(settings) === 'sem1' ? 'btn-choice active' : 'btn-choice'}
+                onClick={applySemesterOne}
+              >
                 I семестр
               </button>
-              <button className="btn-choice" onClick={applySemesterTwo}>
+              <button
+                className={activeSemesterKey(settings) === 'sem2' ? 'btn-choice active' : 'btn-choice'}
+                onClick={applySemesterTwo}
+              >
                 II семестр
               </button>
             </div>

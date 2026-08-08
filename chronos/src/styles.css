@@ -339,6 +339,13 @@ button, input, select {
   color: var(--text);
 }
 
+.btn-choice.active {
+  background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 22px var(--primary-glow);
+}
+
 .btn-block {
   width: 100%;
 }
