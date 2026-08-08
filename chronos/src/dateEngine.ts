@@ -142,3 +142,10 @@ export function formatDateForDisplay(iso: string): string {
   const [y, m, d] = iso.split('-')
   return `${d}.${m}.${y}`
 }
+
+export function weekdayShortForDate(iso: string): string {
+  const [y, m, d] = iso.split('-')
+  const jsDow = new Date(Number(y), Number(m) - 1, Number(d)).getDay()
+  const mondayBased = jsDow === 0 ? 6 : jsDow - 1
+  return [...WEEKDAY_SHORT, 'нд'][mondayBased]
+}

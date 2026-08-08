@@ -285,6 +285,16 @@ button, input, select {
   font-weight: 400;
 }
 
+.entry-weekday {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: #eef2f7;
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+
 .entry-dash {
   color: var(--text-muted);
   font-size: 0.8rem;

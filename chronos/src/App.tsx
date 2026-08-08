@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { ChronosSettings, DateRange, Holiday, DayTransfer, LessonEntry } from './types'
 import { defaultSettings, WEEKDAY_LABELS, WEEKDAY_BUTTON_LABELS } from './types'
-import { generateLessons, formatDateForDisplay } from './dateEngine'
+import { generateLessons, formatDateForDisplay, weekdayShortForDate } from './dateEngine'
 import { fetchOfficialHolidays } from './holidaysApi'
 import { exportLessonsToXlsx } from './xlsxExport'
 import { useLocalStorage } from './useLocalStorage'
@@ -260,6 +260,7 @@ function App() {
                     <span className={h.date ? 'entry-date' : 'entry-date is-empty'}>
                       {h.date ? formatDateForDisplay(h.date) : '—'}
                     </span>
+                    {h.date && <span className="entry-weekday">{weekdayShortForDate(h.date)}</span>}
                     <button aria-label="Видалити" className="icon-btn" onClick={() => removeHoliday(h.id)}>
                       ✕
                     </button>
