@@ -36,6 +36,7 @@ button, input, select {
 
 .page {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -240,8 +241,25 @@ button, input, select {
     gap: 10px;
   }
 
+  .weekday-toggle-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .weekday-cell-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .entry-row {
+    flex-wrap: wrap;
+  }
+
+  .entry-row input[type='date'],
+  .entry-row select {
+    flex: 1 1 130px;
+  }
+
+  .entry-row .icon-btn {
+    align-self: center;
   }
 
   .entry-row-top input[type='date'] {
@@ -294,10 +312,6 @@ button, input, select {
 }
 
 @media (max-width: 420px) {
-  .weekday-toggle-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .topbar {
     padding: 10px 12px;
   }
@@ -309,6 +323,10 @@ button, input, select {
 
   .logo-sep {
     display: none;
+  }
+
+  .page-hero-title {
+    font-size: 1.35rem;
   }
 
   .year-switcher select {
