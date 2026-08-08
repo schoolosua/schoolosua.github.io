@@ -1,4 +1,4 @@
-import * as XLSX from 'xlsx-community'
+import XLSX from 'xlsx-js-style'
 import type { LessonEntry } from './types'
 import { formatDateForDisplay } from './dateEngine'
 
