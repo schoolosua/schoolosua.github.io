@@ -1,0 +1,39 @@
+name: Update Calendar Events
+
+# Коли запускати цей workflow
+on:
+  schedule:
+    # 1 липня о 06:00 (UTC)
+    - cron: "0 6 1 7 *"
+    # 1 грудня о 06:00 (UTC)
+    - cron: "0 6 1 12 *"
+  # Дозволяє запустити вручну кнопкою на GitHub (для перевірки)
+  workflow_dispatch:
+
+# Дозвіл для скрипта записувати зміни назад у репозиторій
+permissions:
+  contents: write
+
+jobs:
+  update-holidays:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Завантажити код репозиторію
+        uses: actions/checkout@v4
+
+      - name: Встановити Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Запустити скрипт оновлення свят
+        run: python scripts/fetch_holidays.py
+
+      - name: Зберегти зміни в репозиторій (commit + push)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet && echo "Змін немає" || git commit -m "Автооновлення календаря свят"
+          git push

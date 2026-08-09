@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Календар — SchoolOS</title>
+<meta name="description" content="Модуль SchoolOS: календар державних свят та пам'ятних дат для планування виховної роботи школи.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+
+<style>
+  /* ==========================================================
+     ТОКЕНИ — ті самі значення, що й на schoolosua.github.io
+     та в модулі Chronos (src/styles.css), щоб усі три модулі
+     виглядали як частини однієї екосистеми.
+     ========================================================== */
+  :root {
+    --bg: #f3f7fa;
+    --glass-bg: rgba(255, 255, 255, 0.94);
+    --glass-border: rgba(255, 255, 255, 0.75);
+    --card-border-flat: rgba(226, 232, 240, 0.9);
+    --primary: #1e40af;
+    --primary-neon: #2563eb;
+    --primary-glow: rgba(37, 99, 235, 0.15);
+    --accent: #0ea5e9;
+    --gold: #d4a13d;
+    --gold-glow: rgba(212, 161, 61, 0.18);
+    --purple: #7c3aed;
+    --purple-2: #a855f7;
+    --green: #059669;
+    --green-2: #10b981;
+    --text: #0f172a;
+    --text-muted: #475569;
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 14px;
+
+    --shadow-premium:
+      0 40px 80px rgba(15, 23, 42, 0.05),
+      0 10px 30px rgba(15, 23, 42, 0.03),
+      inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    --shadow-clay:
+      inset 0 -4px 12px rgba(0, 0, 0, 0.02),
+      inset 0 2px 6px rgba(255, 255, 255, 0.9),
+      0 20px 40px rgba(15, 23, 42, 0.03);
+    --dur-fast: .15s; --dur-base: .2s;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.18) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #090d16;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  :focus-visible { outline: 2px solid var(--primary-neon); outline-offset: 3px; }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+  /* ==========================================================
+     ШАПКА — той самий glass-хедер і лого-мітка, що й на
+     schoolosua.github.io / chronos
+     ========================================================== */
+  header {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 78px;
+    gap: 16px;
+  }
+
+  .logo { display:flex; align-items:center; gap: 12px; font-weight: 700; font-size: 1.15rem; font-family: 'Clash Display', sans-serif; }
+
+  .logo-mark {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+    border-radius: 9px;
+    transform: rotate(45deg);
+    box-shadow: 0 8px 18px var(--primary-glow);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .logo-mark::after{
+    content:''; position:absolute; top:50%; left:50%;
+    width:9px; height:9px; background:#fff; border-radius:2px;
+    transform: translate(-50%,-50%) rotate(-45deg);
+  }
+
+  .logo-sep { color: var(--text-muted); font-weight: 400; }
+  .logo-module { color: var(--primary-neon); font-family: 'Space Grotesk', sans-serif; }
+
+  .nav a.back {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color var(--dur-fast);
+  }
+  .nav a.back:hover { color: var(--primary-neon); }
+
+  /* ==========================================================
+     ГЕРОЙ
+     ========================================================== */
+  .hero-section { padding: 56px 24px 8px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    box-shadow: var(--shadow-clay);
+    margin-bottom: 24px;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+    line-height: 1.16;
+    margin-bottom: 16px;
+    max-width: 16ch;
+  }
+
+  .hero-section h1 span {
+    background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-section p {
+    max-width: 560px;
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  /* Статистика — Space Grotesk як на головній сторінці */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    border-radius: var(--radius-lg);
+    padding: 22px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-clay);
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .stat-card p { margin-top: 4px; font-size: 0.82rem; color: var(--text-muted); }
+
+  /* ==========================================================
+     ПАНЕЛЬ ФІЛЬТРІВ
+     ========================================================== */
+  .controls {
+    position: sticky;
+    top: 78px;
+    z-index: 20;
+    background: rgba(243, 247, 250, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border-flat);
+    padding: 14px 0;
+    margin-bottom: 8px;
+  }
+
+  .controls-inner { display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
+
+  .filter-group { display:flex; align-items:center; gap: 8px; flex-wrap: wrap; }
+
+  .filter-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-right: 2px;
+  }
+
+  .chip {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: var(--shadow-clay);
+    transition: transform var(--dur-fast), box-shadow var(--dur-fast), color var(--dur-fast);
+  }
+
+  .chip:hover { transform: translateY(-1px); color: var(--text); }
+
+  .chip.active {
+    background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+    border-color: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 10px 20px var(--primary-glow);
+  }
+
+  .chip.active[data-type="памятна"] {
+    background: linear-gradient(135deg, var(--gold), #b8862c);
+    box-shadow: 0 10px 20px var(--gold-glow);
+  }
+  .chip.active[data-type="шкільна"] {
+    background: linear-gradient(135deg, var(--green), var(--green-2));
+    box-shadow: 0 10px 20px rgba(5, 150, 105, 0.2);
+  }
+
+  /* ==========================================================
+     СПИСОК ПОДІЙ
+     ========================================================== */
+  main { padding: 24px 0 100px; }
+
+  .month-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary-neon);
+    margin: 36px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .month-heading:first-child { margin-top: 0; }
+  .month-heading::after { content:''; flex:1; height:1px; background: var(--card-border-flat); }
+
+  .event-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .event-card {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    align-items: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-premium);
+    overflow: hidden;
+    transition: transform var(--dur-base), box-shadow var(--dur-base);
+  }
+
+  .event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08), 0 10px 24px rgba(15, 23, 42, 0.04);
+  }
+
+  .event-date {
+    align-self: stretch;
+    padding: 16px 8px;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(14,165,233,0.03));
+    border-right: 1px solid var(--card-border-flat);
+  }
+
+  .event-date .day {
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .event-date .mon {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .event-body {
+    padding: 14px 22px;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .event-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+
+  .event-meta { display:flex; flex-wrap: wrap; gap: 8px; align-items:center; }
+
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 11px;
+    border-radius: 999px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .tag-державне { color: var(--primary-neon); background: rgba(37, 99, 235, 0.1); }
+  .tag-памятна  { color: #9c711f; background: var(--gold-glow); }
+  .tag-шкільна  { color: var(--green); background: rgba(16, 185, 129, 0.12); }
+  .tag-age      { color: var(--text-muted); background: #f1f5f9; border: 1px solid var(--card-border-flat); }
+
+  .empty-state {
+    text-align:center;
+    padding: 56px 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    background: var(--glass-bg);
+    border: 1px dashed var(--card-border-flat);
+    border-radius: var(--radius-lg);
+  }
+
+  /* ==========================================================
+     ПІДВАЛ
+     ========================================================== */
+  footer { border-top: 1px solid var(--card-border-flat); padding: 26px 0 60px; }
+
+  footer .foot-inner {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--primary-neon); font-weight: 500; }
+
+  /* ==========================================================
+     АДАПТИВНІСТЬ
+     ========================================================== */
+  @media (max-width: 640px) {
+    .hero-section { padding: 40px 24px 8px; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-number { font-size: 1.4rem; }
+    .stat-card { padding: 16px 10px; }
+    .controls { top: 78px; }
+    .controls-inner { gap: 12px; }
+    .event-card { grid-template-columns: 62px 1fr; }
+    .event-date .day { font-size: 21px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="https://schoolosua.github.io/" class="logo">
+      <span class="logo-mark"></span>
+      <span>School<span class="logo-sep">OS</span> <span class="logo-module">Calendar</span></span>
+    </a>
+    <a href="https://schoolosua.github.io/" class="back">← Усі модулі</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <section class="hero-section">
+    <div class="hero-badge">🗓️ Модуль · Виховна робота</div>
+
+    <h1>Календар для <span>річного плану</span> виховної роботи</h1>
+
+    <p>
+      Державні свята та пам'ятні дати України в одному довіднику — основа
+      для планування ЗДВР. Дані оновлюються автоматично двічі на рік.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number" id="stat-total">—</span>
+        <p>Подій у базі</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-upcoming">—</span>
+        <p>Попереду цього року</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-updated">—</span>
+        <p>Останнє оновлення</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="controls">
+    <div class="controls-inner">
+
+      <div class="filter-group" id="filter-year">
+        <span class="filter-label">Рік</span>
+      </div>
+
+      <div class="filter-group" id="filter-type">
+        <span class="filter-label">Тип</span>
+        <button class="chip active" data-type="all">Усі</button>
+        <button class="chip" data-type="державне">Державні свята</button>
+        <button class="chip" data-type="памятна">Пам'ятні дати</button>
+        <button class="chip" data-type="шкільна">Шкільні події</button>
+      </div>
+
+      <div class="filter-group" id="filter-age">
+        <span class="filter-label">Клас</span>
+        <button class="chip active" data-age="all">Усі</button>
+        <button class="chip" data-age="1-4">1–4</button>
+        <button class="chip" data-age="5-9">5–9</button>
+        <button class="chip" data-age="10-11">10–11</button>
+      </div>
+
+    </div>
+  </div>
+
+  <main>
+    <div id="event-container">
+      <div class="empty-state">Завантаження календаря…</div>
+    </div>
+  </main>
+
+</div>
+
+<footer>
+  <div class="container foot-inner">
+    <span>Дані: Nager.Date API · УІНП · оновлюється автоматично через GitHub Actions</span>
+    <a href="https://schoolosua.github.io/" target="_blank" rel="noopener">Усі модулі SchoolOS →</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  // ------------------------------------------------------------
+  // НАЛАШТУВАННЯ
+  // ------------------------------------------------------------
+  var YEARS = [2026, 2027];
+
+  var SOURCES = [];
+  YEARS.forEach(function(y){
+    SOURCES.push({ file: 'data/holidays-' + y + '.json', fallbackType: 'державне' });
+    SOURCES.push({ file: 'data/memorable-' + y + '.json', fallbackType: 'памятна' });
+  });
+
+  var MONTH_NAMES = [
+    'Січень','Лютий','Березень','Квітень','Травень','Червень',
+    'Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'
+  ];
+
+  var state = { events: [], typeFilter: 'all', ageFilter: 'all', yearFilter: null };
+
+  function loadAll(){
+    var requests = SOURCES.map(function(src){
+      return fetch(src.file)
+        .then(function(res){ if (!res.ok) throw new Error('not found'); return res.json(); })
+        .then(function(list){
+          return list.map(function(item){
+            return Object.assign({}, item, { type: item.type || src.fallbackType });
+          });
+        })
+        .catch(function(){ return []; });
+    });
+
+    Promise.all(requests).then(function(results){
+      var merged = [].concat.apply([], results);
+      merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
+      state.events = merged;
+      buildYearFilter(merged);
+      render();
+    });
+  }
+
+  function buildYearFilter(events){
+    var years = Array.from(new Set(events.map(function(e){ return e.date.slice(0,4); }))).sort();
+    var wrap = document.getElementById('filter-year');
+
+    var allBtn = document.createElement('button');
+    allBtn.className = 'chip active';
+    allBtn.textContent = 'Усі';
+    allBtn.dataset.year = 'all';
+    wrap.appendChild(allBtn);
+
+    years.forEach(function(y){
+      var btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.textContent = y;
+      btn.dataset.year = y;
+      wrap.appendChild(btn);
+    });
+
+    wrap.addEventListener('click', function(e){
+      if (e.target.tagName !== 'BUTTON') return;
+      setActive(wrap, e.target);
+      state.yearFilter = e.target.dataset.year === 'all' ? null : e.target.dataset.year;
+      render();
+    });
+  }
+
+  function setActive(group, btn){
+    group.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+
+  document.getElementById('filter-type').addEventListener('click', function(e){
+    if (e.target.tagName !== 'BUTTON') return;
+    setActive(this, e.target);
+    state.typeFilter = e.target.dataset.type;
+    render();
+  });
+
+  document.getElementById('filter-age').addEventListener('click', function(e){
+    if (e.target.tagName !== 'BUTTON') return;
+    setActive(this, e.target);
+    state.ageFilter = e.target.dataset.age;
+    render();
+  });
+
+  function matchesFilters(ev){
+    if (state.typeFilter !== 'all' && ev.type !== state.typeFilter) return false;
+    if (state.yearFilter && ev.date.slice(0,4) !== state.yearFilter) return false;
+    if (state.ageFilter !== 'all'){
+      if (Array.isArray(ev.age) && ev.age.length && ev.age.indexOf(state.ageFilter) === -1) return false;
+    }
+    return true;
+  }
+
+  function render(){
+    var container = document.getElementById('event-container');
+    var filtered = state.events.filter(matchesFilters);
+
+    updateStats(state.events);
+
+    if (!filtered.length){
+      container.innerHTML = '<div class="empty-state">Подій для обраних фільтрів поки немає.</div>';
+      return;
+    }
+
+    var byMonth = {};
+    filtered.forEach(function(ev){
+      var key = ev.date.slice(0,7);
+      if (!byMonth[key]) byMonth[key] = [];
+      byMonth[key].push(ev);
+    });
+
+    var monthKeys = Object.keys(byMonth).sort();
+    var html = '';
+
+    monthKeys.forEach(function(key){
+      var parts = key.split('-');
+      var monthLabel = MONTH_NAMES[parseInt(parts[1], 10) - 1] + ' ' + parts[0];
+      html += '<div class="month-heading">' + monthLabel + '</div>';
+      html += '<div class="event-list">';
+      byMonth[key].forEach(function(ev){ html += renderCard(ev); });
+      html += '</div>';
+    });
+
+    container.innerHTML = html;
+  }
+
+  function renderCard(ev){
+    var d = new Date(ev.date + 'T00:00:00');
+    var day = d.getDate();
+    var monShort = MONTH_NAMES[d.getMonth()].slice(0,3).toLowerCase();
+    var typeClass = 'tag-' + (ev.type || 'шкільна');
+    var typeLabel = ev.type === 'державне' ? 'державне свято'
+                   : ev.type === 'памятна' ? "пам'ятна дата"
+                   : 'шкільна подія';
+
+    var ageLabel = '';
+    if (Array.isArray(ev.age) && ev.age.length){
+      ageLabel = '<span class="tag tag-age">' + ev.age.join(', ') + ' кл.</span>';
+    }
+
+    return (
+      '<article class="event-card">' +
+        '<div class="event-date">' +
+          '<span class="day">' + day + '</span>' +
+          '<span class="mon">' + monShort + '</span>' +
+        '</div>' +
+        '<div class="event-body">' +
+          '<div class="event-name">' + escapeHtml(ev.name) + '</div>' +
+          '<div class="event-meta">' +
+            '<span class="tag ' + typeClass + '">' + typeLabel + '</span>' +
+            ageLabel +
+          '</div>' +
+        '</div>' +
+      '</article>'
+    );
+  }
+
+  function updateStats(all){
+    document.getElementById('stat-total').textContent = all.length || '—';
+    var today = new Date().toISOString().slice(0,10);
+    var upcoming = all.filter(function(e){ return e.date >= today && e.date.slice(0,4) === today.slice(0,4); });
+    document.getElementById('stat-upcoming').textContent = upcoming.length;
+    document.getElementById('stat-updated').textContent = window.__CALENDAR_LAST_UPDATED__ || '—';
+  }
+
+  function escapeHtml(str){
+    var div = document.createElement('div');
+    div.textContent = str == null ? '' : str;
+    return div.innerHTML;
+  }
+
+  loadAll();
+})();
+</script>
+
+</body>
+</html>
