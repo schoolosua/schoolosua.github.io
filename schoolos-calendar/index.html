@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
@@ -489,6 +489,7 @@
           <button class="chip" data-type="державне">Державні свята</button>
           <button class="chip" data-type="памятна">Пам'ятні дати</button>
           <button class="chip" data-type="оон">Дні ООН</button>
+          <button class="chip" data-type="день">Свята-події</button>
           <button class="chip" data-type="шкільна">Шкільні події</button>
         </div>
       </div>
@@ -516,7 +517,7 @@
 
 <footer>
   <div class="container foot-inner">
-    <span>Дані: Nager.Date API · УІНП · оновлюється автоматично через GitHub Actions</span>
+    <span>Дані: Nager.Date API · УІНП · daytoday.ua · оновлюється автоматично через GitHub Actions</span>
     <a href="https://schoolosua.github.io/" target="_blank" rel="noopener">Усі модулі SchoolOS →</a>
   </div>
 </footer>
@@ -534,6 +535,7 @@
     SOURCES.push({ file: 'data/holidays-' + y + '.json', fallbackType: 'державне' });
     SOURCES.push({ file: 'data/memorable-' + y + '.json', fallbackType: 'памятна' });
     SOURCES.push({ file: 'data/un-days-' + y + '.json', fallbackType: 'оон' });
+    SOURCES.push({ file: 'data/daytoday-' + y + '.json', fallbackType: 'день' });
   });
 
   var MONTH_NAMES = [
@@ -660,6 +662,7 @@
     var typeLabel = ev.type === 'державне' ? 'державне свято'
                    : ev.type === 'памятна' ? "пам'ятна дата"
                    : ev.type === 'оон' ? 'день ООН'
+                   : ev.type === 'день' ? 'свято-подія'
                    : 'шкільна подія';
 
     var ageLabel = '';
