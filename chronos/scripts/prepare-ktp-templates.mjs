@@ -54,6 +54,13 @@ const tbl2 = findTable(xml, tbl1.end)
 function prepareTable(table) {
   let body = table.body
 
+  // Фіксована ширина колонок: таблиця не розтягується під довгий текст
+  const tblWEnd = body.indexOf('<w:tblW') !== -1
+    ? body.indexOf('/>', body.indexOf('<w:tblW')) + 2
+    : -1
+  if (tblWEnd === -1) throw new Error('Ширину таблиці не знайдено')
+  body = body.slice(0, tblWEnd) + '<w:tblLayout w:type="fixed"/>' + body.slice(tblWEnd)
+
   const headerMark = '<w:tblHeader/>'
   const headerPos = body.indexOf(headerMark)
   if (headerPos === -1) throw new Error('Шапку колонок не знайдено')
@@ -95,6 +102,14 @@ function prepareTable(table) {
     /<w:p w14:paraId="[^"]+" w14:textId="[^"]+" w:rsidR="[^"]+" w:rsidRDefault="[^"]+">/g,
     (m) => m + '<w:pPr><w:jc w:val="center"/></w:pPr>',
   )
+
+  // Колонка «Тема уроку / Зміст навчального матеріалу» — текст по правому краю
+  const themeCell = sample.indexOf('w:tcW w:w="7500"')
+  if (themeCell === -1) throw new Error('Колонку теми не знайдено')
+  const themePPr = sample.indexOf('<w:pPr><w:jc w:val="center"/></w:pPr>', themeCell)
+  if (themePPr === -1) throw new Error('Абзац колонки теми не знайдено')
+  sample = sample.slice(0, themePPr) + '<w:pPr><w:jc w:val="right"/></w:pPr>' +
+    sample.slice(themePPr + '<w:pPr><w:jc w:val="center"/></w:pPr>'.length)
 
   return body.slice(0, headerEnd) + sample + '</w:tbl>'
 }
