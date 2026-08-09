@@ -31,10 +31,6 @@ jobs:
         working-directory: schoolos-calendar
         run: python scripts/fetch_holidays.py
 
-      - name: Запустити скрипт оновлення пам'ятних дат (УІНП)
-        working-directory: schoolos-calendar
-        run: python scripts/fetch_memorable.py
-
       - name: Зберегти зміни в репозиторій (commit + push)
         run: |
           git config user.name "github-actions[bot]"
