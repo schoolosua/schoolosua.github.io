@@ -401,6 +401,13 @@
       box-shadow: 0 8px 16px rgba(245, 158, 11, 0.25);
     }
 
+    .module-badge.planned {
+      left: 24px;
+      right: auto;
+      background: linear-gradient(135deg, #64748b, #94a3b8);
+      box-shadow: 0 8px 16px rgba(100, 116, 139, 0.25);
+    }
+
     .module-icon {
       width: 52px;
       height: 52px;
@@ -898,6 +905,37 @@
         </ul>
         <span class="module-link">Перейти до Календар →</span>
       </a>
+
+      <div class="module-card reveal" title="Заплановано">
+        <span class="module-badge planned">Заплановано</span>
+        <span class="module-badge audience-teacher">Для вчителя</span>
+        <div class="module-head">
+          <div class="module-icon" style="background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.12));">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad-cert)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <defs>
+                <linearGradient id="grad-cert" x1="0" y1="0" x2="24" y2="24">
+                  <stop offset="0%" stop-color="#2563eb"/>
+                  <stop offset="100%" stop-color="#0ea5e9"/>
+                </linearGradient>
+              </defs>
+              <circle cx="12" cy="8.5" r="5.5" fill="url(#grad-cert)" fill-opacity="0.22"/>
+              <path d="M8.6 12.9 7 21l5-2.7 5 2.7-1.6-8.1"/>
+            </svg>
+          </div>
+          <div class="module-head-text">
+            <p class="module-tagline">Свідоцтва та нагородні документи</p>
+            <h3>Diploma</h3>
+          </div>
+        </div>
+        <p>Свідоцтва про освіту на державних бланках, грамоти та похвальні листи. Дані учнів заповнюються автоматично — залишається лише натиснути «Друкувати».</p>
+        <span class="module-note">Запуск у новому навчальному році</span>
+        <ul class="module-features">
+          <li>Автозаповнення зі списку класу</li>
+          <li>Пакетний друк усіх свідоцтв</li>
+          <li>QR-код перевірки документу</li>
+        </ul>
+        <span class="module-link">Незабаром →</span>
+      </div>
 
     </div>
   </section>
