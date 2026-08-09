@@ -31,6 +31,10 @@ jobs:
         working-directory: schoolos-calendar
         run: python scripts/fetch_holidays.py
 
+      - name: Оновити дні ООН
+        working-directory: schoolos-calendar
+        run: python scripts/fetch_un_days.py
+
       - name: Зберегти зміни в репозиторій (commit + push)
         run: |
           git config user.name "github-actions[bot]"

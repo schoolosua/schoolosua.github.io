@@ -279,6 +279,10 @@
     background: linear-gradient(135deg, var(--green), var(--green-2));
     box-shadow: 0 10px 20px rgba(5, 150, 105, 0.2);
   }
+  .chip.active[data-type="оон"] {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.25);
+  }
 
   /* ==========================================================
      СПИСОК ПОДІЙ
@@ -372,6 +376,7 @@
 
   .tag-державне { color: var(--primary-neon); background: rgba(37, 99, 235, 0.1); }
   .tag-памятна  { color: #9c711f; background: var(--gold-glow); }
+  .tag-оон      { color: #a78bfa; background: rgba(139, 92, 246, 0.12); }
   .tag-шкільна  { color: var(--green); background: rgba(16, 185, 129, 0.12); }
   .tag-age      { color: var(--text-muted); background: #f1f5f9; border: 1px solid var(--card-border-flat); }
 
@@ -483,6 +488,7 @@
           <button class="chip active" data-type="all">Усі</button>
           <button class="chip" data-type="державне">Державні свята</button>
           <button class="chip" data-type="памятна">Пам'ятні дати</button>
+          <button class="chip" data-type="оон">Дні ООН</button>
           <button class="chip" data-type="шкільна">Шкільні події</button>
         </div>
       </div>
@@ -527,6 +533,7 @@
   YEARS.forEach(function(y){
     SOURCES.push({ file: 'data/holidays-' + y + '.json', fallbackType: 'державне' });
     SOURCES.push({ file: 'data/memorable-' + y + '.json', fallbackType: 'памятна' });
+    SOURCES.push({ file: 'data/un-days-' + y + '.json', fallbackType: 'оон' });
   });
 
   var MONTH_NAMES = [
@@ -652,6 +659,7 @@
     var typeClass = 'tag-' + (ev.type || 'шкільна');
     var typeLabel = ev.type === 'державне' ? 'державне свято'
                    : ev.type === 'памятна' ? "пам'ятна дата"
+                   : ev.type === 'оон' ? 'день ООН'
                    : 'шкільна подія';
 
     var ageLabel = '';
