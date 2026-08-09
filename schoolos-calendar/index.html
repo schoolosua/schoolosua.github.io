@@ -217,17 +217,35 @@
     margin-bottom: 8px;
   }
 
-  .controls-inner { display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
+  .controls-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 18px 48px;
+  }
 
-  .filter-group { display:flex; align-items:center; gap: 8px; flex-wrap: wrap; }
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 
   .filter-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.09em;
     color: var(--text-muted);
-    margin-right: 2px;
+    text-align: center;
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
   }
 
   .chip {
@@ -387,14 +405,23 @@
      АДАПТИВНІСТЬ
      ========================================================== */
   @media (max-width: 640px) {
-    .hero-section { padding: 40px 24px 8px; }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .stat-number { font-size: 1.4rem; }
-    .stat-card { padding: 16px 10px; }
-    .controls { top: 78px; }
-    .controls-inner { gap: 12px; }
-    .event-card { grid-template-columns: 62px 1fr; }
-    .event-date .day { font-size: 21px; }
+    .container { padding: 0 16px; }
+    .hero-section { padding: 36px 16px 8px; }
+    .hero-section p { font-size: 0.95rem; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .stat-number { font-size: 1.35rem; }
+    .stat-card { padding: 14px 6px; }
+    .controls { position: static; padding: 12px 2px; border-bottom: none; margin-bottom: 4px; }
+    .controls-inner { justify-content: center; gap: 16px 0; }
+    .filter-group { width: 100%; gap: 8px; }
+    .filter-chips { gap: 7px; }
+    .chip { font-size: 0.8rem; padding: 6px 13px; }
+    .event-card { grid-template-columns: 58px 1fr; }
+    .event-date .day { font-size: 20px; }
+    .event-body { padding: 12px 14px; }
+    .event-name { font-size: 0.88rem; }
+    .month-heading { margin: 28px 0 12px; }
+    footer .foot-inner { flex-direction: column; gap: 8px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -447,22 +474,27 @@
 
       <div class="filter-group" id="filter-year">
         <span class="filter-label">Рік</span>
+        <div class="filter-chips"></div>
       </div>
 
       <div class="filter-group" id="filter-type">
         <span class="filter-label">Тип</span>
-        <button class="chip active" data-type="all">Усі</button>
-        <button class="chip" data-type="державне">Державні свята</button>
-        <button class="chip" data-type="памятна">Пам'ятні дати</button>
-        <button class="chip" data-type="шкільна">Шкільні події</button>
+        <div class="filter-chips">
+          <button class="chip active" data-type="all">Усі</button>
+          <button class="chip" data-type="державне">Державні свята</button>
+          <button class="chip" data-type="памятна">Пам'ятні дати</button>
+          <button class="chip" data-type="шкільна">Шкільні події</button>
+        </div>
       </div>
 
       <div class="filter-group" id="filter-age">
         <span class="filter-label">Клас</span>
-        <button class="chip active" data-age="all">Усі</button>
-        <button class="chip" data-age="1-4">1–4</button>
-        <button class="chip" data-age="5-9">5–9</button>
-        <button class="chip" data-age="10-11">10–11</button>
+        <div class="filter-chips">
+          <button class="chip active" data-age="all">Усі</button>
+          <button class="chip" data-age="1-4">1–4</button>
+          <button class="chip" data-age="5-9">5–9</button>
+          <button class="chip" data-age="10-11">10–11</button>
+        </div>
       </div>
 
     </div>
@@ -528,19 +560,20 @@
   function buildYearFilter(events){
     var years = Array.from(new Set(events.map(function(e){ return e.date.slice(0,4); }))).sort();
     var wrap = document.getElementById('filter-year');
+    var chipsWrap = wrap.querySelector('.filter-chips');
 
     var allBtn = document.createElement('button');
     allBtn.className = 'chip active';
     allBtn.textContent = 'Усі';
     allBtn.dataset.year = 'all';
-    wrap.appendChild(allBtn);
+    chipsWrap.appendChild(allBtn);
 
     years.forEach(function(y){
       var btn = document.createElement('button');
       btn.className = 'chip';
       btn.textContent = y;
       btn.dataset.year = y;
-      wrap.appendChild(btn);
+      chipsWrap.appendChild(btn);
     });
 
     wrap.addEventListener('click', function(e){
