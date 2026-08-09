@@ -906,7 +906,7 @@
     <div class="chart-card reveal">
       <div>
         <h3>Скільки часу економить SchoolOS</h3>
-        <p>Порівняння середньої кількості годин на тиждень, які вчитель витрачає на розклад, перевірку тестів і складання КТП — вручну проти роботи через модулі SchoolOS.</p>
+        <p>Порівняння середньої кількості годин на тиждень, які вчитель витрачає на розклад, перевірку тестів, складання КТП та плану виховної роботи — вручну проти роботи через модулі SchoolOS.</p>
         <div class="chart-legend">
           <span><i class="dot manual"></i>Вручну</span>
           <span><i class="dot schoolos"></i>З SchoolOS</span>
@@ -999,18 +999,18 @@
         new Chart(chartEl, {
           type: 'bar',
           data: {
-            labels: ['Розклад', 'Перевірка тестів', 'Складання КТП'],
+            labels: ['Розклад', 'Перевірка тестів', 'Складання КТП', 'План виховної роботи'],
             datasets: [
               {
                 label: 'Вручну (год/тиждень)',
-                data: [6, 5, 4],
+                data: [6, 5, 4, 3],
                 backgroundColor: '#cbd5e1',
                 borderRadius: 8,
                 maxBarThickness: 34
               },
               {
                 label: 'З SchoolOS (год/тиждень)',
-                data: [0.5, 0.5, 0.2],
+                data: [0.5, 0.5, 0.2, 0.3],
                 backgroundColor: '#2563eb',
                 borderRadius: 8,
                 maxBarThickness: 34
@@ -1039,10 +1039,10 @@
             new Chart(chartEl, {
               type: 'bar',
               data: {
-                labels: ['Розклад', 'Перевірка тестів', 'Складання КТП'],
+                labels: ['Розклад', 'Перевірка тестів', 'Складання КТП', 'План виховної роботи'],
                 datasets: [
-                  { label: 'Вручну (год/тиждень)', data: [6, 5, 4], backgroundColor: '#cbd5e1', borderRadius: 8, maxBarThickness: 34 },
-                  { label: 'З SchoolOS (год/тиждень)', data: [0.5, 0.5, 0.2], backgroundColor: '#2563eb', borderRadius: 8, maxBarThickness: 34 }
+                  { label: 'Вручну (год/тиждень)', data: [6, 5, 4, 3], backgroundColor: '#cbd5e1', borderRadius: 8, maxBarThickness: 34 },
+                  { label: 'З SchoolOS (год/тиждень)', data: [0.5, 0.5, 0.2, 0.3], backgroundColor: '#2563eb', borderRadius: 8, maxBarThickness: 34 }
                 ]
               },
               options: {
