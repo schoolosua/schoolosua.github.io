@@ -9,6 +9,21 @@ function semesterKeyForStart(start: string): 'sem1' | 'sem2' {
   return month >= 9 ? 'sem1' : 'sem2'
 }
 
+// Сумарна кількість годин на тиждень із «віконечок» днів.
+// Для днів «через тиждень» береться середнє між непарним і парним значеннями.
+function hoursPerWeekFromSettings(settings: ChronosSettings): number {
+  let total = 0
+  for (let idx = 0; idx < 6; idx++) {
+    const pattern = settings.weekPatterns && settings.weekPatterns[idx]
+    if (pattern && pattern.alternate) {
+      total += (pattern.oddCount + pattern.evenCount) / 2
+    } else {
+      total += settings.weekdays[idx] ?? 0
+    }
+  }
+  return total
+}
+
 function downloadBlob(blob: Blob, fileName: string) {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
@@ -33,14 +48,17 @@ export async function exportLessonsToWord(settings: ChronosSettings, lessons: Le
   doc.render({
     yearStart: settings.academicYearStart,
     yearEnd: settings.academicYearStart + 1,
+    semester: sem === 'sem1' ? 'І семестр' : 'ІІ семестр',
     school: settings.school,
     subject: settings.subject,
     grade: settings.grade,
     teacher: settings.teacher,
+    hoursPerWeek: hoursPerWeekFromSettings(settings),
+    hoursPerYear: settings.hoursPerYear,
     rows: lessons.map((lesson, i) => ({
       num: startNum + i,
       date: formatDateForDisplay(lesson.date),
-      hours: settings.hoursPerLesson,
+      hours: 1,
     })),
   })
 

@@ -385,13 +385,13 @@ function App() {
               />
             </div>
             <div className="starting-number-row">
-              <span>Годин на урок</span>
+              <span>Годин на рік</span>
               <input
                 type="number"
                 min={1}
-                value={settings.hoursPerLesson}
+                value={settings.hoursPerYear}
                 onChange={(e) =>
-                  updateSettings({ hoursPerLesson: Math.max(1, Number(e.target.value)) })
+                  updateSettings({ hoursPerYear: Math.max(1, Number(e.target.value)) })
                 }
               />
             </div>

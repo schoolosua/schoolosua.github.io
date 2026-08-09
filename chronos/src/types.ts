@@ -48,7 +48,7 @@ export interface ChronosSettings {
   subject: string // предмет (інтегрований курс)
   grade: string // клас(и)
   teacher: string // вчитель (ПІБ)
-  hoursPerLesson: number // годин на один урок (колонка «Кількість годин» у КТП)
+  hoursPerYear: number // сумарна кількість годин на рік (шапка КТП)
 }
 
 export interface LessonEntry {
@@ -79,6 +79,6 @@ export function defaultSettings(academicYearStart: number): ChronosSettings {
     subject: '',
     grade: '',
     teacher: '',
-    hoursPerLesson: 1,
+    hoursPerYear: 1,
   }
 }
