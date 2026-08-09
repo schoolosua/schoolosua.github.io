@@ -18,6 +18,7 @@
 ними, тому виконання займає кілька хвилин — це нормально.
 """
 
+import html
 import json
 import os
 import re
@@ -113,8 +114,7 @@ def get_day_events(month_slug: str, day_id: str) -> list:
 
     events = []
     for match in pattern.finditer(html):
-        text = match.group(1).strip()
-        text = text.replace("&#039;", "'").replace("&amp;", "&")
+        text = html.unescape(match.group(1).strip())
         if text:
             events.append(text)
 
