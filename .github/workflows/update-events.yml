@@ -28,12 +28,13 @@ jobs:
           python-version: "3.12"
 
       - name: Запустити скрипт оновлення свят
+        working-directory: schoolos-calendar
         run: python scripts/fetch_holidays.py
 
       - name: Зберегти зміни в репозиторій (commit + push)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/
+          git add schoolos-calendar/data/
           git diff --staged --quiet && echo "Змін немає" || git commit -m "Автооновлення календаря свят"
           git push

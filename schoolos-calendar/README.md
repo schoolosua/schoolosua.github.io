@@ -19,8 +19,8 @@ schoolos-calendar/
 │   └── holidays-2027.json              ← державні свята (оновлюється автоматично)
 ├── scripts/
 │   └── fetch_holidays.py               ← скрипт автооновлення (Nager.Date API)
-└── .github/workflows/
-    └── update-events.yml               ← автозапуск скрипта 1 липня та 1 грудня
+└── (workflow автооновлення живе в корені основного репозиторію
+    у .github/workflows/update-events.yml — автозапуск 1 липня та 1 грудня)
 ```
 
 ## Як розгорнути (GitHub Pages)
