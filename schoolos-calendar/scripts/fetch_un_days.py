@@ -203,7 +203,7 @@ def main():
         items = []
         for uk_name, (en_name, month, day) in zip(final, en_rows):
             items.append({"type": "оон", "date": f"{year:04d}-{month:02d}-{day:02d}",
-                          "title": uk_name})
+                          "name": uk_name})
         items.sort(key=lambda x: x["date"])
         path = os.path.join(DATA_DIR, f"un-days-{year}.json")
         with open(path, "w", encoding="utf-8") as f:
