@@ -1,9 +1,79 @@
 [
   {
     "date": "2027-01-01",
-    "name": "приклад запису — цей файл ще не оновлено скриптом",
-    "name_en": "example placeholder",
+    "name": "Новий Рік",
+    "name_en": "New Year's Day",
     "type": "державне",
-    "source": "placeholder — запусти GitHub Action, щоб отримати реальні дані"
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-03-08",
+    "name": "Міжнародний жіночий день",
+    "name_en": "International Women's Day",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-05-01",
+    "name": "День праці",
+    "name_en": "International Workers' Day",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-05-02",
+    "name": "Великдень",
+    "name_en": "Easter Sunday",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-05-08",
+    "name": "День перемоги над нацизмом у Другій світовій війні",
+    "name_en": "Victory day over Nazism in World War II",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-06-20",
+    "name": "Трійця",
+    "name_en": "Pentecost",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-06-28",
+    "name": "День Конституції",
+    "name_en": "Constitution Day",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-07-15",
+    "name": "День Української Державності",
+    "name_en": "Statehood Day",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-08-24",
+    "name": "День Незалежності",
+    "name_en": "Independence Day",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-10-01",
+    "name": "День захисників і захисниць України",
+    "name_en": "Defender of Ukraine Day",
+    "type": "державне",
+    "source": "Nager.Date API"
+  },
+  {
+    "date": "2027-12-25",
+    "name": "Різдво Христове",
+    "name_en": "Christmas Day",
+    "type": "державне",
+    "source": "Nager.Date API"
   }
 ]
