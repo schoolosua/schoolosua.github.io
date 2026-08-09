@@ -363,6 +363,20 @@
 
   .event-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
 
+  .event-name .event-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(37, 99, 235, 0.55);
+    transition: color var(--dur-base), border-bottom-color var(--dur-base);
+  }
+
+  .event-name .event-link:hover,
+  .event-name .event-link:focus-visible {
+    color: var(--primary-neon);
+    border-bottom-color: var(--primary-neon);
+    border-bottom-style: solid;
+  }
+
   .event-meta { display:flex; flex-wrap: wrap; gap: 8px; align-items:center; }
 
   .tag {
@@ -681,6 +695,11 @@ var merged = [].concat.apply([], results);
       ageLabel = '<span class="tag tag-age">' + ev.age.join(', ') + ' кл.</span>';
     }
 
+    var nameHtml = escapeHtml(ev.name);
+    if (ev.url){
+      nameHtml = '<a class="event-link" href="' + escapeHtml(ev.url) + '" target="_blank" rel="noopener">' + nameHtml + '</a>';
+    }
+
     return (
       '<article class="event-card">' +
         '<div class="event-date">' +
@@ -688,7 +707,7 @@ var merged = [].concat.apply([], results);
           '<span class="mon">' + monShort + '</span>' +
         '</div>' +
         '<div class="event-body">' +
-          '<div class="event-name">' + escapeHtml(ev.name) + '</div>' +
+          '<div class="event-name">' + nameHtml + '</div>' +
           '<div class="event-meta">' +
             '<span class="tag ' + typeClass + '">' + typeLabel + '</span>' +
             ageLabel +
