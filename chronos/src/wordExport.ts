@@ -39,7 +39,7 @@ export async function exportLessonsToWord(settings: ChronosSettings, lessons: Le
   if (!lessons.length) return
 
   const sem = semesterKeyForStart(settings.rangeStart)
-  const resp = await fetch(`ktp-${sem}.docx`)
+  const resp = await fetch(`ktp-${sem}.docx`, { cache: 'no-cache' })
   if (!resp.ok) throw new Error(`Шаблон КТП не завантажено (${resp.status})`)
   const zip = new PizZip(await resp.arrayBuffer())
   const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true })
