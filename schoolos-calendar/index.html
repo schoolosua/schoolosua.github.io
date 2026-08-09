@@ -506,7 +506,7 @@
 
   function loadAll(){
     var requests = SOURCES.map(function(src){
-      return fetch(src.file)
+      return fetch(src.file, { cache: 'no-cache' })
         .then(function(res){ if (!res.ok) throw new Error('not found'); return res.json(); })
         .then(function(list){
           return list.map(function(item){
