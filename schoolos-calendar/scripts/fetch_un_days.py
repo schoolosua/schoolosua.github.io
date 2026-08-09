@@ -19,6 +19,11 @@ WIKI_URL = "https://uk.wikipedia.org/w/index.php?title=%D0%9C%D1%96%D0%B6%D0%BD%
 TARGET_YEARS = [2026, 2027]
 HEADERS = {"User-Agent": "SchoolOS-Calendar-Bot (un-days-import)"}
 
+# Події, які ніколи не мають потрапляти в календар (повні рядки або підрядки).
+# Ключі збігаються з англійською назвою un.org та українською назвою з Вікіпедії.
+BLOCKED_EN = ("Russian Language Day",)
+BLOCKED_SUBSTRINGS_UK = ("російської мови",)
+
 MONTHS_EN = {"Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
              "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12}
 MONTHS_UK = {"січня": 1, "лютого": 2, "березня": 3, "квітня": 4, "травня": 5,
@@ -101,6 +106,13 @@ def fetch(url: str) -> str:
     with urllib.request.urlopen(req, timeout=30) as resp:
         raw = resp.read()
     return raw.decode("utf-8", errors="replace")
+
+
+def is_blocked(en_name: str, uk_name: str) -> bool:
+    if en_name in BLOCKED_EN:
+        return True
+    low = uk_name.lower()
+    return any(sub in low for sub in BLOCKED_SUBSTRINGS_UK)
 
 
 def clean_en_name(name: str) -> str:
@@ -199,9 +211,13 @@ def main():
         print(f"[WARN] {e}", file=sys.stderr)
 
     os.makedirs(DATA_DIR, exist_ok=True)
+    filtered = 0
     for year in TARGET_YEARS:
         items = []
         for uk_name, (en_name, month, day) in zip(final, en_rows):
+            if is_blocked(en_name, uk_name):
+                filtered += 1
+                continue
             items.append({"type": "оон", "date": f"{year:04d}-{month:02d}-{day:02d}",
                           "name": uk_name})
         items.sort(key=lambda x: x["date"])
@@ -209,6 +225,8 @@ def main():
         with open(path, "w", encoding="utf-8") as f:
             json.dump(items, f, ensure_ascii=False, indent=2)
         print(f"wrote {path} ({len(items)} items)")
+    if filtered:
+        print(f"відфільтровано заблокованих подій: {filtered}")
 
 
 if __name__ == "__main__":

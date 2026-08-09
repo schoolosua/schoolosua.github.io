@@ -546,6 +546,15 @@
 
   var state = { events: [], typeFilter: 'all', ageFilter: 'all', yearFilter: null };
 
+  // Події, які ніколи не показуємо в календарі (клієнтський фільтр-страховка:
+  // навіть якщо подія потрапила в JSON, вона не з'явиться в списку).
+  var BLOCKED_SUBSTRINGS = ['російської мови'];
+
+  function isBlocked(ev){
+    var name = (ev.name || '').toLowerCase();
+    return BLOCKED_SUBSTRINGS.some(function(s){ return name.indexOf(s) !== -1; });
+  }
+
   function loadAll(){
     var requests = SOURCES.map(function(src){
       return fetch(src.file, { cache: 'no-cache' })
@@ -559,8 +568,9 @@
     });
 
     Promise.all(requests).then(function(results){
-      var merged = [].concat.apply([], results);
-      merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
+var merged = [].concat.apply([], results);
+    merged = merged.filter(function(ev){ return !isBlocked(ev); });
+    merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
       state.events = merged;
       buildYearFilter(merged);
       render();
