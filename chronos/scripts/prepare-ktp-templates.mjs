@@ -103,12 +103,12 @@ function prepareTable(table) {
     (m) => m + '<w:pPr><w:jc w:val="center"/></w:pPr>',
   )
 
-  // Колонка «Тема уроку / Зміст навчального матеріалу» — текст по правому краю
+  // Колонка «Тема уроку / Зміст навчального матеріалу» — текст по лівому краю
   const themeCell = sample.indexOf('w:tcW w:w="7500"')
   if (themeCell === -1) throw new Error('Колонку теми не знайдено')
   const themePPr = sample.indexOf('<w:pPr><w:jc w:val="center"/></w:pPr>', themeCell)
   if (themePPr === -1) throw new Error('Абзац колонки теми не знайдено')
-  sample = sample.slice(0, themePPr) + '<w:pPr><w:jc w:val="right"/></w:pPr>' +
+  sample = sample.slice(0, themePPr) + '<w:pPr><w:jc w:val="left"/></w:pPr>' +
     sample.slice(themePPr + '<w:pPr><w:jc w:val="center"/></w:pPr>'.length)
 
   return body.slice(0, headerEnd) + sample + '</w:tbl>'
