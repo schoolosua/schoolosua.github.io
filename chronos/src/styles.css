@@ -183,13 +183,13 @@ a { text-decoration: none; color: inherit; }
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: var(--glass-bg);
   border: 1px solid var(--card-border-flat);
-  padding: 6px 14px;
+  padding: 4px 10px;
   border-radius: 999px;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
