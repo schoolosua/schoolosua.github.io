@@ -18,7 +18,7 @@
 ними, тому виконання займає кілька хвилин — це нормально.
 """
 
-import html
+from html import unescape
 import json
 import os
 import re
@@ -98,8 +98,8 @@ def get_day_links(month_slug: str) -> list:
 
 def get_day_events(month_slug: str, day_id: str) -> list:
     """
-    Заходить на сторінку конкретного дня і повертає список
-    текстів подій (назви пам'ятних дат / історичних подій).
+    Заходить на сторінку конкретного дня і повертає список пар
+    (текст події, url події) — назви пам'ятних дат / історичних подій.
     """
     url = f"{BASE_URL}/{month_slug}/{day_id}"
     html = fetch_html(url)
@@ -107,16 +107,16 @@ def get_day_events(month_slug: str, day_id: str) -> list:
     # Події - це посилання на рівень глибше за поточну сторінку дня,
     # напр.: /istorychnyy-kalendar/cherven/420/den-pamyati-ditey...
     pattern = re.compile(
-        r'href="https://uinp\.gov\.ua/istorychnyy-kalendar/'
+        r'href="(https://uinp\.gov\.ua/istorychnyy-kalendar/'
         + re.escape(month_slug) + r'/' + re.escape(day_id)
-        + r'/[A-Za-z0-9\-]+"[^>]*>([^<]+)</a>'
+        + r'/[A-Za-z0-9\-]+)"[^>]*>([^<]+)</a>'
     )
 
     events = []
     for match in pattern.finditer(html):
-        text = html.unescape(match.group(1).strip())
+        text = unescape(match.group(2).strip())
         if text:
-            events.append(text)
+            events.append((text, match.group(1)))
 
     return events
 
@@ -149,7 +149,7 @@ def extract_real_day_number(day_id: str, fallback_index: int) -> int:
 
 def build_memorable_calendar() -> list:
     """Проходить всі 12 місяців і збирає повний список подій."""
-    all_events_by_month_day = []  # [(month_number, day_number, text), ...]
+    all_events_by_month_day = []  # [(month_number, day_number, text, url), ...]
 
     for month_name, month_slug, month_number in MONTHS:
         print(f"Обробляю місяць: {month_name} ({month_slug})")
@@ -164,23 +164,25 @@ def build_memorable_calendar() -> list:
                 print(f"  ПОМИЛКА на {month_name} / {day_id}: {error}")
                 continue
 
-            for event_text in events:
-                all_events_by_month_day.append((month_number, day_number, event_text))
+            for event_text, event_url in events:
+                all_events_by_month_day.append(
+                    (month_number, day_number, event_text, event_url)
+                )
 
         print(f"  Зібрано подій за {month_name}: "
-              f"{sum(1 for m, d, t in all_events_by_month_day if m == month_number)}")
+              f"{sum(1 for m, d, t, u in all_events_by_month_day if m == month_number)}")
 
     return all_events_by_month_day
 
 
 def to_schoolos_format(raw_events: list, year: int) -> list:
     """
-    Перетворює список (місяць, день, текст) на записи у форматі
+    Перетворює список (місяць, день, текст, url) на записи у форматі
     нашого модуля, для конкретного року. Дати, яких не існує в цьому
     році (29 лютого в невисокосний рік), пропускаються.
     """
     result = []
-    for month_number, day_number, text in raw_events:
+    for month_number, day_number, text, event_url in raw_events:
         try:
             event_date = date(year, month_number, day_number)
         except ValueError:
@@ -192,6 +194,7 @@ def to_schoolos_format(raw_events: list, year: int) -> list:
             "type": "памятна",
             "subtype": classify_event(text),
             "source": "УІНП — Історичний календар",
+            "url": event_url,
         })
 
     return result
