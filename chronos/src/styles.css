@@ -61,6 +61,7 @@ button, input, select {
   font-size: 1.1rem;
   font-family: 'Clash Display', sans-serif;
   color: var(--text);
+  text-decoration: none;
 }
 
 .logo-mark {
