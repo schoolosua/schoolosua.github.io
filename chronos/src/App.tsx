@@ -229,7 +229,7 @@ function App() {
       </header>
 
       <div className="hero-section">
-        <p className="hero-badge">Модуль SchoolOS</p>
+        <p className="hero-badge">🕒 Модуль SchoolOS · Календарний план уроків</p>
         <h1>
           Chronos — <span>календарний план уроків</span>
         </h1>
