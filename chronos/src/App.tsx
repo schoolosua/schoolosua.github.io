@@ -192,44 +192,48 @@ function App() {
   return (
     <div className="page">
       <header className="topbar">
-        <a href="/" className="logo">
-          <span className="logo-mark" />
-          <span>
-            SchoolOS <span className="logo-sep">/</span> <b className="logo-module">Chronos</b>
-          </span>
-        </a>
-        <div className="year-switcher">
-          <button
-            aria-label="Попередній рік"
-            className="icon-btn"
-            onClick={() => changeAcademicYear(settings.academicYearStart - 1)}
-          >
-            ‹
-          </button>
-          <select
-            value={settings.academicYearStart}
-            onChange={(e) => changeAcademicYear(Number(e.target.value))}
-          >
-            {YEAR_OPTIONS.map((y) => (
-              <option key={y} value={y}>
-                {y} / {y + 1}
-              </option>
-            ))}
-          </select>
-          <button
-            aria-label="Наступний рік"
-            className="icon-btn"
-            onClick={() => changeAcademicYear(settings.academicYearStart + 1)}
-          >
-            ›
-          </button>
+        <div className="nav">
+          <a href="/" className="logo">
+            <span className="logo-mark" />
+            <span>
+              SchoolOS <span className="logo-sep">/</span> <b className="logo-module">Chronos</b>
+            </span>
+          </a>
+          <div className="year-switcher">
+            <button
+              aria-label="Попередній рік"
+              className="icon-btn"
+              onClick={() => changeAcademicYear(settings.academicYearStart - 1)}
+            >
+              ‹
+            </button>
+            <select
+              value={settings.academicYearStart}
+              onChange={(e) => changeAcademicYear(Number(e.target.value))}
+            >
+              {YEAR_OPTIONS.map((y) => (
+                <option key={y} value={y}>
+                  {y} / {y + 1}
+                </option>
+              ))}
+            </select>
+            <button
+              aria-label="Наступний рік"
+              className="icon-btn"
+              onClick={() => changeAcademicYear(settings.academicYearStart + 1)}
+            >
+              ›
+            </button>
+          </div>
         </div>
       </header>
 
-      <div className="page-hero">
-        <p className="page-hero-eyebrow">Модуль SchoolOS</p>
-        <h1 className="page-hero-title">Chronos — календарний план уроків</h1>
-        <p className="page-hero-subtitle">
+      <div className="hero-section">
+        <p className="hero-badge">Модуль SchoolOS</p>
+        <h1>
+          Chronos — <span>календарний план уроків</span>
+        </h1>
+        <p>
           Розстав усі дати в календарно-тематичному плані на навчальний рік за кілька секунд —
           без реєстрації, з урахуванням канікул, свят і перенесень вихідних. Готовий стовпчик
           дат експортується в Excel одним кліком.
