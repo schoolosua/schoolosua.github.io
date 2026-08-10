@@ -21,6 +21,8 @@ schoolos-calendar/
 │   ├── daytoday-2027.json              ← свята-події daytoday.ua (оновлюється автоматично)
 │   ├── rada-2026.json                  ← офіційні свята ВРУ (оновлюється автоматично)
 │   └── rada-2027.json                  ← офіційні свята ВРУ (оновлюється автоматично)
+├── vendor/
+│   └── docx.umd.js                      ← docx 8.5.0 локально (Word-експорт кошика «Мій план»)
 ├── scripts/
 │   ├── fetch_holidays.py               ← скрипт автооновлення (Nager.Date API)
 │   ├── fetch_un_days.py                ← дні ООН (un.org + uk.wikipedia)
