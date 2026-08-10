@@ -553,6 +553,11 @@
     max-width: 100%;
   }
 
+  .plan-select.plan-date {
+    width: 148px;
+    cursor: text;
+  }
+
   .plan-fab {
     position: fixed;
     right: 22px;
@@ -1241,9 +1246,7 @@
             '<select class="plan-select plan-sposib" data-date="' + safeDate + '" data-name="' + safeName + '">' +
               renderOptions(SPOSIB_OPTIONS, planItem ? planItem.sposib : SPOSIB_OPTIONS[0]) +
             '</select>' +
-            '<select class="plan-select plan-klas" data-date="' + safeDate + '" data-name="' + safeName + '">' +
-              renderOptions(KLAS_OPTIONS, planItem ? planItem.klas : KLAS_OPTIONS[0]) +
-            '</select>' +
+            '<input type="date" class="plan-select plan-date" data-date="' + safeDate + '" data-name="' + safeName + '" value="' + (planItem && planItem.planDate ? escapeAttr(planItem.planDate) : safeDate) + '">' +
           '</div>' +
         '</div>' +
       '</article>'
@@ -1323,13 +1326,6 @@
     'Проєкт'
   ];
 
-  var KLAS_OPTIONS = [
-    'Усі класи',
-    '1–4 класи',
-    '5–9 класи',
-    '10–11 класи'
-  ];
-
   function loadPlan(){
     try {
       var raw = localStorage.getItem(PLAN_STORAGE_KEY);
@@ -1360,7 +1356,7 @@
     var plan = loadPlan();
     var exists = plan.some(function(p){ return p.date === date && p.name === name; });
     if (!exists){
-      plan.push({ date: date, name: name, vid: VID_OPTIONS[0], sposib: SPOSIB_OPTIONS[0], klas: KLAS_OPTIONS[0] });
+      plan.push({ date: date, name: name, vid: VID_OPTIONS[0], sposib: SPOSIB_OPTIONS[0], planDate: date });
       savePlan(plan);
     }
   }
@@ -1414,8 +1410,8 @@
       return;
     }
 
-    if (target.classList.contains('plan-klas')){
-      updatePlanField(target.dataset.date, target.dataset.name, 'klas', target.value);
+    if (target.classList.contains('plan-date')){
+      updatePlanField(target.dataset.date, target.dataset.name, 'planDate', target.value);
       return;
     }
   });
@@ -1452,7 +1448,8 @@
     }
 
     planModalList.innerHTML = plan.map(function(item){
-      var d = new Date(item.date + 'T00:00:00');
+      var effDate = item.planDate || item.date;
+      var d = new Date(effDate + 'T00:00:00');
       var formatted = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
       var safeDate = escapeAttr(item.date);
       var safeName = escapeAttr(item.name);
@@ -1469,9 +1466,7 @@
               '<select class="plan-select plan-sposib" data-date="' + safeDate + '" data-name="' + safeName + '">' +
                 renderOptions(SPOSIB_OPTIONS, item.sposib) +
               '</select>' +
-              '<select class="plan-select plan-klas" data-date="' + safeDate + '" data-name="' + safeName + '">' +
-                renderOptions(KLAS_OPTIONS, item.klas || KLAS_OPTIONS[0]) +
-              '</select>' +
+              '<input type="date" class="plan-select plan-date" data-date="' + safeDate + '" data-name="' + safeName + '" value="' + escapeAttr(effDate) + '">' +
             '</div>' +
           '</div>' +
           '<button class="plan-row-remove" type="button" data-date="' + safeDate + '" data-name="' + safeName + '">✕</button>' +
@@ -1488,8 +1483,8 @@
     if (target.classList.contains('plan-sposib')){
       updatePlanField(target.dataset.date, target.dataset.name, 'sposib', target.value);
     }
-    if (target.classList.contains('plan-klas')){
-      updatePlanField(target.dataset.date, target.dataset.name, 'klas', target.value);
+    if (target.classList.contains('plan-date')){
+      updatePlanField(target.dataset.date, target.dataset.name, 'planDate', target.value);
     }
   });
 
@@ -1529,7 +1524,7 @@
   });
 
   function generateAndDownloadDocx(plan, className){
-    var headerCells = ['№', 'Дата', 'Захід', 'Вид виховної роботи', 'Спосіб проведення', 'Клас'];
+    var headerCells = ['№', 'Дата проведення', 'Захід', 'Вид виховної роботи', 'Спосіб проведення'];
 
     var headerRow = new docx.TableRow({
       tableHeader: true,
@@ -1542,10 +1537,11 @@
     });
 
     var dataRows = plan.map(function(item, index){
-      var d = new Date(item.date + 'T00:00:00');
+      var effDate = item.planDate || item.date;
+      var d = new Date(effDate + 'T00:00:00');
       var formatted = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
 
-      var cellsText = [String(index + 1), formatted, item.name, item.vid, item.sposib, item.klas || KLAS_OPTIONS[0]];
+      var cellsText = [String(index + 1), formatted, item.name, item.vid, item.sposib];
       return new docx.TableRow({
         children: cellsText.map(function(text){
           return new docx.TableCell({ children: [new docx.Paragraph(text)] });
