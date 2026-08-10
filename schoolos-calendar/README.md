@@ -1,4 +1,4 @@
-# SchoolOS · Mentor (модуль «Виховна робота»)
+# SchoolOS · Mentor (модуль «План виховної роботи»)
 
 > Дизайн повторює токени з `schoolosua.github.io` та `chronos/src/styles.css`:
 > шрифти Clash Display + Inter + Space Grotesk, світла "скляна" тема,
