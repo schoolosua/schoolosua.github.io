@@ -273,22 +273,70 @@
     box-shadow: 0 10px 20px var(--primary-glow);
   }
 
-  .chip.active[data-type="памятна"] {
+  .chip.active[data-value="памятна"] {
     background: linear-gradient(135deg, var(--gold), #b8862c);
     box-shadow: 0 10px 20px var(--gold-glow);
   }
-  .chip.active[data-type="шкільна"] {
+  .chip.active[data-value="шкільна"] {
     background: linear-gradient(135deg, var(--green), var(--green-2));
     box-shadow: 0 10px 20px rgba(5, 150, 105, 0.2);
   }
-  .chip.active[data-type="оон"] {
+  .chip.active[data-value="оон"] {
     background: linear-gradient(135deg, #8b5cf6, #6d28d9);
     box-shadow: 0 10px 20px rgba(139, 92, 246, 0.25);
   }
-  .chip.active[data-type="офіційне"] {
+  .chip.active[data-value="офіційне"] {
     background: linear-gradient(135deg, #0d9488, #0f766e);
     box-shadow: 0 10px 20px rgba(13, 148, 136, 0.25);
   }
+  .chip.active[data-value="summer"] {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
+  }
+
+  .filter-group-search { min-width: 220px; }
+
+  .search-input {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text);
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    border-radius: 999px;
+    padding: 8px 16px;
+    box-shadow: var(--shadow-clay);
+    width: 220px;
+    max-width: 100%;
+  }
+  .search-input::placeholder { color: var(--text-muted); }
+  .search-input:focus { outline: 2px solid var(--primary-neon); outline-offset: 1px; }
+
+  .quick-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    max-width: 1180px;
+    margin: 12px auto 0;
+    padding: 0 24px 2px;
+    scrollbar-width: thin;
+  }
+
+  .quick-nav-item {
+    flex: 0 0 auto;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: #fff;
+    border: 1px solid var(--card-border-flat);
+    border-radius: 999px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color var(--dur-fast), border-color var(--dur-fast);
+  }
+  .quick-nav-item:hover { color: var(--primary-neon); border-color: var(--primary-neon); }
 
   /* ==========================================================
      СПИСОК ПОДІЙ
@@ -306,6 +354,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    scroll-margin-top: 210px;
   }
   .month-heading:first-child { margin-top: 0; }
   .month-heading::after { content:''; flex:1; height:1px; background: var(--card-border-flat); }
@@ -339,6 +388,15 @@
     justify-content:center;
     background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(14,165,233,0.03));
     border-right: 1px solid var(--card-border-flat);
+  }
+
+  .event-date .dow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    font-weight: 700;
   }
 
   .event-date .day {
@@ -443,6 +501,9 @@
     .filter-group { width: 100%; gap: 8px; }
     .filter-chips { gap: 7px; }
     .chip { font-size: 0.8rem; padding: 6px 13px; }
+    .filter-group-search { width: 100%; }
+    .search-input { width: 100%; }
+    .quick-nav { padding: 0 16px 2px; }
     .event-card { grid-template-columns: 58px 1fr; }
     .event-date .day { font-size: 20px; }
     .event-body { padding: 12px 14px; }
@@ -711,35 +772,61 @@
   <div class="controls">
     <div class="controls-inner">
 
+      <div class="filter-group filter-group-search" id="filter-search">
+        <span class="filter-label">Пошук</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Назва події…">
+      </div>
+
       <div class="filter-group" id="filter-year">
-        <span class="filter-label">Рік</span>
+        <span class="filter-label">Навчальний рік</span>
         <div class="filter-chips"></div>
+      </div>
+
+      <div class="filter-group" id="filter-semester">
+        <span class="filter-label">Семестр</span>
+        <div class="filter-chips">
+          <button class="chip" data-all>Увесь рік</button>
+          <button class="chip" data-value="1">I семестр</button>
+          <button class="chip" data-value="2">II семестр</button>
+          <button class="chip" data-value="summer">Літо</button>
+        </div>
+      </div>
+
+      <div class="filter-group" id="filter-month">
+        <span class="filter-label">Місяць</span>
+        <div class="filter-chips">
+          <button class="chip active" data-all>Усі</button>
+          <button class="chip" data-value="1">Січ</button>
+          <button class="chip" data-value="2">Лют</button>
+          <button class="chip" data-value="3">Бер</button>
+          <button class="chip" data-value="4">Кві</button>
+          <button class="chip" data-value="5">Тра</button>
+          <button class="chip" data-value="6">Чер</button>
+          <button class="chip" data-value="7">Лип</button>
+          <button class="chip" data-value="8">Сер</button>
+          <button class="chip" data-value="9">Вер</button>
+          <button class="chip" data-value="10">Жов</button>
+          <button class="chip" data-value="11">Лис</button>
+          <button class="chip" data-value="12">Гру</button>
+        </div>
       </div>
 
       <div class="filter-group" id="filter-type">
         <span class="filter-label">Тип</span>
         <div class="filter-chips">
-          <button class="chip active" data-type="all">Усі</button>
-          <button class="chip" data-type="державне">Державні свята</button>
-          <button class="chip" data-type="офіційне">Офіційні (ВРУ)</button>
-          <button class="chip" data-type="памятна">Пам'ятні дати</button>
-          <button class="chip" data-type="оон">Дні ООН</button>
-          <button class="chip" data-type="день">Свята-події</button>
-          <button class="chip" data-type="шкільна">Шкільні події</button>
-        </div>
-      </div>
-
-      <div class="filter-group" id="filter-age">
-        <span class="filter-label">Клас</span>
-        <div class="filter-chips">
-          <button class="chip active" data-age="all">Усі</button>
-          <button class="chip" data-age="1-4">1–4</button>
-          <button class="chip" data-age="5-9">5–9</button>
-          <button class="chip" data-age="10-11">10–11</button>
+          <button class="chip active" data-all>Усі</button>
+          <button class="chip" data-value="державне">Державні свята</button>
+          <button class="chip" data-value="офіційне">Офіційні (ВРУ)</button>
+          <button class="chip" data-value="памятна">Пам'ятні дати</button>
+          <button class="chip" data-value="оон">Дні ООН</button>
+          <button class="chip" data-value="день">Свята-події</button>
+          <button class="chip" data-value="шкільна">Шкільні події</button>
         </div>
       </div>
 
     </div>
+
+    <div class="quick-nav" id="quick-nav"></div>
   </div>
 
   <main>
@@ -784,8 +871,8 @@
       <button id="plan-clear-btn" class="btn-secondary" type="button">Очистити план</button>
       <button id="plan-download-btn" class="btn-primary" type="button">Завантажити Word</button>
     </div>
-  
-
+  </div>
+</div>
 
 <script>
 (function(){
@@ -793,7 +880,14 @@
   // ------------------------------------------------------------
   // НАЛАШТУВАННЯ
   // ------------------------------------------------------------
-  var YEARS = [2026, 2027];
+  var TODAY = new Date();
+  var CURRENT_CALENDAR_YEAR = TODAY.getFullYear();
+
+  // Роки завантаження обчислюються від поточної дати автоматично, тому
+  // з часом (без ручних правок коду) сайт сам почне запитувати наступні
+  // роки. Дані за ці роки з'являться в data/, коли скрипти-парсери їх
+  // згенерують — до того часу fetch() просто отримає 404 і буде проігноровано.
+  var YEARS = [CURRENT_CALENDAR_YEAR - 1, CURRENT_CALENDAR_YEAR, CURRENT_CALENDAR_YEAR + 1];
 
   var SOURCES = [];
   // daytoday.ua показує тільки поточний рік сайту (плаваючі свята прив'язані
@@ -822,7 +916,47 @@
     'липня','серпня','вересня','жовтня','листопада','грудня'
   ];
 
-  var state = { events: [], typeFilter: 'all', ageFilter: 'all', yearFilter: null };
+  var MONTH_SHORT = MONTH_NAMES.map(function(m){ return m.slice(0, 3); });
+  var DOW_SHORT = ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']; // Date.getDay(): 0 = неділя
+
+  // ---- Навчальний рік / семестр: дата -> категорія ----
+  // Навчальний рік вересень(N)–серпень(N+1) позначається як N/N+1.
+  // I семестр: вересень–грудень. II семестр: січень–травень. Літо: червень–серпень.
+  function getAcademicYearStart(dateStr){
+    var y = parseInt(dateStr.slice(0, 4), 10);
+    var m = parseInt(dateStr.slice(5, 7), 10);
+    return m >= 9 ? y : y - 1;
+  }
+  function academicYearLabel(startYear){ return startYear + '/' + (startYear + 1); }
+
+  function getSemesterKey(dateStr){
+    var m = parseInt(dateStr.slice(5, 7), 10);
+    if (m >= 9 && m <= 12) return '1';
+    if (m >= 1 && m <= 5) return '2';
+    return 'summer';
+  }
+
+  function currentAcademicYearStart(){
+    var m = TODAY.getMonth() + 1;
+    if (m >= 9) return TODAY.getFullYear();
+    if (m >= 1 && m <= 5) return TODAY.getFullYear() - 1;
+    return TODAY.getFullYear(); // влітку — майбутній навчальний рік (як у currentSemesterKey)
+  }
+  function currentSemesterKey(){
+    var m = TODAY.getMonth() + 1;
+    if (m >= 9 && m <= 12) return '1';
+    if (m >= 1 && m <= 5) return '2';
+    return '1'; // влітку за замовчуванням показуємо майбутній I семестр
+  }
+
+  var state = {
+    events: [],
+    types: new Set(),        // порожній Set = усі типи
+    academicYear: null,      // рік початку навч. року (число) або null = усі роки
+    semesters: new Set(),    // '1' | '2' | 'summer'; дефолт виставляється нижче
+    months: new Set(),       // '1'..'12'; порожній Set = усі місяці
+    search: ''
+  };
 
   // Події, які ніколи не показуємо в календарі (клієнтський фільтр-страховка:
   // навіть якщо подія потрапила в JSON, вона не з'явиться в списку).
@@ -891,74 +1025,141 @@
 
     merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
       state.events = merged;
-      buildYearFilter(merged);
+      buildAcademicYearFilter(merged);
       render();
     });
   }
 
-  function buildYearFilter(events){
-    var years = Array.from(new Set(events.map(function(e){ return e.date.slice(0,4); }))).sort();
+  function buildAcademicYearFilter(events){
+    var yearsSet = new Set();
+    events.forEach(function(ev){ yearsSet.add(getAcademicYearStart(ev.date)); });
+    var years = Array.from(yearsSet).sort(function(a, b){ return a - b; });
+
     var wrap = document.getElementById('filter-year');
     var chipsWrap = wrap.querySelector('.filter-chips');
+    chipsWrap.innerHTML = '';
 
     var allBtn = document.createElement('button');
-    allBtn.className = 'chip active';
-    allBtn.textContent = 'Усі';
+    allBtn.className = 'chip';
+    allBtn.textContent = 'Усі роки';
     allBtn.dataset.year = 'all';
     chipsWrap.appendChild(allBtn);
 
+    var defaultYear = currentAcademicYearStart();
+    if (years.indexOf(defaultYear) === -1){
+      defaultYear = years.length ? years[0] : null;
+    }
+    state.academicYear = defaultYear;
+
     years.forEach(function(y){
       var btn = document.createElement('button');
-      btn.className = 'chip';
-      btn.textContent = y;
+      btn.className = 'chip' + (y === defaultYear ? ' active' : '');
+      btn.textContent = academicYearLabel(y);
       btn.dataset.year = y;
       chipsWrap.appendChild(btn);
     });
 
-    wrap.addEventListener('click', function(e){
+    if (defaultYear === null) allBtn.classList.add('active');
+
+    chipsWrap.addEventListener('click', function(e){
       if (e.target.tagName !== 'BUTTON') return;
-      setActive(wrap, e.target);
-      state.yearFilter = e.target.dataset.year === 'all' ? null : e.target.dataset.year;
+      chipsWrap.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+      e.target.classList.add('active');
+      state.academicYear = e.target.dataset.year === 'all' ? null : parseInt(e.target.dataset.year, 10);
       render();
     });
   }
 
-  function setActive(group, btn){
-    group.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
-    btn.classList.add('active');
+  // ---- Універсальний обробник для фільтрів множинного вибору
+  // (Тип / Семестр / Місяць): клік по чіпу перемикає його активність;
+  // клік по чіпу "Усі"/"Увесь рік" скидає вибір до "без обмежень".
+  function setupMultiToggle(groupId, onChange){
+    var group = document.getElementById(groupId);
+    var chipsWrap = group.querySelector('.filter-chips');
+
+    chipsWrap.addEventListener('click', function(e){
+      var btn = e.target.closest('button.chip');
+      if (!btn) return;
+
+      if (btn.hasAttribute('data-all')){
+        chipsWrap.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+        btn.classList.add('active');
+        onChange(new Set());
+        render();
+        return;
+      }
+
+      btn.classList.toggle('active');
+      var allBtn = chipsWrap.querySelector('[data-all]');
+      if (allBtn) allBtn.classList.remove('active');
+
+      var selected = new Set();
+      chipsWrap.querySelectorAll('.chip[data-value].active').forEach(function(c){
+        selected.add(c.dataset.value);
+      });
+
+      if (!selected.size && allBtn) allBtn.classList.add('active');
+
+      onChange(selected);
+      render();
+    });
   }
 
-  document.getElementById('filter-type').addEventListener('click', function(e){
-    if (e.target.tagName !== 'BUTTON') return;
-    setActive(this, e.target);
-    state.typeFilter = e.target.dataset.type;
-    render();
-  });
+  setupMultiToggle('filter-type', function(selected){ state.types = selected; });
+  setupMultiToggle('filter-semester', function(selected){ state.semesters = selected; });
+  setupMultiToggle('filter-month', function(selected){ state.months = selected; });
 
-  document.getElementById('filter-age').addEventListener('click', function(e){
-    if (e.target.tagName !== 'BUTTON') return;
-    setActive(this, e.target);
-    state.ageFilter = e.target.dataset.age;
-    render();
+  // За замовчуванням в фільтрі "Семестр" активний той семестр, що йде
+  // просто зараз (влітку — майбутній I семестр наступного навчального року)
+  (function initSemesterDefault(){
+    var key = currentSemesterKey();
+    var btn = document.querySelector('#filter-semester .chip[data-value="' + key + '"]');
+    if (btn){
+      btn.classList.add('active');
+      state.semesters = new Set([key]);
+    }
+  })();
+
+  var searchInput = document.getElementById('search-input');
+  var searchDebounceTimer = null;
+  searchInput.addEventListener('input', function(){
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(function(){
+      state.search = searchInput.value.trim().toLowerCase();
+      render();
+    }, 150);
   });
 
   function matchesFilters(ev){
-    if (state.typeFilter !== 'all' && ev.type !== state.typeFilter) return false;
-    if (state.yearFilter && ev.date.slice(0,4) !== state.yearFilter) return false;
-    if (state.ageFilter !== 'all'){
-      if (Array.isArray(ev.age) && ev.age.length && ev.age.indexOf(state.ageFilter) === -1) return false;
+    if (state.types.size && !state.types.has(ev.type)) return false;
+
+    if (state.academicYear != null && getAcademicYearStart(ev.date) !== state.academicYear) return false;
+
+    if (state.semesters.size && !state.semesters.has(getSemesterKey(ev.date))) return false;
+
+    if (state.months.size){
+      var m = String(parseInt(ev.date.slice(5, 7), 10));
+      if (!state.months.has(m)) return false;
     }
+
+    if (state.search){
+      var name = (ev.name || '').toLowerCase();
+      if (name.indexOf(state.search) === -1) return false;
+    }
+
     return true;
   }
 
   function render(){
     var container = document.getElementById('event-container');
+    var quickNav = document.getElementById('quick-nav');
     var filtered = state.events.filter(matchesFilters);
 
     updateStats(state.events);
 
     if (!filtered.length){
       container.innerHTML = '<div class="empty-state">Подій для обраних фільтрів поки немає.</div>';
+      quickNav.innerHTML = '';
       return;
     }
 
@@ -971,23 +1172,33 @@
 
     var monthKeys = Object.keys(byMonth).sort();
     var html = '';
+    var navHtml = '';
 
     monthKeys.forEach(function(key){
       var parts = key.split('-');
-      var monthLabel = MONTH_NAMES[parseInt(parts[1], 10) - 1] + ' ' + parts[0];
-      html += '<div class="month-heading">' + monthLabel + '</div>';
+      var monthIndex = parseInt(parts[1], 10) - 1;
+      var monthLabel = MONTH_NAMES[monthIndex] + ' ' + parts[0];
+      var anchorId = 'm-' + key;
+
+      html += '<div class="month-heading" id="' + anchorId + '">' + monthLabel + '</div>';
       html += '<div class="event-list">';
       byMonth[key].forEach(function(ev){ html += renderCard(ev); });
       html += '</div>';
+
+      navHtml += '<a href="#' + anchorId + '" class="quick-nav-item">' +
+        MONTH_SHORT[monthIndex] + " '" + parts[0].slice(2) +
+      '</a>';
     });
 
     container.innerHTML = html;
+    quickNav.innerHTML = navHtml;
   }
 
   function renderCard(ev){
     var d = new Date(ev.date + 'T00:00:00');
     var day = d.getDate();
     var monShort = MONTH_NAMES[d.getMonth()].slice(0,3).toLowerCase();
+    var dowShort = DOW_SHORT[d.getDay()];
     var typeClass = 'tag-' + (ev.type || 'шкільна');
     var typeLabel = ev.type === 'державне' ? 'державне свято'
                    : ev.type === 'офіційне' ? 'офіційне свято'
@@ -995,11 +1206,6 @@
                    : ev.type === 'оон' ? 'день ООН'
                    : ev.type === 'день' ? 'свято-подія'
                    : 'шкільна подія';
-
-    var ageLabel = '';
-    if (Array.isArray(ev.age) && ev.age.length){
-      ageLabel = '<span class="tag tag-age">' + ev.age.join(', ') + ' кл.</span>';
-    }
 
     var nameHtml = escapeHtml(ev.name);
     if (ev.url){
@@ -1014,6 +1220,7 @@
     return (
       '<article class="event-card">' +
         '<div class="event-date">' +
+          '<span class="dow">' + dowShort + '</span>' +
           '<span class="day">' + day + '</span>' +
           '<span class="mon">' + monShort + '</span>' +
         '</div>' +
@@ -1021,7 +1228,6 @@
           '<div class="event-name">' + nameHtml + '</div>' +
           '<div class="event-meta">' +
             '<span class="tag ' + typeClass + '">' + typeLabel + '</span>' +
-            ageLabel +
           '</div>' +
           '<label class="plan-check">' +
             '<input type="checkbox" class="plan-checkbox" data-date="' + safeDate + '" data-name="' + safeName + '"' + (isChecked ? ' checked' : '') + '>' +
