@@ -22,6 +22,7 @@ import os
 import re
 import sys
 import urllib.request
+from datetime import date as _date
 
 DATA_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "data"))
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -223,10 +224,21 @@ def main():
 
     items = []
     excluded = 0
+    skipped_invalid_dates = 0
     for yr, month, day, name, url, flags in rows:
         if is_religious(churches[month], day, name):
             excluded += 1
             continue
+
+        # Захист: пропускаємо дати, яких фізично не існує в цьому році
+        # (напр. 29 лютого в невисокосний рік). Без цієї перевірки в JSON
+        # потрапляє "невалідна" дата, яка ламає рендер календаря в браузері.
+        try:
+            _date(yr, month, day)
+        except ValueError:
+            skipped_invalid_dates += 1
+            continue
+
         items.append({
             "type": "день",
             "date": f"{yr:04d}-{month:02d}-{day:02d}",
@@ -235,7 +247,8 @@ def main():
             "flags": flags,
         })
     items.sort(key=lambda x: x["date"])
-    print(f"всього: {len(items)}, виключено релігійних: {excluded}")
+    print(f"всього: {len(items)}, виключено релігійних: {excluded}, "
+          f"пропущено невалідних дат: {skipped_invalid_dates}")
 
     os.makedirs(DATA_DIR, exist_ok=True)
     path = os.path.join(DATA_DIR, f"daytoday-{year}.json")
