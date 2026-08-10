@@ -186,10 +186,10 @@ a { text-decoration: none; color: inherit; }
   gap: 8px;
   background: var(--glass-bg);
   border: 1px solid var(--card-border-flat);
-  padding: 8px 18px;
+  padding: 6px 14px;
   border-radius: 999px;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
