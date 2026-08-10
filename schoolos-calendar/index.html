@@ -796,12 +796,19 @@
   var YEARS = [2026, 2027];
 
   var SOURCES = [];
+  // daytoday.ua показує тільки поточний рік сайту (плаваючі свята прив'язані
+  // до конкретного року), тому daytoday-<рік>.json існує лише для 2026.
+  // Коли сайт перейде на 2027 — скрипт fetch_daytoday.py згенерує файл,
+  // і його треба додати до списку.
+  var DAYTODAY_YEARS = ['2026'];
   YEARS.forEach(function(y){
     SOURCES.push({ file: 'data/holidays-' + y + '.json', fallbackType: 'державне' });
     SOURCES.push({ file: 'data/memorable-' + y + '.json', fallbackType: 'памятна' });
     SOURCES.push({ file: 'data/un-days-' + y + '.json', fallbackType: 'оон' });
-    SOURCES.push({ file: 'data/daytoday-' + y + '.json', fallbackType: 'день' });
     SOURCES.push({ file: 'data/rada-' + y + '.json', fallbackType: 'офіційне' });
+  });
+  DAYTODAY_YEARS.forEach(function(y){
+    SOURCES.push({ file: 'data/daytoday-' + y + '.json', fallbackType: 'день' });
   });
 
   var MONTH_NAMES = [
@@ -853,17 +860,18 @@
 
     // Дедуплікація: одна подія може бути в кількох джерелах (Новий рік,
     // День Соборності тощо). Пріоритет: офіційне ВРУ > державне > решта.
+    // Залишаємо найкращий запис незалежно від порядку завантаження джерел.
     var PRIORITY = { 'офіційне': 0, 'державне': 1, 'памятна': 2, 'оон': 3, 'день': 4, 'шкільна': 5 };
-    var seen = {};
-    merged = merged.filter(function(ev){
+    var best = {};
+    merged.forEach(function(ev){
       var key = ev.date + '|' + (ev.name || '').toLowerCase().trim();
       var pr = PRIORITY[ev.type] != null ? PRIORITY[ev.type] : 99;
-      if (seen[key] == null || pr < seen[key]){
-        seen[key] = pr;
-        return true;
+      var prev = best[key];
+      if (!prev || pr < prev.pr){
+        best[key] = { pr: pr, ev: ev };
       }
-      return false;
     });
+    merged = Object.keys(best).map(function(k){ return best[k].ev; });
 
     merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
       state.events = merged;
