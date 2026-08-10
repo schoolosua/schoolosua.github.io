@@ -188,8 +188,11 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid var(--card-border-flat);
   padding: 8px 18px;
   border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
   color: var(--text-muted);
   box-shadow: var(--shadow-clay);
   margin-bottom: 24px;
@@ -337,8 +340,11 @@ a { text-decoration: none; color: inherit; }
 
 .entry-weekday {
   flex-shrink: 0;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
   color: var(--text-muted);
   background: #eef2f7;
   border: 1px solid var(--card-border-flat);
