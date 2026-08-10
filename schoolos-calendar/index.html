@@ -283,6 +283,10 @@
     background: linear-gradient(135deg, #8b5cf6, #6d28d9);
     box-shadow: 0 10px 20px rgba(139, 92, 246, 0.25);
   }
+  .chip.active[data-type="офіційне"] {
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    box-shadow: 0 10px 20px rgba(13, 148, 136, 0.25);
+  }
 
   /* ==========================================================
      СПИСОК ПОДІЙ
@@ -392,6 +396,7 @@
   .tag-памятна  { color: #9c711f; background: var(--gold-glow); }
   .tag-оон      { color: #a78bfa; background: rgba(139, 92, 246, 0.12); }
   .tag-день     { color: #e11d48; background: rgba(225, 29, 72, 0.1); }
+  .tag-офіційне { color: #0d9488; background: rgba(13, 148, 136, 0.12); }
   .tag-шкільна  { color: var(--green); background: rgba(16, 185, 129, 0.12); }
   .tag-age      { color: var(--text-muted); background: #f1f5f9; border: 1px solid var(--card-border-flat); }
 
@@ -502,6 +507,7 @@
         <div class="filter-chips">
           <button class="chip active" data-type="all">Усі</button>
           <button class="chip" data-type="державне">Державні свята</button>
+          <button class="chip" data-type="офіційне">Офіційні (ВРУ)</button>
           <button class="chip" data-type="памятна">Пам'ятні дати</button>
           <button class="chip" data-type="оон">Дні ООН</button>
           <button class="chip" data-type="день">Свята-події</button>
@@ -551,6 +557,7 @@
     SOURCES.push({ file: 'data/memorable-' + y + '.json', fallbackType: 'памятна' });
     SOURCES.push({ file: 'data/un-days-' + y + '.json', fallbackType: 'оон' });
     SOURCES.push({ file: 'data/daytoday-' + y + '.json', fallbackType: 'день' });
+    SOURCES.push({ file: 'data/rada-' + y + '.json', fallbackType: 'офіційне' });
   });
 
   var MONTH_NAMES = [
@@ -582,8 +589,23 @@
     });
 
     Promise.all(requests).then(function(results){
-var merged = [].concat.apply([], results);
+    var merged = [].concat.apply([], results);
     merged = merged.filter(function(ev){ return !isBlocked(ev); });
+
+    // Дедуплікація: одна подія може бути в кількох джерелах (Новий рік,
+    // День Соборності тощо). Пріоритет: офіційне ВРУ > державне > решта.
+    var PRIORITY = { 'офіційне': 0, 'державне': 1, 'памятна': 2, 'оон': 3, 'день': 4, 'шкільна': 5 };
+    var seen = {};
+    merged = merged.filter(function(ev){
+      var key = ev.date + '|' + (ev.name || '').toLowerCase().trim();
+      var pr = PRIORITY[ev.type] != null ? PRIORITY[ev.type] : 99;
+      if (seen[key] == null || pr < seen[key]){
+        seen[key] = pr;
+        return true;
+      }
+      return false;
+    });
+
     merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
       state.events = merged;
       buildYearFilter(merged);
@@ -685,6 +707,7 @@ var merged = [].concat.apply([], results);
     var monShort = MONTH_NAMES[d.getMonth()].slice(0,3).toLowerCase();
     var typeClass = 'tag-' + (ev.type || 'шкільна');
     var typeLabel = ev.type === 'державне' ? 'державне свято'
+                   : ev.type === 'офіційне' ? 'офіційне свято'
                    : ev.type === 'памятна' ? "пам'ятна дата"
                    : ev.type === 'оон' ? 'день ООН'
                    : ev.type === 'день' ? 'свято-подія'

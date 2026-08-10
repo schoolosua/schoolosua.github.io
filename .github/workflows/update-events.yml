@@ -39,6 +39,10 @@ jobs:
         working-directory: schoolos-calendar
         run: python -u scripts/fetch_daytoday.py
 
+      - name: Оновити офіційні свята Верховної Ради
+        working-directory: schoolos-calendar
+        run: python -u scripts/fetch_rada.py
+
       - name: Зберегти зміни в репозиторій (commit + push)
         run: |
           git config user.name "github-actions[bot]"
