@@ -1524,48 +1524,125 @@
   });
 
   function generateAndDownloadDocx(plan, className){
-    var headerCells = ['№', 'Дата проведення', 'Захід', 'Вид виховної роботи', 'Спосіб проведення'];
+    var HEADER_CELLS = ['№', 'Дата', 'Напрям виховної роботи', 'Тема / зміст заходу', 'Форма проведення', 'Примітка / відмітка про виконання'];
+    var COL_WIDTHS = [650, 1600, 3800, 6800, 1900, 2650];
 
-    var headerRow = new docx.TableRow({
-      tableHeader: true,
-      children: headerCells.map(function(text){
-        return new docx.TableCell({
-          shading: { fill: 'E8EEF7' },
-          children: [new docx.Paragraph({ children: [new docx.TextRun({ text: text, bold: true })] })]
-        });
-      })
+    var monthKeys = [];
+    var byMonth = {};
+    var sorted = plan.slice().sort(function(a, b){ return a.date.localeCompare(b.date); });
+    sorted.forEach(function(item){
+      var key = item.date.slice(0, 7);
+      if (!byMonth[key]){ byMonth[key] = []; monthKeys.push(key); }
+      byMonth[key].push(item);
     });
+    monthKeys.sort();
 
-    var dataRows = plan.map(function(item, index){
-      var effDate = item.planDate || item.date;
-      var d = new Date(effDate + 'T00:00:00');
-      var formatted = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
+    var semesterLabels = {};
+    semesterLabels['1'] = 'I';
+    semesterLabels['2'] = 'II';
+    semesterLabels['summer'] = 'ЛІТО';
+    var semList = [];
+    plan.forEach(function(item){
+      var k = getSemesterKey(item.date);
+      if (semList.indexOf(k) === -1) semList.push(k);
+    });
+    var semesterText = semList.map(function(k){ return semesterLabels[k] || k; }).join('–');
 
-      var cellsText = [String(index + 1), formatted, item.name, item.vid, item.sposib];
-      return new docx.TableRow({
-        children: cellsText.map(function(text){
-          return new docx.TableCell({ children: [new docx.Paragraph(text)] });
+    var ay = getAcademicYearStart(sorted[0].date);
+    var yearText = ay + '-' + (ay + 1);
+
+    var monthParts = [];
+    var num = 0;
+    monthKeys.forEach(function(key){
+      var parts = key.split('-');
+      var monthIndex = parseInt(parts[1], 10) - 1;
+      var monthTitle = MONTH_NAMES[monthIndex].toUpperCase();
+
+      var rowCells = [new docx.TableCell({
+        columnSpan: HEADER_CELLS.length,
+        shading: { fill: 'BFBFBF' },
+        children: [new docx.Paragraph({
+          alignment: docx.AlignmentType.CENTER,
+          children: [new docx.TextRun({ text: monthTitle, bold: true, size: 22 })]
+        })]
+      })];
+
+      var headerRow = new docx.TableRow({
+        tableHeader: true,
+        children: HEADER_CELLS.map(function(text){
+          return new docx.TableCell({
+            width: { size: COL_WIDTHS[HEADER_CELLS.indexOf(text)], type: docx.WidthType.DXA },
+            shading: { fill: 'D9D9D9' },
+            verticalAlign: docx.VerticalAlign.CENTER,
+            children: [new docx.Paragraph({
+              alignment: docx.AlignmentType.CENTER,
+              children: [new docx.TextRun({ text: text, bold: true, size: 19 })]
+            })]
+          });
         })
       });
+
+      var dataRows = byMonth[key].map(function(item){
+        var effDate = item.planDate || item.date;
+        var d = new Date(effDate + 'T00:00:00');
+        var formatted = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
+        num += 1;
+        var values = [String(num), formatted, item.vid, item.name, item.sposib, ''];
+        return new docx.TableRow({
+          children: values.map(function(text, i){
+            return new docx.TableCell({
+              width: { size: COL_WIDTHS[i], type: docx.WidthType.DXA },
+              verticalAlign: docx.VerticalAlign.CENTER,
+              children: [new docx.Paragraph({
+                alignment: i === 3 ? docx.AlignmentType.LEFT : docx.AlignmentType.CENTER,
+                children: [new docx.TextRun({ text: text, size: 24 })]
+              })]
+            });
+          })
+        });
+      });
+
+      var rows = [new docx.TableRow({ children: rowCells })].concat([headerRow], dataRows);
+      monthParts.push(new docx.Table({
+        width: { size: 100, type: docx.WidthType.PERCENTAGE },
+        columnWidths: COL_WIDTHS,
+        borders: {
+          top: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
+          left: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
+          bottom: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
+          right: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
+          insideHorizontal: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
+          insideVertical: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' }
+        },
+        rows: rows
+      }));
     });
 
-    var table = new docx.Table({
-      width: { size: 100, type: docx.WidthType.PERCENTAGE },
-      rows: [headerRow].concat(dataRows)
-    });
-
-    var titleText = 'План виховної роботи класного керівника' + (className ? ' ' + className + ' класу' : '');
+    var classText = className ? className.replace(/^\+$/, '') : '';
+    var titleText = 'ЦИКЛОГРАМА ВИХОВНИХ ЗАХОДІВ ' + (classText || '___') + ' КЛАСУ НА ' + semesterText + ' СЕМЕСТР ' + yearText + ' н.р.';
 
     var doc = new docx.Document({
       sections: [{
+        properties: {
+          page: {
+            size: { width: 11906, height: 16838, orientation: docx.PageOrientation.LANDSCAPE },
+            margin: { top: 720, right: 720, bottom: 720, left: 720 }
+          }
+        },
         children: [
-          new docx.Paragraph({ text: titleText, heading: docx.HeadingLevel.HEADING_1 }),
           new docx.Paragraph({
-            text: 'Сформовано автоматично модулем "Mentor" SchoolOS · ' + new Date().toLocaleDateString('uk-UA'),
-            spacing: { after: 300 }
+            alignment: docx.AlignmentType.CENTER,
+            children: [new docx.TextRun({ text: titleText, bold: true, size: 26 })]
           }),
-          table
-        ]
+          new docx.Paragraph({
+            alignment: docx.AlignmentType.CENTER,
+            children: [new docx.TextRun({
+              text: 'Сформовано автоматично модулем "Mentor" SchoolOS · ' + new Date().toLocaleDateString('uk-UA'),
+              italics: true, size: 18, color: '808080'
+            })],
+            spacing: { after: 300 }
+          })
+        ].concat(monthParts)
       }]
     });
 
@@ -1574,7 +1651,7 @@
       var link = document.createElement('a');
       var safeSuffix = className ? '-' + className.replace(/[^A-Za-zА-Яа-яЇїІіЄєҐґ0-9\-]/g, '') : '';
       link.href = url;
-      link.download = 'plan-vyhovnoi-roboty' + safeSuffix + '.docx';
+      link.download = 'tsyklohrama-vykhovnykh-zakhodiv' + safeSuffix + '.docx';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
