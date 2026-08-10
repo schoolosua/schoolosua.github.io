@@ -1041,6 +1041,12 @@
       .replace(/>/g, '&gt;');
   }
 
+  function renderOptions(options, selected){
+    return options.map(function(opt){
+      return '<option value="' + escapeAttr(opt) + '"' + (opt === selected ? ' selected' : '') + '>' + escapeHtml(opt) + '</option>';
+    }).join('');
+  }
+
   // ==============================================================
   // "КОШИК ПЛАНУ" — вибір подій галочками, вид/спосіб виховної
   // роботи, збереження в localStorage і експорт у Word (.docx)
