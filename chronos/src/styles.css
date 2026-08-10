@@ -191,6 +191,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
+  line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-muted);
