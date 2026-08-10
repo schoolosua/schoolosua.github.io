@@ -215,48 +215,49 @@
     background: rgba(243, 247, 250, 0.88);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--card-border-flat);
-    padding: 14px 0;
-    margin-bottom: 8px;
+    padding: 8px 0;
+    margin-bottom: 6px;
   }
 
   .controls-inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
-    gap: 18px 48px;
+    align-items: center;
+    gap: 8px 26px;
   }
 
   .filter-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
   }
 
   .filter-label {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.07em;
     color: var(--text-muted);
-    text-align: center;
+    text-align: left;
+    white-space: nowrap;
   }
 
   .filter-chips {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
   }
 
   .chip {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: var(--text-muted);
     background: var(--glass-bg);
     border: 1px solid var(--card-border-flat);
-    padding: 7px 16px;
+    padding: 5px 13px;
     border-radius: 999px;
     cursor: pointer;
     box-shadow: var(--shadow-clay);
@@ -294,18 +295,18 @@
     box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
   }
 
-  .filter-group-search { min-width: 220px; }
+  .filter-group-search { min-width: 180px; }
 
   .search-input {
     font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--text);
     background: var(--glass-bg);
     border: 1px solid var(--card-border-flat);
     border-radius: 999px;
-    padding: 8px 16px;
+    padding: 6px 14px;
     box-shadow: var(--shadow-clay);
-    width: 220px;
+    width: 200px;
     max-width: 100%;
   }
   .search-input::placeholder { color: var(--text-muted); }
@@ -317,7 +318,7 @@
     overflow-x: auto;
     gap: 6px;
     max-width: 1180px;
-    margin: 12px auto 0;
+    margin: 8px auto 0;
     padding: 0 24px 2px;
     scrollbar-width: thin;
   }
@@ -325,13 +326,13 @@
   .quick-nav-item {
     flex: 0 0 auto;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
     color: var(--text-muted);
     background: #fff;
     border: 1px solid var(--card-border-flat);
     border-radius: 999px;
-    padding: 4px 12px;
+    padding: 3px 10px;
     white-space: nowrap;
     text-decoration: none;
     transition: color var(--dur-fast), border-color var(--dur-fast);
@@ -354,7 +355,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    scroll-margin-top: 210px;
+    scroll-margin-top: 180px;
   }
   .month-heading:first-child { margin-top: 0; }
   .month-heading::after { content:''; flex:1; height:1px; background: var(--card-border-flat); }
@@ -496,9 +497,9 @@
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-number { font-size: 1.35rem; }
     .stat-card { padding: 14px 6px; }
-    .controls { position: static; padding: 12px 2px; border-bottom: none; margin-bottom: 4px; }
-    .controls-inner { justify-content: center; gap: 16px 0; }
-    .filter-group { width: 100%; gap: 8px; }
+    .controls { position: static; padding: 10px 2px; border-bottom: none; margin-bottom: 4px; }
+    .controls-inner { justify-content: center; gap: 12px 0; }
+    .filter-group { width: 100%; flex-direction: column; align-items: center; gap: 8px; }
     .filter-chips { gap: 7px; }
     .chip { font-size: 0.8rem; padding: 6px 13px; }
     .filter-group-search { width: 100%; }
