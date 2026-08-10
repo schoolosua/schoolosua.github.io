@@ -20,14 +20,16 @@ schoolos-calendar/
 │   ├── daytoday-2026.json              ← свята-події daytoday.ua (оновлюється автоматично)
 │   ├── daytoday-2027.json              ← свята-події daytoday.ua (оновлюється автоматично)
 │   ├── rada-2026.json                  ← офіційні свята ВРУ (оновлюється автоматично)
-│   └── rada-2027.json                  ← офіційні свята ВРУ (оновлюється автоматично)
+│   ├── rada-2027.json                  ← офіційні свята ВРУ (оновлюється автоматично)
+│   └── updated.json                    ← дата останнього оновлення бази (пише write_meta.py)
 ├── vendor/
 │   └── docx.umd.js                      ← docx 8.5.0 локально (Word-експорт кошика «Мій план»)
 ├── scripts/
 │   ├── fetch_holidays.py               ← скрипт автооновлення (Nager.Date API)
 │   ├── fetch_un_days.py                ← дні ООН (un.org + uk.wikipedia)
 │   ├── fetch_daytoday.py               ← свята-події (daytoday.ua)
-│   └── fetch_rada.py                   ← офіційні свята (zakon.rada.gov.ua)
+│   ├── fetch_rada.py                   ← офіційні свята (zakon.rada.gov.ua)
+│   └── write_meta.py                   ← записує data/updated.json (дата оновлення)
 └── (workflow автооновлення живе в корені основного репозиторію
     у .github/workflows/update-events.yml — автозапуск 1 липня та 1 грудня)
 ```

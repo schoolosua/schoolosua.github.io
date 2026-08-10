@@ -816,6 +816,12 @@
     'Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'
   ];
 
+  // Родовий відмінок для дат («10 серпня 2026»)
+  var MONTHS_GEN = [
+    'січня','лютого','березня','квітня','травня','червня',
+    'липня','серпня','вересня','жовтня','листопада','грудня'
+  ];
+
   var state = { events: [], typeFilter: 'all', ageFilter: 'all', yearFilter: null };
 
   // Події, які ніколи не показуємо в календарі (клієнтський фільтр-страховка:
@@ -852,6 +858,16 @@
         })
         .catch(function(){ return []; });
     });
+
+    requests.push(
+      fetch('data/updated.json', { cache: 'no-cache' })
+        .then(function(res){ if (!res.ok) throw new Error('not found'); return res.json(); })
+        .then(function(meta){
+          window.__CALENDAR_LAST_UPDATED__ = meta.updated;
+          return [];
+        })
+        .catch(function(){ return []; })
+    );
 
     Promise.all(requests).then(function(results){
     var merged = [].concat.apply([], results);
@@ -1032,7 +1048,15 @@
     var today = new Date().toISOString().slice(0,10);
     var upcoming = all.filter(function(e){ return e.date >= today && e.date.slice(0,4) === today.slice(0,4); });
     document.getElementById('stat-upcoming').textContent = upcoming.length;
-    document.getElementById('stat-updated').textContent = window.__CALENDAR_LAST_UPDATED__ || '—';
+    var upd = window.__CALENDAR_LAST_UPDATED__;
+    var updText = '—';
+    var p = typeof upd === 'string' ? /^(\d{4})-(\d{2})-(\d{2})$/.exec(upd) : null;
+    if (p){
+      updText = parseInt(p[3], 10) + ' ' + MONTHS_GEN[parseInt(p[2], 10) - 1] + ' ' + p[1];
+    } else if (upd){
+      updText = upd;
+    }
+    document.getElementById('stat-updated').textContent = updText;
   }
 
   function escapeHtml(str){
