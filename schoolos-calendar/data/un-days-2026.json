@@ -2,1201 +2,1441 @@
   {
     "type": "оон",
     "date": "2026-01-04",
-    "name": "Всесвітній день азбуки Брайля"
+    "name": "Всесвітній день азбуки Брайля",
+    "url": "https://www.un.org/en/observances/braille-day"
   },
   {
     "type": "оон",
     "date": "2026-01-24",
-    "name": "Міжнародний день освіти"
+    "name": "Міжнародний день освіти",
+    "url": "https://www.un.org/en/observances/education-day"
   },
   {
     "type": "оон",
     "date": "2026-01-26",
-    "name": "Міжнародний день чистої енергії"
+    "name": "Міжнародний день чистої енергії",
+    "url": "https://www.un.org/en/observances/clean-energy-day"
   },
   {
     "type": "оон",
     "date": "2026-01-27",
-    "name": "Міжнародний день пам'яті жертв Голокосту"
+    "name": "Міжнародний день пам'яті жертв Голокосту",
+    "url": "https://www.un.org/en/observances/commemoration-holocaust-victims-day"
   },
   {
     "type": "оон",
     "date": "2026-01-28",
-    "name": "Міжнародний день мирного співіснування"
+    "name": "Міжнародний день мирного співіснування",
+    "url": "https://www.un.org/en/observances/peaceful-coexistence-day"
   },
   {
     "type": "оон",
     "date": "2026-02-01",
-    "name": "Всесвітній тиждень міжрелігійної гармонії"
+    "name": "Всесвітній тиждень міжрелігійної гармонії",
+    "url": "https://www.un.org/en/observances/interfaith-harmony-week"
   },
   {
     "type": "оон",
     "date": "2026-02-02",
-    "name": "Всесвітній день водно-болотних угідь"
+    "name": "Всесвітній день водно-болотних угідь",
+    "url": "https://www.un.org/en/observances/world-wetlands-day"
   },
   {
     "type": "оон",
     "date": "2026-02-04",
-    "name": "Міжнародний день людського братства"
+    "name": "Міжнародний день людського братства",
+    "url": "https://www.un.org/en/observances/human-fraternity"
   },
   {
     "type": "оон",
     "date": "2026-02-06",
-    "name": "Міжнародний день нетерпимого ставлення до операцій на жіночих статевих органах, що калічать"
+    "name": "Міжнародний день нетерпимого ставлення до операцій на жіночих статевих органах, що калічать",
+    "url": "https://www.un.org/en/observances/female-genital-mutilation-day"
   },
   {
     "type": "оон",
     "date": "2026-02-10",
-    "name": "Всесвітній день зернобобових"
+    "name": "Всесвітній день зернобобових",
+    "url": "https://www.fao.org/world-pulses-day/en"
   },
   {
     "type": "оон",
     "date": "2026-02-10",
-    "name": "Всесвітній день зернобобових"
+    "name": "Всесвітній день зернобобових",
+    "url": "https://www.un.org/en/observances/arabian-leopard-day"
   },
   {
     "type": "оон",
     "date": "2026-02-11",
-    "name": "Міжнародний день жінок і дівчат в науці"
+    "name": "Міжнародний день жінок і дівчат в науці",
+    "url": "https://www.un.org/en/observances/women-and-girls-in-science-day/"
   },
   {
     "type": "оон",
     "date": "2026-02-12",
-    "name": "Міжнародний день запобігання насильницькому екстремізму, що веде до тероризму"
+    "name": "Міжнародний день запобігання насильницькому екстремізму, що веде до тероризму",
+    "url": "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day"
   },
   {
     "type": "оон",
     "date": "2026-02-13",
-    "name": "Всесвітній день радіо"
+    "name": "Всесвітній день радіо",
+    "url": "https://www.un.org/en/observances/radio-day"
   },
   {
     "type": "оон",
     "date": "2026-02-17",
-    "name": "Всесвітній день стійкості туризму"
+    "name": "Всесвітній день стійкості туризму",
+    "url": "https://www.un.org/en/observances/tourism-resilience-day"
   },
   {
     "type": "оон",
     "date": "2026-02-20",
-    "name": "Всесвітній день соціальної справедливості"
+    "name": "Всесвітній день соціальної справедливості",
+    "url": "https://www.un.org/en/observances/social-justice-day"
   },
   {
     "type": "оон",
     "date": "2026-02-21",
-    "name": "Міжнародний день рідної мови (ЮНЕСКО) (A/RES/56/262)"
+    "name": "Міжнародний день рідної мови (ЮНЕСКО) (A/RES/56/262)",
+    "url": "https://www.un.org/en/observances/mother-language-day"
   },
   {
     "type": "оон",
     "date": "2026-03-01",
-    "name": "Всесвітній день морських трав"
+    "name": "Всесвітній день морських трав",
+    "url": "https://www.unaids.org/en/zero-discrimination-day"
   },
   {
     "type": "оон",
     "date": "2026-03-01",
-    "name": "День «Нуль дискримінації»"
+    "name": "День «Нуль дискримінації»",
+    "url": "https://www.un.org/en/observances/seagrass-day"
   },
   {
     "type": "оон",
     "date": "2026-03-03",
-    "name": "Всесвітній день дикої природи"
+    "name": "Всесвітній день дикої природи",
+    "url": "https://www.un.org/en/observances/world-wildlife-day"
   },
   {
     "type": "оон",
     "date": "2026-03-05",
-    "name": "Міжнародний день просвіти з питань роззброєння та нерозповсюдження"
+    "name": "Міжнародний день просвіти з питань роззброєння та нерозповсюдження",
+    "url": "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day"
   },
   {
     "type": "оон",
     "date": "2026-03-08",
-    "name": "Міжнародний жіночий день"
+    "name": "Міжнародний жіночий день",
+    "url": "https://www.un.org/en/observances/womens-day"
   },
   {
     "type": "оон",
     "date": "2026-03-10",
-    "name": "Міжнародний день жінок-суддів"
+    "name": "Міжнародний день жінок-суддів",
+    "url": "https://www.un.org/en/observances/women-judges-day"
   },
   {
     "type": "оон",
     "date": "2026-03-15",
-    "name": "Міжнародний день боротьби з ісламофобією"
+    "name": "Міжнародний день боротьби з ісламофобією",
+    "url": "https://www.un.org/en/observances/anti-islamophobia-day"
   },
   {
     "type": "оон",
     "date": "2026-03-20",
-    "name": "Міжнародний день французької мови"
+    "name": "Міжнародний день французької мови",
+    "url": "https://www.un.org/en/observances/happiness-day"
   },
   {
     "type": "оон",
     "date": "2026-03-20",
-    "name": "Міжнародний день французької мови"
+    "name": "Міжнародний день французької мови",
+    "url": "https://www.un.org/fr/observances/french-language-day/"
   },
   {
     "type": "оон",
     "date": "2026-03-21",
-    "name": "Всесвітній день льодовиків"
+    "name": "Всесвітній день льодовиків",
+    "url": "https://www.un.org/en/observances/world-glaciers-day"
   },
   {
     "type": "оон",
     "date": "2026-03-21",
-    "name": "Міжнародний день лісів"
+    "name": "Міжнародний день лісів",
+    "url": "https://www.fao.org/international-day-of-forests/en"
   },
   {
     "type": "оон",
     "date": "2026-03-21",
-    "name": "Міжнародний день ліквідації расової дискримінації"
+    "name": "Міжнародний день ліквідації расової дискримінації",
+    "url": "https://www.un.org/en/observances/end-racism-day"
   },
   {
     "type": "оон",
     "date": "2026-03-21",
-    "name": "Всесвітній день поезії"
+    "name": "Всесвітній день поезії",
+    "url": "https://www.unesco.org/en/days/poetry"
   },
   {
     "type": "оон",
     "date": "2026-03-21",
-    "name": "Міжнародний день Навруз"
+    "name": "Міжнародний день Навруз",
+    "url": "https://www.un.org/en/observances/international-nowruz-day"
   },
   {
     "type": "оон",
     "date": "2026-03-21",
-    "name": "Всесвітній день людей із синдромом Дауна"
+    "name": "Всесвітній день людей із синдромом Дауна",
+    "url": "https://www.un.org/en/observances/down-syndrome-day"
   },
   {
     "type": "оон",
     "date": "2026-03-22",
-    "name": "Всесвітній день водних ресурсів"
+    "name": "Всесвітній день водних ресурсів",
+    "url": "https://www.un.org/en/observances/water-day"
   },
   {
     "type": "оон",
     "date": "2026-03-23",
-    "name": "Всесвітній метеорологічний день (ВМО)"
+    "name": "Всесвітній метеорологічний день (ВМО)",
+    "url": "https://wmo.int/about-wmo/world-meteorological-day"
   },
   {
     "type": "оон",
     "date": "2026-03-24",
-    "name": "Всесвітній день боротьби проти туберкульозу"
+    "name": "Всесвітній день боротьби проти туберкульозу",
+    "url": "https://www.who.int/campaigns/world-tb-day/"
   },
   {
     "type": "оон",
     "date": "2026-03-24",
-    "name": "Міжнародний день права на встановлення істини щодо грубих порушень прав людини і гідності жертв"
+    "name": "Міжнародний день права на встановлення істини щодо грубих порушень прав людини і гідності жертв",
+    "url": "https://www.un.org/en/observances/right-to-truth-day"
   },
   {
     "type": "оон",
     "date": "2026-03-25",
-    "name": "Міжнародний день пам'яті жертв рабства і трансатлантичної работоргівлі"
+    "name": "Міжнародний день пам'яті жертв рабства і трансатлантичної работоргівлі",
+    "url": "https://www.un.org/en/observances/transatlantic-slave-trade"
   },
   {
     "type": "оон",
     "date": "2026-03-25",
-    "name": "Міжнародний день солідарності з працівниками, які утримуються під вартою і зниклими безвісти"
+    "name": "Міжнародний день солідарності з працівниками, які утримуються під вартою і зниклими безвісти",
+    "url": "https://www.un.org/en/observances/detained-staff-day"
   },
   {
     "type": "оон",
     "date": "2026-03-30",
-    "name": "Міжнародний день нульових відходів"
+    "name": "Міжнародний день нульових відходів",
+    "url": "https://www.un.org/en/observances/zero-waste-day"
   },
   {
     "type": "оон",
     "date": "2026-04-02",
-    "name": "Всесвітній день розповсюдження інформації про проблему аутизму"
+    "name": "Всесвітній день розповсюдження інформації про проблему аутизму",
+    "url": "https://www.un.org/en/observances/autism-day"
   },
   {
     "type": "оон",
     "date": "2026-04-04",
-    "name": "Міжнародний день просвіти з питань мінної небезпеки і допомоги в діяльності, пов'язаної з розмінуванням"
+    "name": "Міжнародний день просвіти з питань мінної небезпеки і допомоги в діяльності, пов'язаної з розмінуванням",
+    "url": "https://www.un.org/en/observances/mine-awareness-day"
   },
   {
     "type": "оон",
     "date": "2026-04-05",
-    "name": "Міжнародний день совісті"
+    "name": "Міжнародний день совісті",
+    "url": "https://www.un.org/en/observances/conscience-day"
   },
   {
     "type": "оон",
     "date": "2026-04-06",
-    "name": "Міжнародний день спорту на благо миру та розвитку"
+    "name": "Міжнародний день спорту на благо миру та розвитку",
+    "url": "https://www.un.org/en/observances/sport-day"
   },
   {
     "type": "оон",
     "date": "2026-04-07",
-    "name": "Міжнародний день пам'яті про геноцид в Руанді"
+    "name": "Міжнародний день пам'яті про геноцид в Руанді",
+    "url": "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml"
   },
   {
     "type": "оон",
     "date": "2026-04-07",
-    "name": "Всесвітній день здоров'я (ВООЗ)"
+    "name": "Всесвітній день здоров'я (ВООЗ)",
+    "url": "https://www.who.int/campaigns/world-health-day"
   },
   {
     "type": "оон",
     "date": "2026-04-12",
-    "name": "Міжнародний день польоту людини в космос"
+    "name": "Міжнародний день польоту людини в космос",
+    "url": "https://www.un.org/en/observances/human-spaceflight-day"
   },
   {
     "type": "оон",
     "date": "2026-04-14",
-    "name": "Всесвітній день боротьби із хворобою Шагаса"
+    "name": "Всесвітній день боротьби із хворобою Шагаса",
+    "url": "https://www.who.int/campaigns/world-chagas-disease-day"
   },
   {
     "type": "оон",
     "date": "2026-04-15",
-    "name": "Міжнародний день добробуту"
+    "name": "Міжнародний день добробуту",
+    "url": "https://www.un.org/en/observances/wellness-day"
   },
   {
     "type": "оон",
     "date": "2026-04-20",
-    "name": "Міжнародний день китайської мови"
+    "name": "Міжнародний день китайської мови",
+    "url": "https://www.un.org/zh/observances/chinese-language-day"
   },
   {
     "type": "оон",
     "date": "2026-04-21",
-    "name": "Всесвітній день творчості та інноваційної діяльності ({{lang-en|World Creativity and Innovation Day}})"
+    "name": "Всесвітній день творчості та інноваційної діяльності ({{lang-en|World Creativity and Innovation Day}})",
+    "url": "https://www.un.org/en/observances/creativity-and-innovation-day"
   },
   {
     "type": "оон",
     "date": "2026-04-22",
-    "name": "Міжнародний день Матері-Землі"
+    "name": "Міжнародний день Матері-Землі",
+    "url": "https://www.un.org/en/observances/earth-day"
   },
   {
     "type": "оон",
     "date": "2026-04-23",
-    "name": "Міжнародний день дівчат в ІКТ"
+    "name": "Міжнародний день дівчат в ІКТ",
+    "url": "https://www.itu.int/women-and-girls/girls-in-ict/"
   },
   {
     "type": "оон",
     "date": "2026-04-23",
-    "name": "Всесвітній день книги та авторського права"
+    "name": "Всесвітній день книги та авторського права",
+    "url": "https://www.unesco.org/en/days/world-book-and-copyright"
   },
   {
     "type": "оон",
     "date": "2026-04-23",
-    "name": "День англійської мови"
+    "name": "День англійської мови",
+    "url": "https://www.un.org/en/observances/english-language-day"
   },
   {
     "type": "оон",
     "date": "2026-04-23",
-    "name": "День іспанської мови"
+    "name": "День іспанської мови",
+    "url": "https://www.un.org/es/observances/spanish-language-day"
   },
   {
     "type": "оон",
     "date": "2026-04-24",
-    "name": "Міжнародний день багатосторонності та дипломатії в ім'я миру"
+    "name": "Міжнародний день багатосторонності та дипломатії в ім'я миру",
+    "url": "https://www.who.int/campaigns/world-immunization-week/"
   },
   {
     "type": "оон",
     "date": "2026-04-24",
-    "name": "Міжнародний день багатосторонності та дипломатії в ім'я миру"
+    "name": "Міжнародний день багатосторонності та дипломатії в ім'я миру",
+    "url": "https://www.un.org/en/observances/Multilateralism-for-Peace-day"
   },
   {
     "type": "оон",
     "date": "2026-04-25",
-    "name": "Всесвітній день боротьби проти малярії"
+    "name": "Всесвітній день боротьби проти малярії",
+    "url": "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021"
   },
   {
     "type": "оон",
     "date": "2026-04-25",
-    "name": "Міжнародний день делегата"
+    "name": "Міжнародний день делегата",
+    "url": "https://www.un.org/en/observances/delegates-day"
   },
   {
     "type": "оон",
     "date": "2026-04-26",
-    "name": "Міжнародний день  пам'яті про чорнобильську катастрофу"
+    "name": "Міжнародний день  пам'яті про чорнобильську катастрофу",
+    "url": "https://www.un.org/en/observances/chernobyl-remembrance-day"
   },
   {
     "type": "оон",
     "date": "2026-04-26",
-    "name": "Міжнародний день інтелектуальної власності"
+    "name": "Міжнародний день інтелектуальної власності",
+    "url": "http://www.wipo.int/ip-outreach/en/ipday/"
   },
   {
     "type": "оон",
     "date": "2026-04-28",
-    "name": "Всесвітній день охорони праці"
+    "name": "Всесвітній день охорони праці",
+    "url": "https://www.un.org/en/observances/work-safety-day"
   },
   {
     "type": "оон",
     "date": "2026-04-29",
-    "name": "Міжнародний день пам'яті жертв землетрусів"
+    "name": "Міжнародний день пам'яті жертв землетрусів",
+    "url": "https://www.un.org/en/observances/earthquake-victims-day"
   },
   {
     "type": "оон",
     "date": "2026-04-30",
-    "name": "Міжнародний день джазу"
+    "name": "Міжнародний день джазу",
+    "url": "https://www.un.org/en/observances/jazz-day"
   },
   {
     "type": "оон",
     "date": "2026-05-01",
-    "name": "Весак — день повного місяця"
+    "name": "Весак — день повного місяця",
+    "url": "https://www.un.org/en/observances/vesak-day"
   },
   {
     "type": "оон",
     "date": "2026-05-02",
-    "name": "Всесвітній день тунця"
+    "name": "Всесвітній день тунця",
+    "url": "https://www.un.org/en/observances/tuna-day"
   },
   {
     "type": "оон",
     "date": "2026-05-03",
-    "name": "Всесвітній день свободи преси"
+    "name": "Всесвітній день свободи преси",
+    "url": "https://www.un.org/en/observances/press-freedom-day"
   },
   {
     "type": "оон",
     "date": "2026-05-05",
-    "name": "День Весак"
+    "name": "День Весак",
+    "url": "https://www.unesco.org/en/days/portuguese-language"
   },
   {
     "type": "оон",
     "date": "2026-05-08",
-    "name": "День пам'яті та примирення, присвячений пам'яті жертв Другої світової війни"
+    "name": "День пам'яті та примирення, присвячений пам'яті жертв Другої світової війни",
+    "url": "https://www.un.org/en/observances/second-world-war-remembrance-days"
   },
   {
     "type": "оон",
     "date": "2026-05-09",
-    "name": "Всесвітній день мігруючих птахів"
+    "name": "Всесвітній день мігруючих птахів",
+    "url": "http://www.worldmigratorybirdday.org/"
   },
   {
     "type": "оон",
     "date": "2026-05-10",
-    "name": "Міжнародний день арганії"
+    "name": "Міжнародний день арганії",
+    "url": "https://www.un.org/en/observances/argania-day"
   },
   {
     "type": "оон",
     "date": "2026-05-12",
-    "name": "Міжнародний день охорони здоров'я рослин"
+    "name": "Міжнародний день охорони здоров'я рослин",
+    "url": "https://www.fao.org/plant-health-day/en"
   },
   {
     "type": "оон",
     "date": "2026-05-15",
-    "name": "Міжнародний день сім'ї"
+    "name": "Міжнародний день сім'ї",
+    "url": "https://www.un.org/en/observances/international-day-of-families"
   },
   {
     "type": "оон",
     "date": "2026-05-16",
-    "name": "Міжнародний день мирного співіснування"
+    "name": "Міжнародний день мирного співіснування",
+    "url": "https://www.un.org/en/observances/living-in-peace-day"
   },
   {
     "type": "оон",
     "date": "2026-05-16",
-    "name": "Міжнародний день світла"
+    "name": "Міжнародний день світла",
+    "url": "https://www.unesco.org/en/days/light"
   },
   {
     "type": "оон",
     "date": "2026-05-17",
-    "name": "Всесвітній день електрозв'язку та інформаційного суспільства (МСЕ)"
+    "name": "Всесвітній день електрозв'язку та інформаційного суспільства (МСЕ)",
+    "url": "https://www.un.org/en/observances/telecommunication-day"
   },
   {
     "type": "оон",
     "date": "2026-05-19",
-    "name": "Всесвітній день чесної гри"
+    "name": "Всесвітній день чесної гри",
+    "url": "https://www.un.org/en/observances/fair-play-day"
   },
   {
     "type": "оон",
     "date": "2026-05-20",
-    "name": "Всесвітній день бджіл"
+    "name": "Всесвітній день бджіл",
+    "url": "https://www.fao.org/world-bee-day/en"
   },
   {
     "type": "оон",
     "date": "2026-05-21",
-    "name": "Всесвітній день культурного різноманіття в ім'я діалогу та розвитку"
+    "name": "Всесвітній день культурного різноманіття в ім'я діалогу та розвитку",
+    "url": "https://www.fao.org/international-tea-day/en"
   },
   {
     "type": "оон",
     "date": "2026-05-21",
-    "name": "Міжнародний день чаю"
+    "name": "Міжнародний день чаю",
+    "url": "https://www.un.org/en/observances/cultural-diversity-day"
   },
   {
     "type": "оон",
     "date": "2026-05-22",
-    "name": "Міжнародний день біологічного різноманіття"
+    "name": "Міжнародний день біологічного різноманіття",
+    "url": "https://www.un.org/en/observances/biological-diversity-day"
   },
   {
     "type": "оон",
     "date": "2026-05-23",
-    "name": "Міжнародний день по викоріненню акушерських свищів"
+    "name": "Міжнародний день по викоріненню акушерських свищів",
+    "url": "https://www.un.org/en/observances/end-fistula-day"
   },
   {
     "type": "оон",
     "date": "2026-05-24",
-    "name": "Міжнародний день мархора"
+    "name": "Міжнародний день мархора",
+    "url": "https://www.un.org/en/observances/markhor-day"
   },
   {
     "type": "оон",
     "date": "2026-05-25",
-    "name": "Всесвітній день футболу"
+    "name": "Всесвітній день футболу",
+    "url": "https://www.un.org/en/observances/football-day"
   },
   {
     "type": "оон",
     "date": "2026-05-25",
-    "name": "Тиждень солідарності з народами, які не мають самоврядування"
+    "name": "Тиждень солідарності з народами, які не мають самоврядування",
+    "url": "https://www.un.org/en/observances/non-self-governing-week"
   },
   {
     "type": "оон",
     "date": "2026-05-29",
-    "name": "Міжнародний день миротворців"
+    "name": "Міжнародний день миротворців",
+    "url": "https://www.un.org/en/observances/peacekeepers-day"
   },
   {
     "type": "оон",
     "date": "2026-05-30",
-    "name": "Міжнародний день картоплі"
+    "name": "Міжнародний день картоплі",
+    "url": "https://www.fao.org/international-potato-day/en"
   },
   {
     "type": "оон",
     "date": "2026-05-31",
-    "name": "Всесвітній день без тютюну"
+    "name": "Всесвітній день без тютюну",
+    "url": "https://www.who.int/campaigns/world-no-tobacco-day"
   },
   {
     "type": "оон",
     "date": "2026-06-01",
-    "name": "Всесвітній день батьків"
+    "name": "Всесвітній день батьків",
+    "url": "https://www.un.org/en/observances/parents-day"
   },
   {
     "type": "оон",
     "date": "2026-06-03",
-    "name": "Всесвітній день велосипеда"
+    "name": "Всесвітній день велосипеда",
+    "url": "https://www.un.org/en/observances/bicycle-day"
   },
   {
     "type": "оон",
     "date": "2026-06-04",
-    "name": "Міжнародний день невинних дітей - жертв агресії"
+    "name": "Міжнародний день невинних дітей - жертв агресії",
+    "url": "https://www.un.org/en/observances/child-victim-day"
   },
   {
     "type": "оон",
     "date": "2026-06-05",
-    "name": "Всесвітній день охорони довкілля (A/RES/2994 (XXVII))"
+    "name": "Всесвітній день охорони довкілля (A/RES/2994 (XXVII))",
+    "url": "https://www.un.org/en/observances/environment-day"
   },
   {
     "type": "оон",
     "date": "2026-06-05",
-    "name": "Міжнародний день боротьби з незаконним, неповідомленим та нерегульованим промислом"
+    "name": "Міжнародний день боротьби з незаконним, неповідомленим та нерегульованим промислом",
+    "url": "https://www.un.org/en/observances/end-illegal-fishing-day"
   },
   {
     "type": "оон",
     "date": "2026-06-07",
-    "name": "Всесвітній день безпеки харчових продуктів"
+    "name": "Всесвітній день безпеки харчових продуктів",
+    "url": "https://www.un.org/en/observances/food-safety-day"
   },
   {
     "type": "оон",
     "date": "2026-06-08",
-    "name": "Всесвітній день океанів"
+    "name": "Всесвітній день океанів",
+    "url": "https://www.un.org/en/observances/oceans-day"
   },
   {
     "type": "оон",
     "date": "2026-06-10",
-    "name": "Міжнародний день діалогу між цивілізаціями"
+    "name": "Міжнародний день діалогу між цивілізаціями",
+    "url": "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations"
   },
   {
     "type": "оон",
     "date": "2026-06-11",
-    "name": "Міжнародний день гри"
+    "name": "Міжнародний день гри",
+    "url": "https://www.un.org/en/observances/international-day-of-play"
   },
   {
     "type": "оон",
     "date": "2026-06-12",
-    "name": "Всесвітній день боротьби з дитячою працею"
+    "name": "Всесвітній день боротьби з дитячою працею",
+    "url": "https://www.un.org/en/observances/world-day-against-child-labour"
   },
   {
     "type": "оон",
     "date": "2026-06-13",
-    "name": "Міжнародний день поширення інформації про альбінізм"
+    "name": "Міжнародний день поширення інформації про альбінізм",
+    "url": "https://www.un.org/en/observances/albinism-day"
   },
   {
     "type": "оон",
     "date": "2026-06-14",
-    "name": "Всесвітній день донора крові  (ВООЗ)"
+    "name": "Всесвітній день донора крові  (ВООЗ)",
+    "url": "https://www.who.int/campaigns/world-blood-donor-day"
   },
   {
     "type": "оон",
     "date": "2026-06-15",
-    "name": "Всесвітній день поширення інформації про зловживання відносно літніх людей"
+    "name": "Всесвітній день поширення інформації про зловживання відносно літніх людей",
+    "url": "https://www.un.org/en/observances/elder-abuse-awareness-day"
   },
   {
     "type": "оон",
     "date": "2026-06-16",
-    "name": "Міжнародний день сімейних грошових переказів (МФСР)"
+    "name": "Міжнародний день сімейних грошових переказів (МФСР)",
+    "url": "https://www.un.org/en/observances/remittances-day"
   },
   {
     "type": "оон",
     "date": "2026-06-17",
-    "name": "Всесвітній день боротьби з опустеленням і посухою"
+    "name": "Всесвітній день боротьби з опустеленням і посухою",
+    "url": "https://www.un.org/en/observances/desertification-day"
   },
   {
     "type": "оон",
     "date": "2026-06-18",
-    "name": "День стійкої гастрономії"
+    "name": "День стійкої гастрономії",
+    "url": "https://www.fao.org/sustainable-gastronomy-day/en"
   },
   {
     "type": "оон",
     "date": "2026-06-18",
-    "name": "Міжнародний день боротьби з мовою ворожнечі"
+    "name": "Міжнародний день боротьби з мовою ворожнечі",
+    "url": "https://www.un.org/en/observances/countering-hate-speech"
   },
   {
     "type": "оон",
     "date": "2026-06-19",
-    "name": "Міжнародний день боротьби з сексуальним насильством в умовах конфлікту"
+    "name": "Міжнародний день боротьби з сексуальним насильством в умовах конфлікту",
+    "url": "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day"
   },
   {
     "type": "оон",
     "date": "2026-06-20",
-    "name": "Всесвітній день біженців"
+    "name": "Всесвітній день біженців",
+    "url": "https://www.un.org/en/observances/refugee-day"
   },
   {
     "type": "оон",
     "date": "2026-06-21",
-    "name": "Міжнародний день йоги"
+    "name": "Міжнародний день йоги",
+    "url": "https://www.un.org/en/observances/yoga-day"
   },
   {
     "type": "оон",
     "date": "2026-06-21",
-    "name": "Міжнародний день йоги"
+    "name": "Міжнародний день йоги",
+    "url": "https://www.un.org/en/observances/solstice-day"
   },
   {
     "type": "оон",
     "date": "2026-06-23",
-    "name": "Міжнародний день вдів"
+    "name": "Міжнародний день вдів",
+    "url": "https://www.un.org/en/observances/public-service-day"
   },
   {
     "type": "оон",
     "date": "2026-06-23",
-    "name": "День державної служби ООН"
+    "name": "День державної служби ООН",
+    "url": "https://www.un.org/en/observances/widows-day"
   },
   {
     "type": "оон",
     "date": "2026-06-24",
-    "name": "Міжнародний день жінок у дипломатії"
+    "name": "Міжнародний день жінок у дипломатії",
+    "url": "https://www.un.org/en/observances/women-in-diplomacy-day"
   },
   {
     "type": "оон",
     "date": "2026-06-25",
-    "name": "День моряка (Міжнародна морська організація)"
+    "name": "День моряка (Міжнародна морська організація)",
+    "url": "https://www.imo.org/en/About/Events/Pages/Day-of-the-Seafarer-2025.aspx"
   },
   {
     "type": "оон",
     "date": "2026-06-26",
-    "name": "Міжнародний день боротьби зі зловживанням наркотиками й їхнім незаконним обігом"
+    "name": "Міжнародний день боротьби зі зловживанням наркотиками й їхнім незаконним обігом",
+    "url": "https://www.un.org/en/observances/end-drug-abuse-day"
   },
   {
     "type": "оон",
     "date": "2026-06-26",
-    "name": "Міжнародний день на підтримку жертв тортур"
+    "name": "Міжнародний день на підтримку жертв тортур",
+    "url": "https://www.un.org/en/observances/torture-victims-day"
   },
   {
     "type": "оон",
     "date": "2026-06-27",
-    "name": "День мікро-, малих та середніх підприємств"
+    "name": "День мікро-, малих та середніх підприємств",
+    "url": "https://www.un.org/en/observances/deafblindness-day"
   },
   {
     "type": "оон",
     "date": "2026-06-27",
-    "name": "День мікро-, малих та середніх підприємств"
+    "name": "День мікро-, малих та середніх підприємств",
+    "url": "https://www.un.org/en/observances/micro-small-medium-businesses-day"
   },
   {
     "type": "оон",
     "date": "2026-06-29",
-    "name": "Міжнародний день тропіків"
+    "name": "Міжнародний день тропіків",
+    "url": "https://www.un.org/en/observances/tropics-day"
   },
   {
     "type": "оон",
     "date": "2026-06-30",
-    "name": "Міжнародний день астероїда"
+    "name": "Міжнародний день астероїда",
+    "url": "https://www.un.org/en/observances/asteroid-day"
   },
   {
     "type": "оон",
     "date": "2026-06-30",
-    "name": "Міжнародний день парламентаризму"
+    "name": "Міжнародний день парламентаризму",
+    "url": "https://www.un.org/en/observances/parliamentarism-day"
   },
   {
     "type": "оон",
     "date": "2026-07-05",
-    "name": "Міжнародний день кооперативів"
+    "name": "Міжнародний день кооперативів",
+    "url": "https://www.un.org/en/observances/cooperatives-day"
   },
   {
     "type": "оон",
     "date": "2026-07-06",
-    "name": "Всесвітній день розвитку сільських територій"
+    "name": "Всесвітній день розвитку сільських територій",
+    "url": "https://www.un.org/en/observances/rural-development-day"
   },
   {
     "type": "оон",
     "date": "2026-07-07",
-    "name": "Всесвітній день мови суахілі"
+    "name": "Всесвітній день мови суахілі",
+    "url": "https://www.un.org/en/observances/kiswahili-day"
   },
   {
     "type": "оон",
     "date": "2026-07-11",
-    "name": "Всесвітній день народонаселення"
+    "name": "Всесвітній день народонаселення",
+    "url": "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day"
   },
   {
     "type": "оон",
     "date": "2026-07-11",
-    "name": "Всесвітній день народонаселення"
+    "name": "Всесвітній день народонаселення",
+    "url": "https://www.un.org/en/observances/world-population-day"
   },
   {
     "type": "оон",
     "date": "2026-07-11",
-    "name": "Всесвітній день народонаселення"
+    "name": "Всесвітній день народонаселення",
+    "url": "https://www.un.org/en/observances/horse-day"
   },
   {
     "type": "оон",
     "date": "2026-07-12",
-    "name": "Міжнародний день боротьби з піщаними та пиловими бурями"
+    "name": "Міжнародний день боротьби з піщаними та пиловими бурями",
+    "url": "https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms"
   },
   {
     "type": "оон",
     "date": "2026-07-12",
-    "name": "Міжнародний день надії"
+    "name": "Міжнародний день надії",
+    "url": "https://www.un.org/en/observances/hope-day"
   },
   {
     "type": "оон",
     "date": "2026-07-15",
-    "name": "Всесвітній день навичок молоді"
+    "name": "Всесвітній день навичок молоді",
+    "url": "https://www.un.org/en/observances/world-youth-skills-day"
   },
   {
     "type": "оон",
     "date": "2026-07-18",
-    "name": "Міжнародний день Нельсона Мандели"
+    "name": "Міжнародний день Нельсона Мандели",
+    "url": "http://www.un.org/en/events/mandeladay/"
   },
   {
     "type": "оон",
     "date": "2026-07-20",
-    "name": "Міжнародний день Місяця"
+    "name": "Міжнародний день Місяця",
+    "url": "https://www.un.org/en/observances/world-chess-day"
   },
   {
     "type": "оон",
     "date": "2026-07-20",
-    "name": "Міжнародний день шахів"
+    "name": "Міжнародний день шахів",
+    "url": "https://www.un.org/en/observances/moon-day"
   },
   {
     "type": "оон",
     "date": "2026-07-25",
-    "name": "Всесвітній день запобігання утопленням"
+    "name": "Всесвітній день запобігання утопленням",
+    "url": "https://www.un.org/en/observances/women-girls-african-descent"
   },
   {
     "type": "оон",
     "date": "2026-07-25",
-    "name": "Всесвітній день запобігання утопленням"
+    "name": "Всесвітній день запобігання утопленням",
+    "url": "https://www.un.org/en/observances/drowning-prevention-day"
   },
   {
     "type": "оон",
     "date": "2026-07-25",
-    "name": "Всесвітній день запобігання утопленням"
+    "name": "Всесвітній день запобігання утопленням",
+    "url": "https://www.un.org/en/observances/judicial-well-being-day"
   },
   {
     "type": "оон",
     "date": "2026-07-28",
-    "name": "Всесвітній день боротьби з гепатитом"
+    "name": "Всесвітній день боротьби з гепатитом",
+    "url": "https://www.who.int/campaigns/world-hepatitis-day"
   },
   {
     "type": "оон",
     "date": "2026-07-30",
-    "name": "Міжнародний день дружби"
+    "name": "Міжнародний день дружби",
+    "url": "https://www.un.org/en/observances/friendship-day"
   },
   {
     "type": "оон",
     "date": "2026-07-30",
-    "name": "Всесвітній день боротьби з торгівлею людьми"
+    "name": "Всесвітній день боротьби з торгівлею людьми",
+    "url": "https://www.un.org/en/observances/end-human-trafficking-day"
   },
   {
     "type": "оон",
     "date": "2026-08-01",
-    "name": "Всесвітній тиждень грудного вигодовування"
+    "name": "Всесвітній тиждень грудного вигодовування",
+    "url": "https://www.who.int/campaigns/world-breastfeeding-week"
   },
   {
     "type": "оон",
     "date": "2026-08-06",
-    "name": "Міжнародний день поширення інформації про особливі потреби розвитку країн, що не мають виходу до моря"
+    "name": "Міжнародний день поширення інформації про особливі потреби розвитку країн, що не мають виходу до моря",
+    "url": "https://www.un.org/en/observances/landlocked-developing-countries-day"
   },
   {
     "type": "оон",
     "date": "2026-08-09",
-    "name": "Міжнародний день корінних народів світу"
+    "name": "Міжнародний день корінних народів світу",
+    "url": "https://www.un.org/en/observances/indigenous-day"
   },
   {
     "type": "оон",
     "date": "2026-08-11",
-    "name": "Всесвітній день стальпана"
+    "name": "Всесвітній день стальпана",
+    "url": "https://www.un.org/en/observances/steelpan-day"
   },
   {
     "type": "оон",
     "date": "2026-08-12",
-    "name": "Міжнародний день молоді"
+    "name": "Міжнародний день молоді",
+    "url": "https://www.un.org/en/observances/youth-day"
   },
   {
     "type": "оон",
     "date": "2026-08-19",
-    "name": "Всесвітній день гуманітарної допомоги"
+    "name": "Всесвітній день гуманітарної допомоги",
+    "url": "https://www.un.org/en/observances/humanitarian-day"
   },
   {
     "type": "оон",
     "date": "2026-08-21",
-    "name": "Міжнародний день пам'яті і поминання жертв тероризму"
+    "name": "Міжнародний день пам'яті і поминання жертв тероризму",
+    "url": "https://www.un.org/en/observances/terrorism-victims-day"
   },
   {
     "type": "оон",
     "date": "2026-08-22",
-    "name": "Міжнародний день пам'яті жертв актів насильства на основі релігії чи переконань"
+    "name": "Міжнародний день пам'яті жертв актів насильства на основі релігії чи переконань",
+    "url": "https://www.un.org/en/observances/religious-based-violence-victims-day"
   },
   {
     "type": "оон",
     "date": "2026-08-23",
-    "name": "Міжнародний день пам'яті про работоргівлю та її ліквідації (ЮНЕСКО)"
+    "name": "Міжнародний день пам'яті про работоргівлю та її ліквідації (ЮНЕСКО)",
+    "url": "https://www.unesco.org/en/days/slave-trade-remembrance"
   },
   {
     "type": "оон",
     "date": "2026-08-27",
-    "name": "Всесвітній день озер"
+    "name": "Всесвітній день озер",
+    "url": "https://www.un.org/en/observances/world-lake-day"
   },
   {
     "type": "оон",
     "date": "2026-08-29",
-    "name": "Міжнародний день дій проти ядерних випробувань"
+    "name": "Міжнародний день дій проти ядерних випробувань",
+    "url": "https://www.un.org/en/observances/end-nuclear-tests-day"
   },
   {
     "type": "оон",
     "date": "2026-08-30",
-    "name": "Міжнародний день жертв насильницьких зникнень"
+    "name": "Міжнародний день жертв насильницьких зникнень",
+    "url": "https://www.un.org/en/observances/victims-enforced-disappearance"
   },
   {
     "type": "оон",
     "date": "2026-08-31",
-    "name": "Міжнародний день людей африканського походження"
+    "name": "Міжнародний день людей африканського походження",
+    "url": "https://www.un.org/en/observances/african-descent-day"
   },
   {
     "type": "оон",
     "date": "2026-09-05",
-    "name": "Міжнародний день благодійності"
+    "name": "Міжнародний день благодійності",
+    "url": "https://www.un.org/en/observances/charity-day"
   },
   {
     "type": "оон",
     "date": "2026-09-05",
-    "name": "Міжнародний день благодійності"
+    "name": "Міжнародний день благодійності",
+    "url": "https://www.un.org/en/observances/indigenous-women-day"
   },
   {
     "type": "оон",
     "date": "2026-09-07",
-    "name": "Міжнародний день чистого повітря для блакитного неба"
+    "name": "Міжнародний день чистого повітря для блакитного неба",
+    "url": "https://www.cleanairblueskies.org/"
   },
   {
     "type": "оон",
     "date": "2026-09-07",
-    "name": "Міжнародний день поліцейської співпраці"
+    "name": "Міжнародний день поліцейської співпраці",
+    "url": "https://www.un.org/en/observances/police-cooperation-day"
   },
   {
     "type": "оон",
     "date": "2026-09-07",
-    "name": "Всесвітній день поширення інформації про м'язову дистрофію Дюшенна"
+    "name": "Всесвітній день поширення інформації про м'язову дистрофію Дюшенна",
+    "url": "https://www.un.org/en/observances/duchenne-awareness-day"
   },
   {
     "type": "оон",
     "date": "2026-09-08",
-    "name": "Міжнародний день грамотності"
+    "name": "Міжнародний день грамотності",
+    "url": "https://www.unesco.org/en/days/literacy"
   },
   {
     "type": "оон",
     "date": "2026-09-09",
-    "name": "Міжнародний день захисту освіти від нападів"
+    "name": "Міжнародний день захисту освіти від нападів",
+    "url": "https://www.un.org/en/observances/protect-education-day"
   },
   {
     "type": "оон",
     "date": "2026-09-12",
-    "name": "День співпраці Південь-Південь"
+    "name": "День співпраці Південь-Південь",
+    "url": "https://www.un.org/en/observances/south-south-cooperation-day"
   },
   {
     "type": "оон",
     "date": "2026-09-15",
-    "name": "Міжнародний день демократії"
+    "name": "Міжнародний день демократії",
+    "url": "https://www.un.org/en/observances/democracy-day"
   },
   {
     "type": "оон",
     "date": "2026-09-16",
-    "name": "Міжнародний день охорони озонового шару"
+    "name": "Міжнародний день охорони озонового шару",
+    "url": "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day"
   },
   {
     "type": "оон",
     "date": "2026-09-16",
-    "name": "Міжнародний день охорони озонового шару"
+    "name": "Міжнародний день охорони озонового шару",
+    "url": "https://www.un.org/en/observances/interventional-cardiology-day"
   },
   {
     "type": "оон",
     "date": "2026-09-16",
-    "name": "Міжнародний день охорони озонового шару"
+    "name": "Міжнародний день охорони озонового шару",
+    "url": "https://www.un.org/en/observances/ozone-day"
   },
   {
     "type": "оон",
     "date": "2026-09-17",
-    "name": "Всесвітній день безпеки пацієнтів"
+    "name": "Всесвітній день безпеки пацієнтів",
+    "url": "https://www.who.int/campaigns/world-patient-safety-day/"
   },
   {
     "type": "оон",
     "date": "2026-09-18",
-    "name": "Всесвітній день рівної оплати праці"
+    "name": "Всесвітній день рівної оплати праці",
+    "url": "https://www.un.org/en/observances/equal-pay-day"
   },
   {
     "type": "оон",
     "date": "2026-09-20",
-    "name": "Всесвітній день прибирання"
+    "name": "Всесвітній день прибирання",
+    "url": "https://www.un.org/en/observances/cleanup-day"
   },
   {
     "type": "оон",
     "date": "2026-09-21",
-    "name": "Міжнародний день миру (A/RES/36/67)"
+    "name": "Міжнародний день миру (A/RES/36/67)",
+    "url": "https://www.un.org/en/observances/international-day-peace"
   },
   {
     "type": "оон",
     "date": "2026-09-23",
-    "name": "Міжнародний день жестових мов"
+    "name": "Міжнародний день жестових мов",
+    "url": "https://www.un.org/en/observances/sign-languages-day"
   },
   {
     "type": "оон",
     "date": "2026-09-24",
-    "name": "Всесвітній день моря"
+    "name": "Всесвітній день моря",
+    "url": "https://www.un.org/en/observances/maritime-day"
   },
   {
     "type": "оон",
     "date": "2026-09-26",
-    "name": "Міжнародний день боротьби за повну ліквідацію ядерної зброї"
+    "name": "Міжнародний день боротьби за повну ліквідацію ядерної зброї",
+    "url": "https://www.un.org/en/observances/nuclear-weapons-elimination-day"
   },
   {
     "type": "оон",
     "date": "2026-09-27",
-    "name": "Всесвітній день туризму"
+    "name": "Всесвітній день туризму",
+    "url": "https://www.un.org/en/observances/tourism-day"
   },
   {
     "type": "оон",
     "date": "2026-09-28",
-    "name": "Міжнародний день загального доступу до інформації"
+    "name": "Міжнародний день загального доступу до інформації",
+    "url": "https://www.un.org/en/observances/information-access-day"
   },
   {
     "type": "оон",
     "date": "2026-09-29",
-    "name": "Міжнародний день поширення інформації про продовольчі втрати та харчові відходи"
+    "name": "Міжнародний день поширення інформації про продовольчі втрати та харчові відходи",
+    "url": "https://www.un.org/en/observances/end-food-waste-day/"
   },
   {
     "type": "оон",
     "date": "2026-09-30",
-    "name": "Всесвітній день перекладу"
+    "name": "Всесвітній день перекладу",
+    "url": "https://www.un.org/en/observances/international-translation-day"
   },
   {
     "type": "оон",
     "date": "2026-10-01",
-    "name": "Міжнародний день людей похилого віку"
+    "name": "Міжнародний день людей похилого віку",
+    "url": "https://www.un.org/en/observances/older-persons-day"
   },
   {
     "type": "оон",
     "date": "2026-10-02",
-    "name": "Міжнародний день ненасильства"
+    "name": "Міжнародний день ненасильства",
+    "url": "https://www.un.org/en/observances/non-violence-day"
   },
   {
     "type": "оон",
     "date": "2026-10-04",
-    "name": "Всесвітній тиждень космосу"
+    "name": "Всесвітній тиждень космосу",
+    "url": "https://www.un.org/en/observances/world-space-week"
   },
   {
     "type": "оон",
     "date": "2026-10-05",
-    "name": "Всесвітній день учителів"
+    "name": "Всесвітній день учителів",
+    "url": "https://www.unesco.org/en/days/teachers"
   },
   {
     "type": "оон",
     "date": "2026-10-06",
-    "name": "Всесвітній день середовища проживання"
+    "name": "Всесвітній день середовища проживання",
+    "url": "https://www.un.org/en/observances/habitat-day"
   },
   {
     "type": "оон",
     "date": "2026-10-07",
-    "name": "Всесвітній день бавовни"
+    "name": "Всесвітній день бавовни",
+    "url": "https://www.un.org/en/observances/cotton-day"
   },
   {
     "type": "оон",
     "date": "2026-10-09",
-    "name": "Всесвітній день пошти"
+    "name": "Всесвітній день пошти",
+    "url": "https://www.un.org/en/observances/world-post-day"
   },
   {
     "type": "оон",
     "date": "2026-10-09",
-    "name": "Всесвітній день пошти"
+    "name": "Всесвітній день пошти",
+    "url": "http://www.worldmigratorybirdday.org/"
   },
   {
     "type": "оон",
     "date": "2026-10-09",
-    "name": "Всесвітній день пошти"
+    "name": "Всесвітній день пошти",
+    "url": "http://www.worldmigratorybirdday.org/"
   },
   {
     "type": "оон",
     "date": "2026-10-10",
-    "name": "Всесвітній день психічного здоров'я"
+    "name": "Всесвітній день психічного здоров'я",
+    "url": "http://www.who.int/mental_health/world-mental-health-day/en/"
   },
   {
     "type": "оон",
     "date": "2026-10-11",
-    "name": "Міжнародний день дівчаток"
+    "name": "Міжнародний день дівчаток",
+    "url": "https://www.un.org/en/observances/girl-child-day"
   },
   {
     "type": "оон",
     "date": "2026-10-13",
-    "name": "Міжнародний день зменшення небезпеки лих (A/RES/44/236)"
+    "name": "Міжнародний день зменшення небезпеки лих (A/RES/44/236)",
+    "url": "https://www.un.org/en/observances/disaster-reduction-day"
   },
   {
     "type": "оон",
     "date": "2026-10-15",
-    "name": "Міжнародний день сільських жінок"
+    "name": "Міжнародний день сільських жінок",
+    "url": "https://www.un.org/en/observances/rural-women-day"
   },
   {
     "type": "оон",
     "date": "2026-10-16",
-    "name": "Всесвітній день продовольства (ФАО)"
+    "name": "Всесвітній день продовольства (ФАО)",
+    "url": "http://www.fao.org/world-food-day"
   },
   {
     "type": "оон",
     "date": "2026-10-17",
-    "name": "Міжнародний день боротьби з бідністю"
+    "name": "Міжнародний день боротьби з бідністю",
+    "url": "https://www.un.org/en/observances/day-for-eradicating-poverty"
   },
   {
     "type": "оон",
     "date": "2026-10-23",
-    "name": "Міжнародний день снігового барса"
+    "name": "Міжнародний день снігового барса",
+    "url": "https://www.un.org/en/observances/snow-leopard-day"
   },
   {
     "type": "оон",
     "date": "2026-10-24",
-    "name": "Тиждень роззброєння"
+    "name": "Тиждень роззброєння",
+    "url": "https://www.un.org/en/observances/disarmament-week"
   },
   {
     "type": "оон",
     "date": "2026-10-24",
-    "name": "День Організації Об'єднаних Націй"
+    "name": "День Організації Об'єднаних Націй",
+    "url": "https://www.un.org/en/observances/un-day"
   },
   {
     "type": "оон",
     "date": "2026-10-24",
-    "name": "Всесвітній день інформації про розвиток"
+    "name": "Всесвітній день інформації про розвиток",
+    "url": "https://www.un.org/en/observances/development-information-day"
   },
   {
     "type": "оон",
     "date": "2026-10-24",
-    "name": "Глобальний тиждень медійної та інформаційної грамотності"
+    "name": "Глобальний тиждень медійної та інформаційної грамотності",
+    "url": "https://www.un.org/en/observances/media-information-literacy-week"
   },
   {
     "type": "оон",
     "date": "2026-10-27",
-    "name": "Всесвітній день аудіовізуальної спадщини"
+    "name": "Всесвітній день аудіовізуальної спадщини",
+    "url": "https://www.unesco.org/en/days/audiovisual-heritage"
   },
   {
     "type": "оон",
     "date": "2026-10-29",
-    "name": "Міжнародний день догляду та підтримки"
+    "name": "Міжнародний день догляду та підтримки",
+    "url": "https://www.un.org/en/observances/care-and-support-day"
   },
   {
     "type": "оон",
     "date": "2026-10-31",
-    "name": "Всесвітній день міст"
+    "name": "Всесвітній день міст",
+    "url": "https://www.un.org/en/observances/cities-day"
   },
   {
     "type": "оон",
     "date": "2026-11-02",
-    "name": "Міжнародний день припинення безкарності за злочини проти журналістів"
+    "name": "Міжнародний день припинення безкарності за злочини проти журналістів",
+    "url": "https://www.un.org/en/observances/end-impunity-crimes-against-journalists"
   },
   {
     "type": "оон",
     "date": "2026-11-05",
-    "name": "Всесвітній день поширення інформації про проблему цунамі"
+    "name": "Всесвітній день поширення інформації про проблему цунамі",
+    "url": "https://www.un.org/en/observances/tsunami-awareness-day"
   },
   {
     "type": "оон",
     "date": "2026-11-06",
-    "name": "Міжнародний день запобігання експлуатації довкілля під час війни та збройних конфліктів"
+    "name": "Міжнародний день запобігання експлуатації довкілля під час війни та збройних конфліктів",
+    "url": "https://www.un.org/en/observances/environment-in-war-protection-day"
   },
   {
     "type": "оон",
     "date": "2026-11-09",
-    "name": "Міжнародний тиждень науки і миру"
+    "name": "Міжнародний тиждень науки і миру",
+    "url": "https://www.un.org/en/observances/world-science-day/week"
   },
   {
     "type": "оон",
     "date": "2026-11-10",
-    "name": "Всесвітній день науки за мир та розвиток"
+    "name": "Всесвітній день науки за мир та розвиток",
+    "url": "https://www.un.org/en/observances/world-science-day"
   },
   {
     "type": "оон",
     "date": "2026-11-14",
-    "name": "Всесвітній день боротьби з цукровим діабетом (ВООЗ)"
+    "name": "Всесвітній день боротьби з цукровим діабетом (ВООЗ)",
+    "url": "https://www.un.org/en/observances/diabetes-day"
   },
   {
     "type": "оон",
     "date": "2026-11-15",
-    "name": "Міжнародний день попередження та боротьби з усіма формами транснаціональної організованої злочинності"
+    "name": "Міжнародний день попередження та боротьби з усіма формами транснаціональної організованої злочинності",
+    "url": "https://www.un.org/en/observances/fight-against-transnational-crime-day"
   },
   {
     "type": "оон",
     "date": "2026-11-16",
-    "name": "Міжнародний день толерантності"
+    "name": "Міжнародний день толерантності",
+    "url": "https://www.unesco.org/en/days/tolerance"
   },
   {
     "type": "оон",
     "date": "2026-11-17",
-    "name": "Всесвітній день пам'яті жертв дорожньо-транспортних пригод"
+    "name": "Всесвітній день пам'яті жертв дорожньо-транспортних пригод",
+    "url": "https://www.un.org/en/observances/road-traffic-victims-day"
   },
   {
     "type": "оон",
     "date": "2026-11-18",
-    "name": "Всесвітній день запобігання актам сексуальної експлуатації дітей, жорстокому поводженню з ними та насильству щодо них та зціленню дітей, які постраждали від таких актів"
+    "name": "Всесвітній день запобігання актам сексуальної експлуатації дітей, жорстокому поводженню з ними та насильству щодо них та зціленню дітей, які постраждали від таких актів",
+    "url": "https://www.who.int/campaigns/world-antimicrobial-awareness-week"
   },
   {
     "type": "оон",
     "date": "2026-11-18",
-    "name": "Всесвітній день запобігання актам сексуальної експлуатації дітей, жорстокому поводженню з ними та насильству щодо них та зціленню дітей, які постраждали від таких актів"
+    "name": "Всесвітній день запобігання актам сексуальної експлуатації дітей, жорстокому поводженню з ними та насильству щодо них та зціленню дітей, які постраждали від таких актів",
+    "url": "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day"
   },
   {
     "type": "оон",
     "date": "2026-11-19",
-    "name": "Всесвітній день туалету"
+    "name": "Всесвітній день туалету",
+    "url": "https://www.un.org/en/observances/toilet-day"
   },
   {
     "type": "оон",
     "date": "2026-11-20",
-    "name": "Всесвітній день дитини (A/RES/836 (IX))"
+    "name": "Всесвітній день дитини (A/RES/836 (IX))",
+    "url": "https://www.un.org/en/observances/africa-industrialization-day"
   },
   {
     "type": "оон",
     "date": "2026-11-20",
-    "name": "День індустріалізації Африки"
+    "name": "День індустріалізації Африки",
+    "url": "https://www.un.org/en/observances/world-childrens-day"
   },
   {
     "type": "оон",
     "date": "2026-11-21",
-    "name": "Всесвітній день телебачення"
+    "name": "Всесвітній день телебачення",
+    "url": "https://www.unesco.org/en/days/philosophy"
   },
   {
     "type": "оон",
     "date": "2026-11-21",
-    "name": "Всесвітній день телебачення"
+    "name": "Всесвітній день телебачення",
+    "url": "https://www.un.org/en/observances/world-television-day"
   },
   {
     "type": "оон",
     "date": "2026-11-24",
-    "name": "Всесвітній день сіамських близнюків"
+    "name": "Всесвітній день сіамських близнюків",
+    "url": "https://www.un.org/en/observances/conjoined-twins-day"
   },
   {
     "type": "оон",
     "date": "2026-11-25",
-    "name": "Міжнародний день усунення насильства проти жінок"
+    "name": "Міжнародний день усунення насильства проти жінок",
+    "url": "https://www.un.org/en/observances/ending-violence-against-women-day"
   },
   {
     "type": "оон",
     "date": "2026-11-26",
-    "name": "Всесвітній день сталого транспорту"
+    "name": "Всесвітній день сталого транспорту",
+    "url": "https://www.un.org/en/observances/sustainable-transport-day"
   },
   {
     "type": "оон",
     "date": "2026-11-29",
-    "name": "Міжнародний день солідарності з палестинським народом"
+    "name": "Міжнародний день солідарності з палестинським народом",
+    "url": "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people"
   },
   {
     "type": "оон",
     "date": "2026-11-30",
-    "name": "День пам'яті всіх жертв застосування хімічної зброї"
+    "name": "День пам'яті всіх жертв застосування хімічної зброї",
+    "url": "https://www.un.org/en/observances/chemical-warfare-victims-day"
   },
   {
     "type": "оон",
     "date": "2026-12-01",
-    "name": "Всесвітній день боротьби зі СНІДом"
+    "name": "Всесвітній день боротьби зі СНІДом",
+    "url": "https://www.un.org/en/observances/world-aids-day"
   },
   {
     "type": "оон",
     "date": "2026-12-02",
-    "name": "Міжнародний день боротьби за скасування рабства"
+    "name": "Міжнародний день боротьби за скасування рабства",
+    "url": "https://www.un.org/en/observances/slavery-abolition-day"
   },
   {
     "type": "оон",
     "date": "2026-12-03",
-    "name": "Міжнародний день людей з інвалідністю"
+    "name": "Міжнародний день людей з інвалідністю",
+    "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities"
   },
   {
     "type": "оон",
     "date": "2026-12-04",
-    "name": "Міжнародний день банків"
+    "name": "Міжнародний день банків",
+    "url": "https://www.un.org/en/observances/international-day-of-banks"
   },
   {
     "type": "оон",
     "date": "2026-12-04",
-    "name": "Міжнародний день банків"
+    "name": "Міжнародний день банків",
+    "url": "https://www.un.org/en/observances/day-against-unilateral-coercive-measures"
   },
   {
     "type": "оон",
     "date": "2026-12-05",
-    "name": "Міжнародний день добровольців в ім'я економічного і соціального розвитку"
+    "name": "Міжнародний день добровольців в ім'я економічного і соціального розвитку",
+    "url": "https://www.un.org/en/observances/volunteer-day"
   },
   {
     "type": "оон",
     "date": "2026-12-05",
-    "name": "Всесвітній день ґрунтів"
+    "name": "Всесвітній день ґрунтів",
+    "url": "https://www.un.org/en/observances/world-soil-day"
   },
   {
     "type": "оон",
     "date": "2026-12-07",
-    "name": "Міжнародний день цивільної авіації (ІКАО)"
+    "name": "Міжнародний день цивільної авіації (ІКАО)",
+    "url": "https://www.un.org/en/observances/civil-aviation-day"
   },
   {
     "type": "оон",
     "date": "2026-12-09",
-    "name": "Міжнародний день пам'яті жертв злочину геноциду, вшанування їхньої людської гідності і попередження цього злочину"
+    "name": "Міжнародний день пам'яті жертв злочину геноциду, вшанування їхньої людської гідності і попередження цього злочину",
+    "url": "https://www.un.org/en/observances/genocide-prevention-day"
   },
   {
     "type": "оон",
     "date": "2026-12-09",
-    "name": "Міжнародний день боротьби з корупцією"
+    "name": "Міжнародний день боротьби з корупцією",
+    "url": "https://www.un.org/en/observances/anti-corruption-day"
   },
   {
     "type": "оон",
     "date": "2026-12-10",
-    "name": "День прав людини (A/RES/423 (V))"
+    "name": "День прав людини (A/RES/423 (V))",
+    "url": "https://www.un.org/en/observances/human-rights-day"
   },
   {
     "type": "оон",
     "date": "2026-12-11",
-    "name": "Міжнародний день гір"
+    "name": "Міжнародний день гір",
+    "url": "https://www.un.org/en/observances/mountain-day"
   },
   {
     "type": "оон",
     "date": "2026-12-12",
-    "name": "Міжнародний день нейтралітету"
+    "name": "Міжнародний день нейтралітету",
+    "url": "https://www.un.org/en/observances/neutrality-day"
   },
   {
     "type": "оон",
     "date": "2026-12-12",
-    "name": "Міжнародний день загального охоплення послугами охорони здоров'я"
+    "name": "Міжнародний день загального охоплення послугами охорони здоров'я",
+    "url": "https://www.un.org/en/observances/universal-health-coverage-day"
   },
   {
     "type": "оон",
     "date": "2026-12-14",
-    "name": "Міжнародний день боротьби проти колоніалізму в усіх його формах і проявах"
+    "name": "Міжнародний день боротьби проти колоніалізму в усіх його формах і проявах",
+    "url": "https://www.un.org/en/observances/anti-colonialism-day"
   },
   {
     "type": "оон",
     "date": "2026-12-18",
-    "name": "Міжнародний день мігрантів"
+    "name": "Міжнародний день мігрантів",
+    "url": "https://www.un.org/en/observances/migrants-day"
   },
   {
     "type": "оон",
     "date": "2026-12-18",
-    "name": "Міжнародний день арабської мови"
+    "name": "Міжнародний день арабської мови",
+    "url": "https://www.un.org/en/observances/arabiclanguageday"
   },
   {
     "type": "оон",
     "date": "2026-12-20",
-    "name": "Міжнародний день солідарності людей"
+    "name": "Міжнародний день солідарності людей",
+    "url": "https://www.un.org/en/observances/human-solidarity-day"
   },
   {
     "type": "оон",
     "date": "2026-12-21",
-    "name": "Всесвітній день медитації"
+    "name": "Всесвітній день медитації",
+    "url": "https://www.un.org/en/observances/meditation-day"
   },
   {
     "type": "оон",
     "date": "2026-12-21",
-    "name": "Всесвітній день баскетболу"
+    "name": "Всесвітній день баскетболу",
+    "url": "https://www.un.org/en/observances/world-basketball-day"
   },
   {
     "type": "оон",
     "date": "2026-12-24",
-    "name": "Міжнародний день боротьби з кіберзлочинністю"
+    "name": "Міжнародний день боротьби з кіберзлочинністю",
+    "url": "https://www.unodc.org/unodc/en/cybercrime/day.html"
   },
   {
     "type": "оон",
     "date": "2026-12-27",
-    "name": "Міжнародний день протиепідемічної готовності"
+    "name": "Міжнародний день протиепідемічної готовності",
+    "url": "https://www.un.org/en/observances/epidemic-preparedness-day"
   }
 ]

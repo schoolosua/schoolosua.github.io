@@ -124,17 +124,21 @@ def clean_en_name(name: str) -> str:
 
 
 def parse_en(html_text: str) -> list:
-    """-> [(normalized_en_name, month, day)]"""
+    """-> [(normalized_en_name, month, day, url)]"""
     rows = []
     for block in re.split(r'<div class="views-row', html_text)[1:]:
-        a = re.search(r'class="field-content"><a href="[^"]+">([^<]+)</a>', block)
+        a = re.search(r'class="field-content"><a href="([^"]+)">([^<]+)</a>', block)
         d = re.search(r'date-display-single">([^<]+)</span>', block)
         if not a or not d:
             continue
         m = re.match(r"^(\d{1,2})\s+([A-Za-z]{3})", d.group(1).strip())
         if not m:
             continue
-        rows.append((clean_en_name(a.group(1)), MONTHS_EN[m.group(2)], int(m.group(1))))
+        url = a.group(1)
+        if url.startswith("/"):
+            url = "https://www.un.org" + url
+        rows.append((clean_en_name(a.group(2)), MONTHS_EN[m.group(2)],
+                     int(m.group(1)), url))
     return rows
 
 
@@ -171,13 +175,13 @@ def merge(en_rows, wiki_rows) -> tuple:
         wiki_by_date.setdefault((month, day), []).append(name)
 
     en_counts = {}
-    for name, month, day in en_rows:
+    for name, month, day, url in en_rows:
         en_counts[(month, day)] = en_counts.get((month, day), 0) + 1
     seen = {}
 
     final = []
     err = []
-    for en_name, month, day in en_rows:
+    for en_name, month, day, url in en_rows:
         uk_list = wiki_by_date.get((month, day))
         if not uk_list:
             err.append(f"NO UK for [{month}-{day}] {en_name}")
@@ -214,12 +218,12 @@ def main():
     filtered = 0
     for year in TARGET_YEARS:
         items = []
-        for uk_name, (en_name, month, day) in zip(final, en_rows):
+        for uk_name, (en_name, month, day, url) in zip(final, en_rows):
             if is_blocked(en_name, uk_name):
                 filtered += 1
                 continue
             items.append({"type": "оон", "date": f"{year:04d}-{month:02d}-{day:02d}",
-                          "name": uk_name})
+                          "name": uk_name, "url": url})
         items.sort(key=lambda x: x["date"])
         path = os.path.join(DATA_DIR, f"un-days-{year}.json")
         with open(path, "w", encoding="utf-8") as f:
