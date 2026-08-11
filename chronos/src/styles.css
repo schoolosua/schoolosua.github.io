@@ -1,95 +1,66 @@
-/* ==========================================================
-   Chronos — ті самі токени, шрифти й стилі, що й у модулі
-   Mentor (schoolos-calendar/index.html), щоб модулі SchoolOS
-   виглядали як частини однієї екосистеми.
-   ========================================================== */
 :root {
   --bg: #f3f7fa;
   --glass-bg: rgba(255, 255, 255, 0.94);
-  --glass-border: rgba(255, 255, 255, 0.75);
-  --card-border-flat: rgba(226, 232, 240, 0.9);
-  --primary: #1e40af;
+  --card-border: rgba(226, 232, 240, 0.9);
   --primary-neon: #2563eb;
   --primary-glow: rgba(37, 99, 235, 0.15);
   --accent: #0ea5e9;
-  --gold: #d4a13d;
-  --gold-glow: rgba(212, 161, 61, 0.18);
-  --purple: #7c3aed;
-  --purple-2: #a855f7;
-  --green: #059669;
-  --green-2: #10b981;
   --text: #0f172a;
-  --text-muted: #475569;
-  --radius-xl: 32px;
-  --radius-lg: 24px;
-  --radius-md: 14px;
-
-  --shadow-premium:
-    0 40px 80px rgba(15, 23, 42, 0.05),
-    0 10px 30px rgba(15, 23, 42, 0.03),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8);
-  --shadow-clay:
-    inset 0 -4px 12px rgba(0, 0, 0, 0.02),
-    inset 0 2px 6px rgba(255, 255, 255, 0.9),
-    0 20px 40px rgba(15, 23, 42, 0.03);
-  --dur-fast: .15s; --dur-base: .2s;
+  --text-muted: #64748b;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --shadow-premium: 0 30px 60px rgba(15, 23, 42, 0.05), 0 8px 20px rgba(15, 23, 42, 0.03);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
 
 body {
-  background-color: var(--bg);
+  margin: 0;
+  background: var(--bg);
   color: var(--text);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.18) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-h1, h2, h3, h4 {
+h1, h2, h3 {
   font-family: 'Clash Display', sans-serif;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  color: #090d16;
+  margin: 0;
 }
 
-a { text-decoration: none; color: inherit; }
+button, input, select {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+}
 
-:focus-visible { outline: 2px solid var(--primary-neon); outline-offset: 3px; }
+.page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
-.page { min-height: 100vh; position: relative; z-index: 1; }
+.app-footer {
+  margin-top: auto;
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
 
-/* ==========================================================
-   ШАПКА — той самий glass-хедер і лого-мітка, що й у Mentor
-   ========================================================== */
+/* Header */
 .topbar {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid var(--glass-border);
-}
-
-.topbar .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 78px;
-  gap: 16px;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 24px;
+  padding: 18px 28px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .logo {
@@ -97,17 +68,16 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 12px;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-family: 'Clash Display', sans-serif;
   color: var(--text);
-  text-decoration: none;
 }
 
 .logo-mark {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
-  border-radius: 9px;
+  border-radius: 8px;
   transform: rotate(45deg);
   box-shadow: 0 8px 18px var(--primary-glow);
   position: relative;
@@ -119,15 +89,22 @@ a { text-decoration: none; color: inherit; }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   background: #fff;
   border-radius: 2px;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.logo-sep { color: var(--text-muted); font-weight: 400; }
-.logo-module { color: var(--primary-neon); font-family: 'Space Grotesk', sans-serif; }
+.logo-sep {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.logo-module {
+  color: var(--primary-neon);
+  font-family: 'Space Grotesk', sans-serif;
+}
 
 .year-switcher {
   display: flex;
@@ -136,104 +113,181 @@ a { text-decoration: none; color: inherit; }
 }
 
 .year-switcher select {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  background: #fff;
   font-weight: 600;
-  color: var(--text);
-  background: var(--glass-bg);
-  border: 1px solid var(--card-border-flat);
-  border-radius: 999px;
-  padding: 7px 14px;
-  box-shadow: var(--shadow-clay);
-  cursor: pointer;
 }
 
 .icon-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid var(--card-border-flat);
-  background: var(--glass-bg);
-  box-shadow: var(--shadow-clay);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  background: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  font-size: 1rem;
-  transition: transform var(--dur-fast), color var(--dur-fast), box-shadow var(--dur-fast);
+  transition: background 0.15s;
 }
 
 .icon-btn:hover {
-  transform: translateY(-1px);
-  color: var(--primary-neon);
+  background: #f1f5f9;
 }
 
-/* ==========================================================
-   ГЕРОЙ — як у Mentor
-   ========================================================== */
-.hero-section {
+/* Hero */
+.page-hero {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 56px 24px 8px;
-  position: relative;
-  z-index: 2;
+  padding: 36px 28px 8px;
 }
 
-.hero-badge {
+.page-hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-neon);
+  margin: 0 0 8px;
+}
+
+.page-hero-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.page-hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .page-hero {
+    padding: 20px 16px 4px;
+  }
+
+  .page-hero-title {
+    font-size: 1.5rem;
+  }
+
+  .page-hero-subtitle {
+    font-size: 0.88rem;
+  }
+}
+
+/* "Як це працює" / "Що ви отримаєте" */
+.how-section,
+.benefits-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 8px 28px 4px;
+}
+
+.how-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.25rem;
+  margin: 0 0 16px;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.how-card {
+  padding: 20px 18px;
+}
+
+.how-num {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--glass-bg);
-  border: 1px solid var(--card-border-flat);
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--text-muted);
-  box-shadow: var(--shadow-clay);
-  margin-bottom: 24px;
-}
-
-.hero-section h1 {
-  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
-  line-height: 1.16;
-  margin-bottom: 16px;
-  max-width: 16ch;
-}
-
-.hero-section h1 span {
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
 }
 
-.hero-section p {
-  max-width: 560px;
+.how-card h3 {
+  font-size: 0.95rem;
+  margin: 0 0 6px;
+}
+
+.how-card p {
+  font-size: 0.82rem;
   color: var(--text-muted);
-  font-size: 1.02rem;
-  line-height: 1.6;
-  margin-bottom: 32px;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/* ==========================================================
-   ЛЕЯУТ
-   ========================================================== */
+.benefits-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--glass-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-premium);
+}
+
+.benefit-icon {
+  font-size: 1.05rem;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .how-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .how-section,
+  .benefits-section {
+    padding: 4px 16px 4px;
+  }
+
+  .benefits-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Layout */
 .layout {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 24px;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 24px 24px 100px;
+  padding: 24px 28px 80px;
   align-items: start;
-  position: relative;
-  z-index: 2;
 }
 
 @media (max-width: 900px) {
@@ -251,10 +305,10 @@ a { text-decoration: none; color: inherit; }
 
 .sidebar-block {
   background: var(--glass-bg);
-  border: 1px solid var(--card-border-flat);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 20px;
-  box-shadow: var(--shadow-clay);
+  padding: 18px;
+  box-shadow: var(--shadow-premium);
 }
 
 .sidebar-block-header h3 {
@@ -280,9 +334,9 @@ a { text-decoration: none; color: inherit; }
   align-items: stretch;
   gap: 6px;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--card-border-flat);
-  border-radius: var(--radius-md);
+  background: #f8fafc;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
 }
 
 .entry-row-top {
@@ -291,31 +345,30 @@ a { text-decoration: none; color: inherit; }
   gap: 6px;
 }
 
-.entry-row input[type='date'],
-.entry-row select,
-.entry-name,
-.entry-list input[type='text'] {
+.entry-row-top input[type='date'] {
   flex: 1;
   min-width: 0;
-  padding: 7px 12px;
-  border: 1px solid var(--card-border-flat);
-  border-radius: 999px;
-  background: #fff;
-  font-family: 'Inter', sans-serif;
+  padding: 6px 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
   font-size: 0.78rem;
-  color: var(--text);
-  box-shadow: var(--shadow-clay);
 }
 
-.entry-row input[type='date']:focus,
-.entry-row select:focus,
-.entry-name:focus,
-.entry-list input[type='text']:focus {
-  outline: 2px solid var(--primary-neon);
-  outline-offset: 1px;
+.entry-row input[type='date'],
+.entry-row select {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.78rem;
 }
 
 .entry-name {
+  padding: 6px 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.78rem;
   width: 100%;
 }
 
@@ -330,25 +383,19 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--primary-neon);
-  font-family: 'Space Grotesk', sans-serif;
 }
 
 .entry-date.is-empty {
   color: var(--text-muted);
   font-weight: 400;
-  font-family: 'Inter', sans-serif;
 }
 
 .entry-weekday {
   flex-shrink: 0;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--text-muted);
   background: #eef2f7;
-  border: 1px solid var(--card-border-flat);
   border-radius: 999px;
   padding: 3px 8px;
 }
@@ -358,23 +405,22 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.8rem;
 }
 
-/* Кнопки — патерн чіпів з Mentor */
+/* Buttons */
 .btn-primary,
 .btn-secondary,
 .btn-choice {
-  border-radius: 999px;
-  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
   font-weight: 600;
-  font-size: 0.9rem;
   cursor: pointer;
-  transition: transform var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  border: none;
-  box-shadow: 0 10px 20px var(--primary-glow);
+  box-shadow: 0 10px 22px var(--primary-glow);
 }
 
 .btn-primary:hover {
@@ -382,36 +428,27 @@ a { text-decoration: none; color: inherit; }
 }
 
 .btn-secondary {
-  background: var(--glass-bg);
-  border: 1px solid var(--card-border-flat);
+  background: #fff;
+  border: 1px solid var(--card-border);
   color: var(--text);
-  box-shadow: var(--shadow-clay);
 }
 
 .btn-secondary:hover {
-  transform: translateY(-1px);
-  color: var(--primary-neon);
-  border-color: var(--primary-neon);
+  background: #f8fafc;
 }
 
 .btn-choice {
   flex: 1;
-  background: var(--glass-bg);
-  border: 1px solid var(--card-border-flat);
+  background: #fff;
+  border: 1px solid var(--card-border);
   color: var(--text);
-  box-shadow: var(--shadow-clay);
-}
-
-.btn-choice:hover {
-  color: var(--primary-neon);
-  border-color: var(--primary-neon);
 }
 
 .btn-choice.active {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  border-color: transparent;
-  box-shadow: 0 10px 20px var(--primary-glow);
+  border: none;
+  box-shadow: 0 10px 22px var(--primary-glow);
 }
 
 .btn-block {
@@ -434,35 +471,16 @@ a { text-decoration: none; color: inherit; }
   gap: 20px;
 }
 
-.app-footer {
-  margin-top: 8px;
-  padding: 20px 0 40px;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
 .card {
   background: var(--glass-bg);
-  border: 1px solid var(--card-border-flat);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 26px;
+  padding: 24px;
   box-shadow: var(--shadow-premium);
-  transition: transform var(--dur-base), box-shadow var(--dur-base);
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08), 0 10px 24px rgba(15, 23, 42, 0.04);
 }
 
 .section-label {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--primary-neon);
+  font-size: 1rem;
   margin-bottom: 14px;
 }
 
@@ -488,26 +506,10 @@ a { text-decoration: none; color: inherit; }
   min-width: 160px;
 }
 
-.date-range-row input,
-.starting-number-row input,
-.weekday-cell input[type='number'],
-.weekday-pair input[type='number'] {
-  padding: 9px 12px;
-  border: 1px solid var(--card-border-flat);
-  border-radius: 999px;
-  background: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  color: var(--text);
-  box-shadow: var(--shadow-clay);
-}
-
-.date-range-row input:focus,
-.starting-number-row input:focus,
-.weekday-cell input[type='number']:focus,
-.weekday-pair input[type='number']:focus {
-  outline: 2px solid var(--primary-neon);
-  outline-offset: 1px;
+.date-range-row input {
+  padding: 9px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
 }
 
 .weekday-toggle-row {
@@ -524,14 +526,13 @@ a { text-decoration: none; color: inherit; }
 }
 
 .weekday-cell {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--card-border-flat);
-  border-radius: var(--radius-md);
-  padding: 10px 8px;
+  background: #f8fafc;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 8px 6px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  box-shadow: var(--shadow-clay);
 }
 
 .weekday-cell.dim {
@@ -554,28 +555,21 @@ a { text-decoration: none; color: inherit; }
 }
 
 .weekday-pattern-btn {
-  border: 1px solid var(--card-border-flat);
-  background: var(--glass-bg);
+  border: 1px solid var(--card-border);
+  background: #fff;
   color: var(--text-muted);
   font-size: 0.62rem;
-  font-weight: 600;
   padding: 3px 6px;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
   width: 100%;
-  transition: color var(--dur-fast), border-color var(--dur-fast);
-}
-
-.weekday-pattern-btn:hover {
-  color: var(--primary-neon);
-  border-color: var(--primary-neon);
 }
 
 .weekday-pattern-btn.active {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  border-color: transparent;
+  border: none;
 }
 
 .weekday-pattern-btn:disabled {
@@ -585,7 +579,11 @@ a { text-decoration: none; color: inherit; }
 
 .weekday-cell input[type='number'] {
   width: 100%;
+  padding: 8px 6px;
   text-align: center;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.85rem;
 }
 
 .weekday-pair {
@@ -603,29 +601,29 @@ a { text-decoration: none; color: inherit; }
   color: var(--text-muted);
 }
 
-.weekday-btn {
-  padding: 10px 0;
-  border-radius: 999px;
-  border: 1px solid var(--card-border-flat);
-  background: var(--glass-bg);
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-clay);
-  transition: transform var(--dur-fast), color var(--dur-fast);
+.weekday-pair input[type='number'] {
+  width: 100%;
+  padding: 7px 4px;
+  text-align: center;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.8rem;
 }
 
-.weekday-btn:hover {
-  transform: translateY(-1px);
-  color: var(--text);
+.weekday-btn {
+  padding: 10px 0;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background: #fff;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .weekday-btn.active {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  border-color: transparent;
-  box-shadow: 0 10px 20px var(--primary-glow);
+  border: none;
 }
 
 .switch-row {
@@ -659,9 +657,11 @@ a { text-decoration: none; color: inherit; }
 
 .starting-number-row input {
   width: 80px;
+  padding: 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
 }
 
-/* Результати */
 .results-head {
   display: flex;
   justify-content: space-between;
@@ -670,7 +670,7 @@ a { text-decoration: none; color: inherit; }
   flex-wrap: wrap;
   margin-bottom: 16px;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--card-border-flat);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .results-title-block {
@@ -686,6 +686,7 @@ a { text-decoration: none; color: inherit; }
 .results-meta {
   font-size: 0.78rem;
   color: var(--text-muted);
+  margin: 0;
 }
 
 .results-stats {
@@ -694,15 +695,14 @@ a { text-decoration: none; color: inherit; }
 }
 
 .result-stat {
-  background: var(--glass-bg);
-  border: 1px solid var(--card-border-flat);
-  border-radius: var(--radius-md);
-  padding: 8px 16px;
+  background: #f8fafc;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 6px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  box-shadow: var(--shadow-clay);
 }
 
 .result-stat-label {
@@ -714,12 +714,9 @@ a { text-decoration: none; color: inherit; }
 
 .result-stat-value {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--primary-neon), var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--primary-neon);
 }
 
 .results-groups {
@@ -730,11 +727,10 @@ a { text-decoration: none; color: inherit; }
 }
 
 .week-group {
-  border: 1px solid var(--card-border-flat);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
   overflow: hidden;
   background: #fff;
-  box-shadow: var(--shadow-clay);
 }
 
 .week-group-header {
@@ -742,9 +738,9 @@ a { text-decoration: none; color: inherit; }
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(14, 165, 233, 0.03));
-  border-bottom: 1px solid var(--card-border-flat);
+  padding: 8px 12px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08));
+  border-bottom: 1px solid var(--card-border);
 }
 
 .week-group-title {
@@ -762,7 +758,16 @@ a { text-decoration: none; color: inherit; }
 .results-table {
   width: 100%;
   border-collapse: collapse;
+  margin: 0;
   font-size: 0.88rem;
+}
+
+.results-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .results-table td {
@@ -785,7 +790,6 @@ a { text-decoration: none; color: inherit; }
 .num-cell {
   color: var(--primary-neon);
   font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
   width: 64px;
 }
 
@@ -795,14 +799,10 @@ a { text-decoration: none; color: inherit; }
   text-align: right;
 }
 
-/* ==========================================================
-   АДАПТИВНІСТЬ
-   ========================================================== */
+/* Mobile overrides (мають бути в кінці, щоб перекрити базові правила) */
 @media (max-width: 640px) {
-  .topbar .nav {
-    height: auto;
-    min-height: 64px;
-    padding: 10px 16px;
+  .topbar {
+    padding: 12px 16px;
     flex-wrap: wrap;
     gap: 10px;
   }
@@ -815,15 +815,22 @@ a { text-decoration: none; color: inherit; }
     margin-left: auto;
   }
 
-  .hero-section {
-    padding: 36px 16px 8px;
+  body {
+    font-size: 16px;
   }
 
-  .hero-section p {
-    font-size: 0.95rem;
+  input,
+  select,
+  button {
+    font-size: 16px;
   }
 
-  input, select, button {
+  .entry-row input[type='date'],
+  .entry-row select,
+  .entry-name,
+  .date-range-row input,
+  .weekday-cell input[type='number'],
+  .weekday-pair input[type='number'] {
     font-size: 16px;
   }
 
@@ -834,8 +841,8 @@ a { text-decoration: none; color: inherit; }
 
   .sidebar-block,
   .card {
-    padding: 16px;
-    border-radius: var(--radius-md);
+    padding: 14px;
+    border-radius: 14px;
   }
 
   .date-range-row {
@@ -895,6 +902,14 @@ a { text-decoration: none; color: inherit; }
     flex: 1 1 100%;
   }
 
+  .btn-primary,
+  .btn-secondary,
+  .btn-choice,
+  .weekday-btn {
+    min-height: 44px;
+    font-size: 0.95rem;
+  }
+
   .icon-btn {
     width: 38px;
     height: 38px;
@@ -906,6 +921,10 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 420px) {
+  .topbar {
+    padding: 10px 12px;
+  }
+
   .logo {
     font-size: 0.95rem;
     gap: 8px;
@@ -913,6 +932,10 @@ a { text-decoration: none; color: inherit; }
 
   .logo-sep {
     display: none;
+  }
+
+  .page-hero-title {
+    font-size: 1.35rem;
   }
 
   .year-switcher select {
