@@ -820,26 +820,31 @@
   .controls-add {
     display: flex;
     justify-content: center;
-    padding: 10px 2px 2px;
+    padding: 8px 2px 0;
   }
 
   .btn-add-event {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--purple), var(--purple-2));
-    color: #fff;
+    gap: 6px;
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    color: var(--purple);
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 0.85rem;
-    border: none;
+    font-size: 0.76rem;
     border-radius: 999px;
-    padding: 9px 20px;
+    padding: 5px 13px;
     cursor: pointer;
-    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
-    transition: transform var(--dur-fast);
+    box-shadow: var(--shadow-clay);
+    backdrop-filter: blur(8px);
+    transition: border-color var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast);
   }
-  .btn-add-event:hover { transform: translateY(-2px); }
+  .btn-add-event:hover {
+    border-color: rgba(124, 58, 237, 0.45);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    transform: translateY(-1px);
+  }
 
   .btn-add-custom {
     width: 100%;
