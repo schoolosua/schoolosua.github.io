@@ -1,66 +1,95 @@
+/* ==========================================================
+   Chronos — ті самі токени, шрифти й стилі, що й у модулі
+   Mentor (schoolos-calendar/index.html), щоб модулі SchoolOS
+   виглядали як частини однієї екосистеми.
+   ========================================================== */
 :root {
   --bg: #f3f7fa;
   --glass-bg: rgba(255, 255, 255, 0.94);
-  --card-border: rgba(226, 232, 240, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --card-border-flat: rgba(226, 232, 240, 0.9);
+  --primary: #1e40af;
   --primary-neon: #2563eb;
   --primary-glow: rgba(37, 99, 235, 0.15);
   --accent: #0ea5e9;
+  --gold: #d4a13d;
+  --gold-glow: rgba(212, 161, 61, 0.18);
+  --purple: #7c3aed;
+  --purple-2: #a855f7;
+  --green: #059669;
+  --green-2: #10b981;
   --text: #0f172a;
-  --text-muted: #64748b;
-  --radius-lg: 20px;
-  --radius-md: 12px;
-  --shadow-premium: 0 30px 60px rgba(15, 23, 42, 0.05), 0 8px 20px rgba(15, 23, 42, 0.03);
+  --text-muted: #475569;
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 14px;
+
+  --shadow-premium:
+    0 40px 80px rgba(15, 23, 42, 0.05),
+    0 10px 30px rgba(15, 23, 42, 0.03),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  --shadow-clay:
+    inset 0 -4px 12px rgba(0, 0, 0, 0.02),
+    inset 0 2px 6px rgba(255, 255, 255, 0.9),
+    0 20px 40px rgba(15, 23, 42, 0.03);
+  --dur-fast: .15s; --dur-base: .2s;
 }
 
-* {
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
 body {
-  margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+h1, h2, h3, h4 {
   font-family: 'Clash Display', sans-serif;
   font-weight: 600;
-  margin: 0;
+  letter-spacing: -0.01em;
+  color: #090d16;
 }
 
-button, input, select {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-}
+a { text-decoration: none; color: inherit; }
 
-.page {
-  min-height: 100vh;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-}
+:focus-visible { outline: 2px solid var(--primary-neon); outline-offset: 3px; }
 
-.app-footer {
-  margin-top: auto;
-  padding: 20px 0 40px;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
+.page { min-height: 100vh; position: relative; z-index: 1; }
 
-/* Header */
+/* ==========================================================
+   ШАПКА — той самий glass-хедер і лого-мітка, що й у Mentor
+   ========================================================== */
 .topbar {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.topbar .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 28px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--card-border);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  height: 78px;
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .logo {
@@ -68,16 +97,17 @@ button, input, select {
   align-items: center;
   gap: 12px;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-family: 'Clash Display', sans-serif;
   color: var(--text);
+  text-decoration: none;
 }
 
 .logo-mark {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
-  border-radius: 8px;
+  border-radius: 9px;
   transform: rotate(45deg);
   box-shadow: 0 8px 18px var(--primary-glow);
   position: relative;
@@ -89,22 +119,15 @@ button, input, select {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   background: #fff;
   border-radius: 2px;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.logo-sep {
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-.logo-module {
-  color: var(--primary-neon);
-  font-family: 'Space Grotesk', sans-serif;
-}
+.logo-sep { color: var(--text-muted); font-weight: 400; }
+.logo-module { color: var(--primary-neon); font-family: 'Space Grotesk', sans-serif; }
 
 .year-switcher {
   display: flex;
@@ -113,181 +136,104 @@ button, input, select {
 }
 
 .year-switcher select {
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
-  padding: 8px 12px;
-  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
   font-weight: 600;
+  color: var(--text);
+  background: var(--glass-bg);
+  border: 1px solid var(--card-border-flat);
+  border-radius: 999px;
+  padding: 7px 14px;
+  box-shadow: var(--shadow-clay);
+  cursor: pointer;
 }
 
 .icon-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--card-border);
-  background: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border-flat);
+  background: var(--glass-bg);
+  box-shadow: var(--shadow-clay);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  transition: background 0.15s;
+  font-size: 1rem;
+  transition: transform var(--dur-fast), color var(--dur-fast), box-shadow var(--dur-fast);
 }
 
 .icon-btn:hover {
-  background: #f1f5f9;
-}
-
-/* Hero */
-.page-hero {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 36px 28px 8px;
-}
-
-.page-hero-eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  transform: translateY(-1px);
   color: var(--primary-neon);
-  margin: 0 0 8px;
 }
 
-.page-hero-title {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 10px;
-  line-height: 1.2;
-}
-
-.page-hero-subtitle {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  max-width: 640px;
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .page-hero {
-    padding: 20px 16px 4px;
-  }
-
-  .page-hero-title {
-    font-size: 1.5rem;
-  }
-
-  .page-hero-subtitle {
-    font-size: 0.88rem;
-  }
-}
-
-/* "Як це працює" / "Що ви отримаєте" */
-.how-section,
-.benefits-section {
+/* ==========================================================
+   ГЕРОЙ — як у Mentor
+   ========================================================== */
+.hero-section {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 8px 28px 4px;
+  padding: 56px 24px 8px;
+  position: relative;
+  z-index: 2;
 }
 
-.how-title {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 1.25rem;
-  margin: 0 0 16px;
-}
-
-.how-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.how-card {
-  padding: 20px 18px;
-}
-
-.how-num {
+.hero-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-neon), var(--accent));
-  color: #fff;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
-  margin-bottom: 10px;
-}
-
-.how-card h3 {
-  font-size: 0.95rem;
-  margin: 0 0 6px;
-}
-
-.how-card p {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin: 0;
-}
-
-.benefits-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-}
-
-.benefits-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
   background: var(--glass-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
-  padding: 12px 14px;
-  font-size: 0.85rem;
-  box-shadow: var(--shadow-premium);
+  border: 1px solid var(--card-border-flat);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  box-shadow: var(--shadow-clay);
+  margin-bottom: 24px;
 }
 
-.benefit-icon {
-  font-size: 1.05rem;
-  line-height: 1.3;
-  flex-shrink: 0;
+.hero-section h1 {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  line-height: 1.16;
+  margin-bottom: 16px;
+  max-width: 16ch;
 }
 
-@media (max-width: 900px) {
-  .how-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.hero-section h1 span {
+  background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-@media (max-width: 640px) {
-  .how-section,
-  .benefits-section {
-    padding: 4px 16px 4px;
-  }
-
-  .benefits-list {
-    grid-template-columns: 1fr;
-  }
+.hero-section p {
+  max-width: 560px;
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
 }
 
-/* Layout */
+/* ==========================================================
+   ЛЕЯУТ
+   ========================================================== */
 .layout {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 24px;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 24px 28px 80px;
+  padding: 24px 24px 100px;
   align-items: start;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 900px) {
@@ -305,10 +251,10 @@ button, input, select {
 
 .sidebar-block {
   background: var(--glass-bg);
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--card-border-flat);
   border-radius: var(--radius-lg);
-  padding: 18px;
-  box-shadow: var(--shadow-premium);
+  padding: 20px;
+  box-shadow: var(--shadow-clay);
 }
 
 .sidebar-block-header h3 {
@@ -334,9 +280,9 @@ button, input, select {
   align-items: stretch;
   gap: 6px;
   padding: 10px;
-  background: #f8fafc;
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--card-border-flat);
+  border-radius: var(--radius-md);
 }
 
 .entry-row-top {
@@ -345,30 +291,31 @@ button, input, select {
   gap: 6px;
 }
 
-.entry-row-top input[type='date'] {
+.entry-row input[type='date'],
+.entry-row select,
+.entry-name,
+.entry-list input[type='text'] {
   flex: 1;
   min-width: 0;
-  padding: 6px 8px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--card-border-flat);
+  border-radius: 999px;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
+  color: var(--text);
+  box-shadow: var(--shadow-clay);
 }
 
-.entry-row input[type='date'],
-.entry-row select {
-  flex: 1;
-  min-width: 0;
-  padding: 6px 8px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  font-size: 0.78rem;
+.entry-row input[type='date']:focus,
+.entry-row select:focus,
+.entry-name:focus,
+.entry-list input[type='text']:focus {
+  outline: 2px solid var(--primary-neon);
+  outline-offset: 1px;
 }
 
 .entry-name {
-  padding: 6px 8px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  font-size: 0.78rem;
   width: 100%;
 }
 
@@ -383,19 +330,25 @@ button, input, select {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--primary-neon);
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .entry-date.is-empty {
   color: var(--text-muted);
   font-weight: 400;
+  font-family: 'Inter', sans-serif;
 }
 
 .entry-weekday {
   flex-shrink: 0;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
   color: var(--text-muted);
   background: #eef2f7;
+  border: 1px solid var(--card-border-flat);
   border-radius: 999px;
   padding: 3px 8px;
 }
@@ -405,22 +358,23 @@ button, input, select {
   font-size: 0.8rem;
 }
 
-/* Buttons */
+/* Кнопки — патерн чіпів з Mentor */
 .btn-primary,
 .btn-secondary,
 .btn-choice {
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 10px 16px;
+  border-radius: 999px;
+  padding: 10px 20px;
   font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast);
 }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  box-shadow: 0 10px 22px var(--primary-glow);
+  border: none;
+  box-shadow: 0 10px 20px var(--primary-glow);
 }
 
 .btn-primary:hover {
@@ -428,27 +382,36 @@ button, input, select {
 }
 
 .btn-secondary {
-  background: #fff;
-  border: 1px solid var(--card-border);
+  background: var(--glass-bg);
+  border: 1px solid var(--card-border-flat);
   color: var(--text);
+  box-shadow: var(--shadow-clay);
 }
 
 .btn-secondary:hover {
-  background: #f8fafc;
+  transform: translateY(-1px);
+  color: var(--primary-neon);
+  border-color: var(--primary-neon);
 }
 
 .btn-choice {
   flex: 1;
-  background: #fff;
-  border: 1px solid var(--card-border);
+  background: var(--glass-bg);
+  border: 1px solid var(--card-border-flat);
   color: var(--text);
+  box-shadow: var(--shadow-clay);
+}
+
+.btn-choice:hover {
+  color: var(--primary-neon);
+  border-color: var(--primary-neon);
 }
 
 .btn-choice.active {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  border: none;
-  box-shadow: 0 10px 22px var(--primary-glow);
+  border-color: transparent;
+  box-shadow: 0 10px 20px var(--primary-glow);
 }
 
 .btn-block {
@@ -471,16 +434,35 @@ button, input, select {
   gap: 20px;
 }
 
+.app-footer {
+  margin-top: 8px;
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .card {
   background: var(--glass-bg);
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--card-border-flat);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 26px;
   box-shadow: var(--shadow-premium);
+  transition: transform var(--dur-base), box-shadow var(--dur-base);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08), 0 10px 24px rgba(15, 23, 42, 0.04);
 }
 
 .section-label {
-  font-size: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-neon);
   margin-bottom: 14px;
 }
 
@@ -506,10 +488,26 @@ button, input, select {
   min-width: 160px;
 }
 
-.date-range-row input {
-  padding: 9px 10px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
+.date-range-row input,
+.starting-number-row input,
+.weekday-cell input[type='number'],
+.weekday-pair input[type='number'] {
+  padding: 9px 12px;
+  border: 1px solid var(--card-border-flat);
+  border-radius: 999px;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text);
+  box-shadow: var(--shadow-clay);
+}
+
+.date-range-row input:focus,
+.starting-number-row input:focus,
+.weekday-cell input[type='number']:focus,
+.weekday-pair input[type='number']:focus {
+  outline: 2px solid var(--primary-neon);
+  outline-offset: 1px;
 }
 
 .weekday-toggle-row {
@@ -526,13 +524,14 @@ button, input, select {
 }
 
 .weekday-cell {
-  background: #f8fafc;
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  padding: 8px 6px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--card-border-flat);
+  border-radius: var(--radius-md);
+  padding: 10px 8px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  box-shadow: var(--shadow-clay);
 }
 
 .weekday-cell.dim {
@@ -555,21 +554,28 @@ button, input, select {
 }
 
 .weekday-pattern-btn {
-  border: 1px solid var(--card-border);
-  background: #fff;
+  border: 1px solid var(--card-border-flat);
+  background: var(--glass-bg);
   color: var(--text-muted);
   font-size: 0.62rem;
+  font-weight: 600;
   padding: 3px 6px;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
   width: 100%;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+
+.weekday-pattern-btn:hover {
+  color: var(--primary-neon);
+  border-color: var(--primary-neon);
 }
 
 .weekday-pattern-btn.active {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  border: none;
+  border-color: transparent;
 }
 
 .weekday-pattern-btn:disabled {
@@ -579,11 +585,7 @@ button, input, select {
 
 .weekday-cell input[type='number'] {
   width: 100%;
-  padding: 8px 6px;
   text-align: center;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  font-size: 0.85rem;
 }
 
 .weekday-pair {
@@ -601,29 +603,29 @@ button, input, select {
   color: var(--text-muted);
 }
 
-.weekday-pair input[type='number'] {
-  width: 100%;
-  padding: 7px 4px;
-  text-align: center;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  font-size: 0.8rem;
-}
-
 .weekday-btn {
   padding: 10px 0;
-  border-radius: 10px;
-  border: 1px solid var(--card-border);
-  background: #fff;
+  border-radius: 999px;
+  border: 1px solid var(--card-border-flat);
+  background: var(--glass-bg);
   color: var(--text-muted);
   font-weight: 600;
+  font-size: 0.85rem;
   cursor: pointer;
+  box-shadow: var(--shadow-clay);
+  transition: transform var(--dur-fast), color var(--dur-fast);
+}
+
+.weekday-btn:hover {
+  transform: translateY(-1px);
+  color: var(--text);
 }
 
 .weekday-btn.active {
   background: linear-gradient(135deg, var(--primary-neon), var(--accent));
   color: #fff;
-  border: none;
+  border-color: transparent;
+  box-shadow: 0 10px 20px var(--primary-glow);
 }
 
 .switch-row {
@@ -657,11 +659,9 @@ button, input, select {
 
 .starting-number-row input {
   width: 80px;
-  padding: 8px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
 }
 
+/* Результати */
 .results-head {
   display: flex;
   justify-content: space-between;
@@ -670,7 +670,7 @@ button, input, select {
   flex-wrap: wrap;
   margin-bottom: 16px;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border-flat);
 }
 
 .results-title-block {
@@ -686,7 +686,6 @@ button, input, select {
 .results-meta {
   font-size: 0.78rem;
   color: var(--text-muted);
-  margin: 0;
 }
 
 .results-stats {
@@ -695,14 +694,15 @@ button, input, select {
 }
 
 .result-stat {
-  background: #f8fafc;
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  padding: 6px 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--card-border-flat);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
+  box-shadow: var(--shadow-clay);
 }
 
 .result-stat-label {
@@ -714,9 +714,12 @@ button, input, select {
 
 .result-stat-value {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--primary-neon);
+  background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .results-groups {
@@ -727,10 +730,11 @@ button, input, select {
 }
 
 .week-group {
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
+  border: 1px solid var(--card-border-flat);
+  border-radius: var(--radius-md);
   overflow: hidden;
   background: #fff;
+  box-shadow: var(--shadow-clay);
 }
 
 .week-group-header {
@@ -738,9 +742,9 @@ button, input, select {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 8px 12px;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08));
-  border-bottom: 1px solid var(--card-border);
+  padding: 10px 14px;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(14, 165, 233, 0.03));
+  border-bottom: 1px solid var(--card-border-flat);
 }
 
 .week-group-title {
@@ -758,16 +762,7 @@ button, input, select {
 .results-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0;
   font-size: 0.88rem;
-}
-
-.results-table th {
-  text-align: left;
-  font-weight: 500;
-  color: var(--text-muted);
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--card-border);
 }
 
 .results-table td {
@@ -790,6 +785,7 @@ button, input, select {
 .num-cell {
   color: var(--primary-neon);
   font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
   width: 64px;
 }
 
@@ -799,10 +795,14 @@ button, input, select {
   text-align: right;
 }
 
-/* Mobile overrides (мають бути в кінці, щоб перекрити базові правила) */
+/* ==========================================================
+   АДАПТИВНІСТЬ
+   ========================================================== */
 @media (max-width: 640px) {
-  .topbar {
-    padding: 12px 16px;
+  .topbar .nav {
+    height: auto;
+    min-height: 64px;
+    padding: 10px 16px;
     flex-wrap: wrap;
     gap: 10px;
   }
@@ -815,22 +815,15 @@ button, input, select {
     margin-left: auto;
   }
 
-  body {
-    font-size: 16px;
+  .hero-section {
+    padding: 36px 16px 8px;
   }
 
-  input,
-  select,
-  button {
-    font-size: 16px;
+  .hero-section p {
+    font-size: 0.95rem;
   }
 
-  .entry-row input[type='date'],
-  .entry-row select,
-  .entry-name,
-  .date-range-row input,
-  .weekday-cell input[type='number'],
-  .weekday-pair input[type='number'] {
+  input, select, button {
     font-size: 16px;
   }
 
@@ -841,8 +834,8 @@ button, input, select {
 
   .sidebar-block,
   .card {
-    padding: 14px;
-    border-radius: 14px;
+    padding: 16px;
+    border-radius: var(--radius-md);
   }
 
   .date-range-row {
@@ -902,14 +895,6 @@ button, input, select {
     flex: 1 1 100%;
   }
 
-  .btn-primary,
-  .btn-secondary,
-  .btn-choice,
-  .weekday-btn {
-    min-height: 44px;
-    font-size: 0.95rem;
-  }
-
   .icon-btn {
     width: 38px;
     height: 38px;
@@ -921,10 +906,6 @@ button, input, select {
 }
 
 @media (max-width: 420px) {
-  .topbar {
-    padding: 10px 12px;
-  }
-
   .logo {
     font-size: 0.95rem;
     gap: 8px;
@@ -932,10 +913,6 @@ button, input, select {
 
   .logo-sep {
     display: none;
-  }
-
-  .page-hero-title {
-    font-size: 1.35rem;
   }
 
   .year-switcher select {
