@@ -173,9 +173,7 @@ a { text-decoration: none; color: inherit; }
    ГЕРОЙ — як у Mentor
    ========================================================== */
 .hero-section {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 56px 24px 8px;
+  padding: 56px 28px 8px;
   position: relative;
   z-index: 2;
 }
@@ -203,7 +201,6 @@ a { text-decoration: none; color: inherit; }
   font-size: clamp(1.9rem, 3.6vw, 2.7rem);
   line-height: 1.16;
   margin-bottom: 16px;
-  max-width: 16ch;
 }
 
 .hero-section h1 span {
@@ -214,7 +211,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-section p {
-  max-width: 640px;
+  max-width: none;
   color: var(--text-muted);
   font-size: 1.02rem;
   line-height: 1.6;
