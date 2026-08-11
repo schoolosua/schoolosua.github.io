@@ -358,9 +358,9 @@
     background: linear-gradient(135deg, var(--gold), #b8862c);
     box-shadow: 0 10px 20px var(--gold-glow);
   }
-  .chip.active[data-value="шкільна"] {
-    background: linear-gradient(135deg, var(--green), var(--green-2));
-    box-shadow: 0 10px 20px rgba(5, 150, 105, 0.2);
+  .chip.active[data-value="власне"] {
+    background: linear-gradient(135deg, var(--purple), var(--purple-2));
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
   }
   .chip.active[data-value="оон"] {
     background: linear-gradient(135deg, #8b5cf6, #6d28d9);
@@ -541,6 +541,7 @@
   .tag-день     { color: #e11d48; background: rgba(225, 29, 72, 0.1); }
   .tag-офіційне { color: #0d9488; background: rgba(13, 148, 136, 0.12); }
   .tag-шкільна  { color: var(--green); background: rgba(16, 185, 129, 0.12); }
+  .tag-власне   { color: var(--purple); background: rgba(124, 58, 237, 0.1); }
   .tag-age      { color: var(--text-muted); background: #f1f5f9; border: 1px solid var(--card-border-flat); }
 
   .empty-state {
@@ -813,10 +814,195 @@
   }
   .btn-secondary:hover { color: #dc2626; border-color: #fecaca; }
 
+  /* ==========================================================
+     ВЛАСНІ ЗАХОДИ — кнопка, картка, форма
+     ========================================================== */
+  .controls-add {
+    display: flex;
+    justify-content: center;
+    padding: 10px 2px 2px;
+  }
+
+  .btn-add-event {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--purple), var(--purple-2));
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 999px;
+    padding: 9px 20px;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
+    transition: transform var(--dur-fast);
+  }
+  .btn-add-event:hover { transform: translateY(-2px); }
+
+  .btn-add-custom {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px dashed var(--card-border-flat);
+    border-radius: var(--radius-md);
+    padding: 11px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--purple);
+    cursor: pointer;
+    margin-bottom: 4px;
+  }
+  .btn-add-custom:hover { border-color: var(--purple); background: rgba(124, 58, 237, 0.04); }
+
+  .plan-custom-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--purple);
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 999px;
+    padding: 2px 9px;
+    margin-left: 6px;
+    vertical-align: 1px;
+  }
+
+  .event-remove {
+    margin-left: auto;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border-flat);
+    background: #fff;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .event-remove:hover { color: #dc2626; border-color: #fecaca; }
+
+  .custom-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+  }
+
+  .custom-modal {
+    width: min(520px, 100%);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.3);
+  }
+
+  .custom-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 26px;
+    border-bottom: 1px solid var(--card-border-flat);
+  }
+  .custom-modal-header h3 { font-size: 1.15rem; }
+
+  .custom-modal-body {
+    padding: 20px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .custom-field label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .custom-field input[type="text"],
+  .custom-field input[type="date"],
+  .custom-field select {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    border: 1px solid var(--card-border-flat);
+    border-radius: var(--radius-md);
+    background: #fff;
+    padding: 9px 14px;
+  }
+  .custom-field input:focus, .custom-field select:focus {
+    outline: none;
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  }
+  .custom-field input.invalid, .custom-field select.invalid {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+
+  .custom-error {
+    display: none;
+    font-size: 0.78rem;
+    color: #dc2626;
+    margin-top: 6px;
+  }
+  .custom-modal.show-error .custom-error { display: block; }
+
+  .custom-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .custom-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .custom-modal-actions {
+    display: flex;
+    gap: 12px;
+    padding: 0 26px 26px;
+  }
+  .custom-modal-actions .btn-primary, .custom-modal-actions .btn-secondary { flex: 1; }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%) translateY(16px);
+    z-index: 400;
+    background: #0f172a;
+    color: #fff;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    padding: 12px 20px;
+    border-radius: 999px;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.warn { background: #7c2d12; }
+
   @media (max-width: 640px) {
     .plan-fab { right: 14px; bottom: 14px; padding: 12px 16px; font-size: 0.82rem; }
     .plan-row { grid-template-columns: 1fr; gap: 6px; }
     .plan-row-remove { justify-self: end; }
+    .custom-form-row { grid-template-columns: 1fr; }
+    .custom-modal-body { padding: 16px 18px; }
+    .custom-modal-actions { padding: 0 18px 20px; }
   }
 </style>
 </head>
@@ -949,10 +1135,14 @@
           <button class="chip" data-value="памятна">Пам'ятні дати</button>
           <button class="chip" data-value="оон">Дні ООН</button>
           <button class="chip" data-value="день">Свята-події</button>
-          <button class="chip" data-value="шкільна">Шкільні події</button>
+          <button class="chip" data-value="власне">Власні заходи</button>
         </div>
       </div>
 
+    </div>
+
+    <div class="controls-add">
+      <button id="add-event-btn" class="btn-add-event" type="button">＋ Додати свій захід</button>
     </div>
 
     <div class="quick-nav" id="quick-nav"></div>
@@ -995,6 +1185,9 @@
         <input type="text" id="plan-classname" placeholder="напр. 5-А">
       </label>
     </div>
+    <div style="padding: 12px 26px 0;">
+      <button id="plan-custom-open-btn" class="btn-add-custom" type="button">＋ Додати свій захід</button>
+    </div>
     <div class="plan-modal-list" id="plan-modal-list"></div>
     <div class="plan-modal-actions">
       <button id="plan-clear-btn" class="btn-secondary" type="button">Очистити план</button>
@@ -1002,6 +1195,44 @@
     </div>
   </div>
 </div>
+
+<div id="custom-modal-overlay" class="custom-modal-overlay" style="display:none">
+  <div class="custom-modal" role="dialog" aria-modal="true" aria-label="Додати свій захід">
+    <div class="custom-modal-header">
+      <h3>Додати свій захід</h3>
+      <button id="custom-modal-close" class="plan-modal-close" type="button">✕</button>
+    </div>
+    <div class="custom-modal-body">
+      <div class="custom-field">
+        <label for="custom-name">Назва заходу</label>
+        <input type="text" id="custom-name" placeholder="Наприклад: Батьківські збори">
+        <div class="custom-error" id="custom-name-error">Введіть назву заходу.</div>
+      </div>
+      <div class="custom-form-row">
+        <div class="custom-field">
+          <label for="custom-date">Дата</label>
+          <input type="date" id="custom-date">
+          <div class="custom-error" id="custom-date-error">Оберіть дату заходу.</div>
+        </div>
+        <div class="custom-field">
+          <label for="custom-vid">Вид виховної роботи</label>
+          <select id="custom-vid"></select>
+        </div>
+      </div>
+      <div class="custom-field">
+        <label for="custom-sposib">Спосіб проведення</label>
+        <select id="custom-sposib"></select>
+      </div>
+      <p class="custom-hint">Захід з'явиться в календарі з фіолетовою позначкою «Власний» і одразу потрапить у план.</p>
+    </div>
+    <div class="custom-modal-actions">
+      <button id="custom-cancel-btn" class="btn-secondary" type="button">Скасувати</button>
+      <button id="custom-save-btn" class="btn-primary" type="button">Додати в план</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -1153,7 +1384,7 @@
     merged = Object.keys(best).map(function(k){ return best[k].ev; });
 
     merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
-      state.events = merged;
+      state.events = merged.concat(loadCustomEvents());
       buildAcademicYearFilter(merged);
       render();
     });
@@ -1334,6 +1565,7 @@
                    : ev.type === 'памятна' ? "пам'ятна дата"
                    : ev.type === 'оон' ? 'день ООН'
                    : ev.type === 'день' ? 'свято-подія'
+                   : ev.type === 'власне' ? 'власний захід'
                    : 'шкільна подія';
 
     var nameHtml = escapeHtml(ev.name);
@@ -1357,6 +1589,9 @@
           '<div class="event-name">' + nameHtml + '</div>' +
           '<div class="event-meta">' +
             '<span class="tag ' + typeClass + '">' + typeLabel + '</span>' +
+            (ev.type === 'власне'
+              ? '<button class="event-remove" type="button" data-id="' + escapeAttr(ev.id) + '" title="Видалити захід">✕</button>'
+              : '') +
           '</div>' +
           '<label class="plan-check">' +
             '<input type="checkbox" class="plan-checkbox" data-date="' + safeDate + '" data-name="' + safeName + '"' + (isChecked ? ' checked' : '') + '>' +
@@ -1503,7 +1738,90 @@
     document.getElementById('plan-fab-count').textContent = count;
   }
 
+  // ==============================================================
+  // ВЛАСНІ ЗАХОДИ — зберігаються в localStorage, живуть у календарі
+  // нарівні з рештою подій (фільтри, пошук, статистика) і одразу
+  // потрапляють у план.
+  // ==============================================================
+  var CUSTOM_STORAGE_KEY = 'schoolos_calendar_custom_v1';
+
+  function loadCustomEvents(){
+    try {
+      var raw = localStorage.getItem(CUSTOM_STORAGE_KEY);
+      var parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveCustomEvents(list){
+    try {
+      localStorage.setItem(CUSTOM_STORAGE_KEY, JSON.stringify(list));
+    } catch (e) { /* приватний режим — захід живе лише в цій сесії */ }
+  }
+
+  function addCustomEvent(name, date, vid, sposib){
+    var ev = {
+      id: 'c-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+      date: date,
+      name: name,
+      vid: vid,
+      sposib: sposib,
+      type: 'власне',
+      custom: true
+    };
+    var list = loadCustomEvents();
+    list.push(ev);
+    saveCustomEvents(list);
+    state.events.push(ev);
+    state.events.sort(function(a, b){ return a.date.localeCompare(b.date); });
+
+    var plan = loadPlan();
+    plan.push({ date: date, name: name, vid: vid, sposib: sposib, planDate: date, custom: true });
+    savePlan(plan);
+    return ev;
+  }
+
+  function removeCustomEvent(id){
+    var removed = null;
+    var list = loadCustomEvents().filter(function(ev){
+      if (ev.id === id){ removed = ev; return false; }
+      return true;
+    });
+    if (!removed) return false;
+    saveCustomEvents(list);
+    state.events = state.events.filter(function(ev){ return ev.id !== id; });
+    removeFromPlan(removed.date, removed.name);
+    return true;
+  }
+
+  var showToastTimer = null;
+  function showToast(message, isWarn){
+    var toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = 'toast' + (isWarn ? ' show warn' : ' show');
+    clearTimeout(showToastTimer);
+    showToastTimer = setTimeout(function(){
+      toast.classList.remove('show');
+    }, 4200);
+  }
+
   // ---- Взаємодія з галочками/селектами на картках подій ----
+  document.getElementById('event-container').addEventListener('click', function(e){
+    var target = e.target;
+    if (target.classList.contains('event-remove')){
+      var ev = state.events.filter(function(x){ return x.id === target.dataset.id; })[0];
+      if (!ev) return;
+      if (!confirm('Видалити власний захід «' + ev.name + '» з календаря і плану?')) return;
+      removeCustomEvent(ev.id);
+      updatePlanFabCount();
+      render();
+      showToast('Захід видалено.');
+      return;
+    }
+  });
+
   document.getElementById('event-container').addEventListener('change', function(e){
     var target = e.target;
 
@@ -1562,11 +1880,91 @@
     localStorage.setItem(PLAN_CLASSNAME_KEY, planClassnameInput.value);
   });
 
+  // ---- Форма "Додати свій захід" ----
+  var customModalOverlay = document.getElementById('custom-modal-overlay');
+  var customModalEl = customModalOverlay.querySelector('.custom-modal');
+  var customNameInput = document.getElementById('custom-name');
+  var customDateInput = document.getElementById('custom-date');
+  var customVidSelect = document.getElementById('custom-vid');
+  var customSposibSelect = document.getElementById('custom-sposib');
+
+  customVidSelect.innerHTML = renderOptions(VID_OPTIONS, VID_OPTIONS[0]);
+  customSposibSelect.innerHTML = renderOptions(SPOSIB_OPTIONS, SPOSIB_OPTIONS[0]);
+
+  function openCustomModal(){
+    customNameInput.value = '';
+    customDateInput.value = TODAY.toISOString().slice(0, 10);
+    customVidSelect.value = VID_OPTIONS[0];
+    customSposibSelect.value = SPOSIB_OPTIONS[0];
+    customModalEl.classList.remove('show-error');
+    customNameInput.classList.remove('invalid');
+    customDateInput.classList.remove('invalid');
+    customModalOverlay.style.display = 'flex';
+    customNameInput.focus();
+  }
+
+  function closeCustomModal(){
+    customModalOverlay.style.display = 'none';
+  }
+
+  document.getElementById('add-event-btn').addEventListener('click', openCustomModal);
+  document.getElementById('plan-custom-open-btn').addEventListener('click', openCustomModal);
+  document.getElementById('custom-modal-close').addEventListener('click', closeCustomModal);
+  document.getElementById('custom-cancel-btn').addEventListener('click', closeCustomModal);
+  customModalOverlay.addEventListener('click', function(e){
+    if (e.target === customModalOverlay) closeCustomModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && customModalOverlay.style.display === 'flex') closeCustomModal();
+  });
+
+  function showFieldError(input){
+    input.classList.add('invalid');
+  }
+
+  function clearFieldErrors(){
+    customNameInput.classList.remove('invalid');
+    customDateInput.classList.remove('invalid');
+    customModalEl.classList.remove('show-error');
+  }
+
+  document.getElementById('custom-name').addEventListener('input', clearFieldErrors);
+  document.getElementById('custom-date').addEventListener('change', clearFieldErrors);
+
+  document.getElementById('custom-save-btn').addEventListener('click', function(){
+    var name = customNameInput.value.trim();
+    var date = customDateInput.value;
+    var nameOk = !!name;
+    var dateOk = !!date && isValidDate(date);
+
+    clearFieldErrors();
+    customModalEl.classList.add('show-error');
+    if (!nameOk) showFieldError(customNameInput);
+    if (!dateOk) showFieldError(customDateInput);
+    if (!nameOk || !dateOk) return;
+
+    var plan = loadPlan();
+    var duplicate = plan.some(function(p){ return p.date === date && p.name.toLowerCase() === name.toLowerCase(); });
+    if (duplicate){
+      showToast('Такий захід на цю дату вже є в плані.', true);
+      return;
+    }
+
+    var ev = addCustomEvent(name, date, customVidSelect.value, customSposibSelect.value);
+    updatePlanFabCount();
+    closeCustomModal();
+    render();
+    if (planModalOverlay.style.display === 'flex') renderPlanModal();
+
+    var visible = matchesFilters(ev);
+    showToast('«' + ev.name + '» додано до календаря і плану' + (visible ? '.' : '. Зміни семестр або місяць у фільтрах, щоб побачити його в календарі.'));
+  });
+
   function renderPlanModal(){
     var plan = loadPlan().slice().sort(function(a, b){ return a.date.localeCompare(b.date); });
 
     if (!plan.length){
-      planModalList.innerHTML = '<div class="plan-empty">План поки порожній. Познач події галочкою "У план" у календарі.</div>';
+      planModalList.innerHTML = '<div class="plan-empty">План поки порожній. Познач події галочкою "У план" у календарі — або додай свій захід кнопкою вище.</div>';
       return;
     }
 
@@ -1581,7 +1979,8 @@
         '<div class="plan-row">' +
           '<div class="plan-row-date">' + formatted + '</div>' +
           '<div class="plan-row-main">' +
-            '<div class="plan-row-name">' + escapeHtml(item.name) + '</div>' +
+            '<div class="plan-row-name">' + escapeHtml(item.name) +
+              (item.custom ? ' <span class="plan-custom-badge">Власний</span>' : '') + '</div>' +
             '<div class="plan-row-selects">' +
               '<select class="plan-select plan-vid" data-date="' + safeDate + '" data-name="' + safeName + '">' +
                 renderOptions(VID_OPTIONS, item.vid) +
@@ -1633,7 +2032,7 @@
     var plan = loadPlan().slice().sort(function(a, b){ return a.date.localeCompare(b.date); });
 
     if (!plan.length){
-      alert('План порожній — спочатку познач хоча б одну подію галочкою "У план".');
+      alert('План порожній — познач події галочкою "У план" або додай свій захід.');
       return;
     }
 
