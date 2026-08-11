@@ -234,10 +234,46 @@ function App() {
           Chronos — <span>календарний план уроків</span>
         </h1>
         <p>
-          Розстав усі дати в календарно-тематичному плані на навчальний рік за кілька секунд —
-          без реєстрації, з урахуванням канікул, свят і перенесень вихідних. Готовий стовпчик
-          дат експортується в Excel одним кліком.
+          Chronos розставляє дати в календарно-тематичному плані на весь навчальний рік
+          автоматично — з урахуванням канікул, свят і перенесень вихідних. Без реєстрації,
+          без ручного підрахунку — готовий стовпчик дат одразу можна завантажити у Word чи Excel.
         </p>
+      </div>
+
+      <div className="how-section">
+        <h2 className="how-title">Як це працює</h2>
+        <div className="how-grid">
+          <div className="card how-card">
+            <span className="how-num">1</span>
+            <h3>Оберіть навчальний рік</h3>
+            <p>Вкажіть рік і, за потреби, увімкніть режим воєнного стану — свята й перенесення вихідних врахуються автоматично.</p>
+          </div>
+          <div className="card how-card">
+            <span className="how-num">2</span>
+            <h3>Вкажіть кількість уроків</h3>
+            <p>Введіть, скільки уроків на тиждень і з якого дня починається викладання предмета.</p>
+          </div>
+          <div className="card how-card">
+            <span className="how-num">3</span>
+            <h3>Отримайте дати</h3>
+            <p>Chronos сам розставить дати кожного уроку, пропускаючи канікули, свята та перенесені вихідні.</p>
+          </div>
+          <div className="card how-card">
+            <span className="how-num">4</span>
+            <h3>Завантажте файл</h3>
+            <p>Скопіюйте готовий стовпчик дат або одразу завантажте шаблон КТП у Word чи Excel.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="benefits-section">
+        <h2 className="how-title">Що ви отримаєте</h2>
+        <ul className="benefits-list">
+          <li><span className="benefit-icon">📅</span> Готовий стовпчик дат для КТП на весь навчальний рік</li>
+          <li><span className="benefit-icon">🎌</span> Автоматичне врахування канікул, свят і перенесень вихідних</li>
+          <li><span className="benefit-icon">⚔️</span> Режим воєнного стану — окрема логіка для прифронтових шкіл</li>
+          <li><span className="benefit-icon">📤</span> Експорт готового шаблону КТП у Word та Excel одним кліком</li>
+        </ul>
       </div>
 
       <div className="layout">
