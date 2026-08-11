@@ -434,6 +434,14 @@ a { text-decoration: none; color: inherit; }
   gap: 20px;
 }
 
+.app-footer {
+  margin-top: 8px;
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .card {
   background: var(--glass-bg);
   border: 1px solid var(--card-border-flat);

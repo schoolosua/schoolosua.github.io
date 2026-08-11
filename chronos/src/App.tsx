@@ -604,6 +604,7 @@ function App() {
             </section>
           )}
         </main>
+        <footer className="app-footer">© 2026 SchoolOS · Всі права захищені</footer>
       </div>
     </div>
   )

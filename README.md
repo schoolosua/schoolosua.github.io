@@ -1,5 +1,10 @@
 ## Hi there 👋
 
+## Ліцензія
+
+Весь вміст репозиторію (код, дані, дизайн) захищено авторським правом —
+**All Rights Reserved** © 2026 SchoolOS. Див. [LICENSE](LICENSE).
+
 <!--
 **schoolosua/schoolosua** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 

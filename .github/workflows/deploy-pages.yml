@@ -36,6 +36,7 @@ jobs:
         run: |
           mkdir -p site/chronos
           cp index.html site/
+          cp robots.txt site/
           cp favicon.svg favicon-32.png favicon-192.png apple-touch-icon.png site/
           cp -r chronos/dist/* site/chronos/
           cp -r schoolos-calendar site/
