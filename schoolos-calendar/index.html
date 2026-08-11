@@ -6,11 +6,6 @@
 <title>Mentor — SchoolOS</title>
 <meta name="description" content="Модуль SchoolOS: календар державних свят та пам'ятних дат для планування виховної роботи школи.">
 
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500;600;700&display=swap" rel="stylesheet">
@@ -152,12 +147,8 @@
     border: 1px solid var(--card-border-flat);
     padding: 8px 18px;
     border-radius: 999px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
+    font-size: 0.85rem;
+    font-weight: 500;
     color: var(--text-muted);
     box-shadow: var(--shadow-clay);
     margin-bottom: 24px;
@@ -197,29 +188,86 @@
     background: var(--glass-bg);
     border: 1px solid var(--card-border-flat);
     border-radius: var(--radius-lg);
-    padding: 14px 16px;
-    min-height: 116px;
+    padding: 22px 20px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 6px;
     box-shadow: var(--shadow-clay);
   }
 
   .stat-number {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 2.4rem;
-    line-height: 1;
+    font-size: 2rem;
     background: linear-gradient(135deg, var(--primary-neon), var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .stat-card p { margin: 0; font-size: 0.75rem; color: var(--text-muted); }
+  .stat-card p { margin-top: 4px; font-size: 0.82rem; color: var(--text-muted); }
+
+  /* ==========================================================
+     "ЯК ЦЕ ПРАЦЮЄ" / "ЩО ВИ ОТРИМАЄТЕ"
+     ========================================================== */
+  .how-section, .benefits-section { padding: 8px 24px 40px; }
+
+  .how-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .how-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    border-radius: var(--radius-lg);
+    padding: 22px 20px;
+    box-shadow: var(--shadow-clay);
+  }
+
+  .how-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+
+  .how-card h3 { font-size: 1rem; margin-bottom: 6px; }
+  .how-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+  .benefits-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--glass-bg);
+    border: 1px solid var(--card-border-flat);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    font-size: 0.88rem;
+    color: var(--text);
+    box-shadow: var(--shadow-clay);
+  }
+
+  .benefit-icon { font-size: 1.1rem; line-height: 1.3; flex-shrink: 0; }
 
   /* ==========================================================
      ПАНЕЛЬ ФІЛЬТРІВ
@@ -231,49 +279,48 @@
     background: rgba(243, 247, 250, 0.88);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--card-border-flat);
-    padding: 8px 0;
-    margin-bottom: 6px;
+    padding: 14px 0;
+    margin-bottom: 8px;
   }
 
   .controls-inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 8px 26px;
+    align-items: flex-start;
+    gap: 18px 48px;
   }
 
   .filter-group {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
   .filter-label {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.09em;
     color: var(--text-muted);
-    text-align: left;
-    white-space: nowrap;
+    text-align: center;
   }
 
   .filter-chips {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
   }
 
   .chip {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-muted);
     background: var(--glass-bg);
     border: 1px solid var(--card-border-flat);
-    padding: 5px 13px;
+    padding: 7px 16px;
     border-radius: 999px;
     cursor: pointer;
     box-shadow: var(--shadow-clay);
@@ -311,18 +358,18 @@
     box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
   }
 
-  .filter-group-search { min-width: 180px; }
+  .filter-group-search { min-width: 220px; }
 
   .search-input {
     font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: var(--text);
     background: var(--glass-bg);
     border: 1px solid var(--card-border-flat);
     border-radius: 999px;
-    padding: 6px 14px;
+    padding: 8px 16px;
     box-shadow: var(--shadow-clay);
-    width: 200px;
+    width: 220px;
     max-width: 100%;
   }
   .search-input::placeholder { color: var(--text-muted); }
@@ -334,7 +381,7 @@
     overflow-x: auto;
     gap: 6px;
     max-width: 1180px;
-    margin: 8px auto 0;
+    margin: 12px auto 0;
     padding: 0 24px 2px;
     scrollbar-width: thin;
   }
@@ -342,13 +389,13 @@
   .quick-nav-item {
     flex: 0 0 auto;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 700;
     color: var(--text-muted);
     background: #fff;
     border: 1px solid var(--card-border-flat);
     border-radius: 999px;
-    padding: 3px 10px;
+    padding: 4px 12px;
     white-space: nowrap;
     text-decoration: none;
     transition: color var(--dur-fast), border-color var(--dur-fast);
@@ -371,7 +418,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    scroll-margin-top: 180px;
+    scroll-margin-top: 210px;
   }
   .month-heading:first-child { margin-top: 0; }
   .month-heading::after { content:''; flex:1; height:1px; background: var(--card-border-flat); }
@@ -461,13 +508,11 @@
   .event-meta { display:flex; flex-wrap: wrap; gap: 8px; align-items:center; }
 
   .tag {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding: 4px 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 11px;
     border-radius: 999px;
+    letter-spacing: 0.01em;
     white-space: nowrap;
   }
 
@@ -515,9 +560,12 @@
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-number { font-size: 1.35rem; }
     .stat-card { padding: 14px 6px; }
-    .controls { position: static; padding: 10px 2px; border-bottom: none; margin-bottom: 4px; }
-    .controls-inner { justify-content: center; gap: 12px 0; }
-    .filter-group { width: 100%; flex-direction: column; align-items: center; gap: 8px; }
+    .how-section, .benefits-section { padding: 4px 16px 28px; }
+    .how-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .benefits-list { grid-template-columns: 1fr; }
+    .controls { position: static; padding: 12px 2px; border-bottom: none; margin-bottom: 4px; }
+    .controls-inner { justify-content: center; gap: 16px 0; }
+    .filter-group { width: 100%; gap: 8px; }
     .filter-chips { gap: 7px; }
     .chip { font-size: 0.8rem; padding: 6px 13px; }
     .filter-group-search { width: 100%; }
@@ -569,11 +617,6 @@
     padding: 5px 12px;
     cursor: pointer;
     max-width: 100%;
-  }
-
-  .plan-select.plan-date {
-    width: 148px;
-    cursor: text;
   }
 
   .plan-fab {
@@ -671,6 +714,77 @@
     width: 140px;
   }
 
+  .plan-custom-toggle {
+    padding: 12px 26px 0;
+  }
+
+  .btn-add-custom {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px dashed var(--card-border-flat);
+    border-radius: var(--radius-md);
+    padding: 11px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--primary-neon);
+    cursor: pointer;
+  }
+  .btn-add-custom:hover { border-color: var(--primary-neon); background: rgba(37,99,235,0.04); }
+
+  .plan-custom-form {
+    margin: 10px 26px 0;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid var(--card-border-flat);
+    border-radius: var(--radius-md);
+  }
+
+  .custom-name-input {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    border: 1px solid var(--card-border-flat);
+    border-radius: var(--radius-md);
+    padding: 9px 14px;
+    margin-bottom: 10px;
+  }
+
+  .custom-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .custom-form-row input[type="date"] {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    border: 1px solid var(--card-border-flat);
+    border-radius: 999px;
+    padding: 5px 12px;
+    color: var(--text);
+  }
+
+  .custom-form-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .custom-form-actions button {
+    flex: 1;
+    padding: 9px 14px;
+    font-size: 0.85rem;
+  }
+
+  .plan-custom-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--purple);
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 999px;
+    padding: 2px 9px;
+  }
+
   .plan-modal-list {
     overflow-y: auto;
     padding: 10px 26px;
@@ -759,7 +873,7 @@
   <div class="container nav">
     <a href="https://schoolosua.github.io/" class="logo">
       <span class="logo-mark"></span>
-      <span>School<span class="logo-sep">OS</span> <span class="logo-sep">/</span> <b class="logo-module">Mentor</b></span>
+      <span>School<span class="logo-sep">OS</span> <span class="logo-module">Mentor</span></span>
     </a>
     <a href="https://schoolosua.github.io/" class="back">← Усі модулі</a>
   </div>
@@ -768,13 +882,15 @@
 <div class="container">
 
   <section class="hero-section">
-    <div class="hero-badge">🗓️ Модуль · План виховної роботи</div>
+    <div class="hero-badge">🧭 Mentor · Для класного керівника</div>
 
-    <h1>Mentor для <span>річного плану</span> виховної роботи</h1>
+    <h1>Складіть <span>план виховної роботи</span> за кілька кліків</h1>
 
     <p>
-      Державні свята та пам'ятні дати України в одному довіднику — основа
-      для планування ЗДВР. Дані оновлюються автоматично двічі на рік.
+      Mentor зібрав державні свята, пам'ятні дати, дні ООН та інші важливі
+      події в одному місці й сам стежить, щоб вони були актуальними.
+      Оберіть потрібні події, додайте свої власні заходи — і отримайте
+      готовий план у Word. Хоч на весь рік, хоч на семестр чи місяць.
     </p>
 
     <div class="stats-grid">
@@ -791,6 +907,42 @@
         <p>Останнє оновлення</p>
       </div>
     </div>
+  </section>
+
+  <section class="how-section">
+    <h2 class="how-title">Як це працює</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <span class="how-num">1</span>
+        <h3>Перегляньте календар</h3>
+        <p>Оберіть навчальний рік, семестр, місяць чи тип події — або просто скористайтеся пошуком, щоб швидко знайти потрібну дату.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-num">2</span>
+        <h3>Позначте потрібне</h3>
+        <p>Поставте галочку «У план» біля кожного заходу, який плануєте провести. Немає в календарі — додайте свій.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-num">3</span>
+        <h3>Уточніть деталі</h3>
+        <p>Оберіть вид виховної роботи, спосіб проведення і клас. Дату можна лишити як є або обрати зручнішу.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-num">4</span>
+        <h3>Завантажте план</h3>
+        <p>Натисніть «Завантажити Word» — і отримаєте готовий документ з таблицею плану виховної роботи.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits-section">
+    <h2 class="how-title">Що ви отримаєте</h2>
+    <ul class="benefits-list">
+      <li><span class="benefit-icon">📄</span> Готовий план у Word — залишається тільки роздрукувати</li>
+      <li><span class="benefit-icon">🔄</span> Дати завжди актуальні — свята й пам'ятні дати оновлюються самі</li>
+      <li><span class="benefit-icon">🎯</span> План саме під ваш клас, а не загальний список свят</li>
+      <li><span class="benefit-icon">📅</span> Свої заходи теж можна додати — не лише те, що є в календарі</li>
+    </ul>
   </section>
 
   <div class="controls">
@@ -844,7 +996,6 @@
           <button class="chip" data-value="памятна">Пам'ятні дати</button>
           <button class="chip" data-value="оон">Дні ООН</button>
           <button class="chip" data-value="день">Свята-події</button>
-          <button class="chip" data-value="шкільна">Шкільні події</button>
         </div>
       </div>
 
@@ -890,6 +1041,25 @@
         <input type="text" id="plan-classname" placeholder="напр. 5-А">
       </label>
     </div>
+
+    <div class="plan-custom-toggle">
+      <button id="plan-custom-open-btn" class="btn-add-custom" type="button">+ Додати свій захід</button>
+    </div>
+
+    <div class="plan-custom-form" id="plan-custom-form" style="display:none">
+      <input type="text" id="custom-name" class="custom-name-input" placeholder="Наприклад: Батьківські збори">
+      <div class="custom-form-row">
+        <input type="date" id="custom-date" class="plan-select">
+        <select id="custom-vid" class="plan-select"></select>
+        <select id="custom-sposib" class="plan-select"></select>
+        <select id="custom-klas" class="plan-select"></select>
+      </div>
+      <div class="custom-form-actions">
+        <button id="custom-cancel-btn" class="btn-secondary" type="button">Скасувати</button>
+        <button id="custom-save-btn" class="btn-primary" type="button">Додати в план</button>
+      </div>
+    </div>
+
     <div class="plan-modal-list" id="plan-modal-list"></div>
     <div class="plan-modal-actions">
       <button id="plan-clear-btn" class="btn-secondary" type="button">Очистити план</button>
@@ -962,9 +1132,7 @@
 
   function currentAcademicYearStart(){
     var m = TODAY.getMonth() + 1;
-    if (m >= 9) return TODAY.getFullYear();
-    if (m >= 1 && m <= 5) return TODAY.getFullYear() - 1;
-    return TODAY.getFullYear(); // влітку — майбутній навчальний рік (як у currentSemesterKey)
+    return m >= 9 ? TODAY.getFullYear() : TODAY.getFullYear() - 1;
   }
   function currentSemesterKey(){
     var m = TODAY.getMonth() + 1;
@@ -1264,7 +1432,9 @@
             '<select class="plan-select plan-sposib" data-date="' + safeDate + '" data-name="' + safeName + '">' +
               renderOptions(SPOSIB_OPTIONS, planItem ? planItem.sposib : SPOSIB_OPTIONS[0]) +
             '</select>' +
-            '<input type="date" class="plan-select plan-date" data-date="' + safeDate + '" data-name="' + safeName + '" value="' + (planItem && planItem.planDate ? escapeAttr(planItem.planDate) : safeDate) + '">' +
+            '<select class="plan-select plan-klas" data-date="' + safeDate + '" data-name="' + safeName + '">' +
+              renderOptions(KLAS_OPTIONS, planItem ? planItem.klas : KLAS_OPTIONS[0]) +
+            '</select>' +
           '</div>' +
         '</div>' +
       '</article>'
@@ -1344,6 +1514,13 @@
     'Проєкт'
   ];
 
+  var KLAS_OPTIONS = [
+    'Усі класи',
+    '1–4 класи',
+    '5–9 класи',
+    '10–11 класи'
+  ];
+
   function loadPlan(){
     try {
       var raw = localStorage.getItem(PLAN_STORAGE_KEY);
@@ -1374,7 +1551,7 @@
     var plan = loadPlan();
     var exists = plan.some(function(p){ return p.date === date && p.name === name; });
     if (!exists){
-      plan.push({ date: date, name: name, vid: VID_OPTIONS[0], sposib: SPOSIB_OPTIONS[0], planDate: date });
+      plan.push({ date: date, name: name, vid: VID_OPTIONS[0], sposib: SPOSIB_OPTIONS[0], klas: KLAS_OPTIONS[0] });
       savePlan(plan);
     }
   }
@@ -1428,8 +1605,8 @@
       return;
     }
 
-    if (target.classList.contains('plan-date')){
-      updatePlanField(target.dataset.date, target.dataset.name, 'planDate', target.value);
+    if (target.classList.contains('plan-klas')){
+      updatePlanField(target.dataset.date, target.dataset.name, 'klas', target.value);
       return;
     }
   });
@@ -1457,17 +1634,85 @@
     localStorage.setItem(PLAN_CLASSNAME_KEY, planClassnameInput.value);
   });
 
+  // ---- Форма "Додати свій захід" (подія, якої немає в календарі) ----
+  function addCustomEventToPlan(name, date, vid, sposib, klas){
+    var plan = loadPlan();
+    var exists = plan.some(function(p){ return p.date === date && p.name === name; });
+    if (!exists){
+      plan.push({ date: date, name: name, vid: vid, sposib: sposib, klas: klas, custom: true });
+      savePlan(plan);
+    }
+    return !exists;
+  }
+
+  var customForm = document.getElementById('plan-custom-form');
+  var customNameInput = document.getElementById('custom-name');
+  var customDateInput = document.getElementById('custom-date');
+  var customVidSelect = document.getElementById('custom-vid');
+  var customSposibSelect = document.getElementById('custom-sposib');
+  var customKlasSelect = document.getElementById('custom-klas');
+
+  customVidSelect.innerHTML = renderOptions(VID_OPTIONS, VID_OPTIONS[0]);
+  customSposibSelect.innerHTML = renderOptions(SPOSIB_OPTIONS, SPOSIB_OPTIONS[0]);
+  customKlasSelect.innerHTML = renderOptions(KLAS_OPTIONS, KLAS_OPTIONS[0]);
+
+  function openCustomForm(){
+    customNameInput.value = '';
+    customDateInput.value = TODAY.toISOString().slice(0, 10);
+    customVidSelect.value = VID_OPTIONS[0];
+    customSposibSelect.value = SPOSIB_OPTIONS[0];
+    customKlasSelect.value = KLAS_OPTIONS[0];
+    customForm.style.display = 'block';
+    customNameInput.focus();
+  }
+
+  function closeCustomForm(){
+    customForm.style.display = 'none';
+  }
+
+  document.getElementById('plan-custom-open-btn').addEventListener('click', openCustomForm);
+  document.getElementById('custom-cancel-btn').addEventListener('click', closeCustomForm);
+
+  document.getElementById('custom-save-btn').addEventListener('click', function(){
+    var name = customNameInput.value.trim();
+    if (!name){
+      alert('Введіть назву заходу.');
+      customNameInput.focus();
+      return;
+    }
+    if (!customDateInput.value){
+      alert('Оберіть дату заходу.');
+      return;
+    }
+
+    var added = addCustomEventToPlan(
+      name,
+      customDateInput.value,
+      customVidSelect.value,
+      customSposibSelect.value,
+      customKlasSelect.value
+    );
+
+    if (!added){
+      alert('Такий захід на цю дату вже є в плані.');
+      return;
+    }
+
+    updatePlanFabCount();
+    closeCustomForm();
+    renderPlanModal();
+  });
+
   function renderPlanModal(){
     var plan = loadPlan().slice().sort(function(a, b){ return a.date.localeCompare(b.date); });
 
     if (!plan.length){
-      planModalList.innerHTML = '<div class="plan-empty">План поки порожній. Познач події галочкою "У план" у календарі.</div>';
+      planModalList.innerHTML = '<div class="plan-empty">План поки порожній. Познач потрібні події в календарі — або додай свій захід вище.</div>';
       return;
     }
 
     planModalList.innerHTML = plan.map(function(item){
-      var effDate = item.planDate || item.date;
-      var d = new Date(effDate + 'T00:00:00');
+      var d = new Date(item.date + 'T00:00:00');
       var formatted = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
       var safeDate = escapeAttr(item.date);
       var safeName = escapeAttr(item.name);
@@ -1476,7 +1721,9 @@
         '<div class="plan-row">' +
           '<div class="plan-row-date">' + formatted + '</div>' +
           '<div class="plan-row-main">' +
-            '<div class="plan-row-name">' + escapeHtml(item.name) + '</div>' +
+            '<div class="plan-row-name">' + escapeHtml(item.name) +
+              (item.custom ? ' <span class="plan-custom-badge">Власний</span>' : '') +
+            '</div>' +
             '<div class="plan-row-selects">' +
               '<select class="plan-select plan-vid" data-date="' + safeDate + '" data-name="' + safeName + '">' +
                 renderOptions(VID_OPTIONS, item.vid) +
@@ -1484,7 +1731,9 @@
               '<select class="plan-select plan-sposib" data-date="' + safeDate + '" data-name="' + safeName + '">' +
                 renderOptions(SPOSIB_OPTIONS, item.sposib) +
               '</select>' +
-              '<input type="date" class="plan-select plan-date" data-date="' + safeDate + '" data-name="' + safeName + '" value="' + escapeAttr(effDate) + '">' +
+              '<select class="plan-select plan-klas" data-date="' + safeDate + '" data-name="' + safeName + '">' +
+                renderOptions(KLAS_OPTIONS, item.klas || KLAS_OPTIONS[0]) +
+              '</select>' +
             '</div>' +
           '</div>' +
           '<button class="plan-row-remove" type="button" data-date="' + safeDate + '" data-name="' + safeName + '">✕</button>' +
@@ -1501,8 +1750,8 @@
     if (target.classList.contains('plan-sposib')){
       updatePlanField(target.dataset.date, target.dataset.name, 'sposib', target.value);
     }
-    if (target.classList.contains('plan-date')){
-      updatePlanField(target.dataset.date, target.dataset.name, 'planDate', target.value);
+    if (target.classList.contains('plan-klas')){
+      updatePlanField(target.dataset.date, target.dataset.name, 'klas', target.value);
     }
   });
 
@@ -1542,125 +1791,47 @@
   });
 
   function generateAndDownloadDocx(plan, className){
-    var HEADER_CELLS = ['№', 'Дата', 'Напрям виховної роботи', 'Тема / зміст заходу', 'Форма проведення', 'Примітка / відмітка про виконання'];
-    var COL_WIDTHS = [650, 1600, 3800, 6800, 1900, 2650];
+    var headerCells = ['№', 'Дата', 'Захід', 'Вид виховної роботи', 'Спосіб проведення', 'Клас'];
 
-    var monthKeys = [];
-    var byMonth = {};
-    var sorted = plan.slice().sort(function(a, b){ return a.date.localeCompare(b.date); });
-    sorted.forEach(function(item){
-      var key = item.date.slice(0, 7);
-      if (!byMonth[key]){ byMonth[key] = []; monthKeys.push(key); }
-      byMonth[key].push(item);
+    var headerRow = new docx.TableRow({
+      tableHeader: true,
+      children: headerCells.map(function(text){
+        return new docx.TableCell({
+          shading: { fill: 'E8EEF7' },
+          children: [new docx.Paragraph({ children: [new docx.TextRun({ text: text, bold: true })] })]
+        });
+      })
     });
-    monthKeys.sort();
 
-    var semesterLabels = {};
-    semesterLabels['1'] = 'I';
-    semesterLabels['2'] = 'II';
-    semesterLabels['summer'] = 'ЛІТО';
-    var semList = [];
-    plan.forEach(function(item){
-      var k = getSemesterKey(item.date);
-      if (semList.indexOf(k) === -1) semList.push(k);
-    });
-    var semesterText = semList.map(function(k){ return semesterLabels[k] || k; }).join('–');
+    var dataRows = plan.map(function(item, index){
+      var d = new Date(item.date + 'T00:00:00');
+      var formatted = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
 
-    var ay = getAcademicYearStart(sorted[0].date);
-    var yearText = ay + '-' + (ay + 1);
-
-    var monthParts = [];
-    var num = 0;
-    monthKeys.forEach(function(key){
-      var parts = key.split('-');
-      var monthIndex = parseInt(parts[1], 10) - 1;
-      var monthTitle = MONTH_NAMES[monthIndex].toUpperCase();
-
-      var rowCells = [new docx.TableCell({
-        columnSpan: HEADER_CELLS.length,
-        shading: { fill: 'BFBFBF' },
-        children: [new docx.Paragraph({
-          alignment: docx.AlignmentType.CENTER,
-          children: [new docx.TextRun({ text: monthTitle, bold: true, size: 22 })]
-        })]
-      })];
-
-      var headerRow = new docx.TableRow({
-        tableHeader: true,
-        children: HEADER_CELLS.map(function(text){
-          return new docx.TableCell({
-            width: { size: COL_WIDTHS[HEADER_CELLS.indexOf(text)], type: docx.WidthType.DXA },
-            shading: { fill: 'D9D9D9' },
-            verticalAlign: docx.VerticalAlign.CENTER,
-            children: [new docx.Paragraph({
-              alignment: docx.AlignmentType.CENTER,
-              children: [new docx.TextRun({ text: text, bold: true, size: 19 })]
-            })]
-          });
+      var cellsText = [String(index + 1), formatted, item.name, item.vid, item.sposib, item.klas || KLAS_OPTIONS[0]];
+      return new docx.TableRow({
+        children: cellsText.map(function(text){
+          return new docx.TableCell({ children: [new docx.Paragraph(text)] });
         })
       });
-
-      var dataRows = byMonth[key].map(function(item){
-        var effDate = item.planDate || item.date;
-        var d = new Date(effDate + 'T00:00:00');
-        var formatted = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
-        num += 1;
-        var values = [String(num), formatted, item.vid, item.name, item.sposib, ''];
-        return new docx.TableRow({
-          children: values.map(function(text, i){
-            return new docx.TableCell({
-              width: { size: COL_WIDTHS[i], type: docx.WidthType.DXA },
-              verticalAlign: docx.VerticalAlign.CENTER,
-              children: [new docx.Paragraph({
-                alignment: i === 3 ? docx.AlignmentType.LEFT : docx.AlignmentType.CENTER,
-                children: [new docx.TextRun({ text: text, size: 24 })]
-              })]
-            });
-          })
-        });
-      });
-
-      var rows = [new docx.TableRow({ children: rowCells })].concat([headerRow], dataRows);
-      monthParts.push(new docx.Table({
-        width: { size: 100, type: docx.WidthType.PERCENTAGE },
-        columnWidths: COL_WIDTHS,
-        borders: {
-          top: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
-          left: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
-          bottom: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
-          right: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
-          insideHorizontal: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' },
-          insideVertical: { style: docx.BorderStyle.SINGLE, size: 4, color: '000000' }
-        },
-        rows: rows
-      }));
     });
 
-    var classText = className ? className.replace(/^\+$/, '') : '';
-    var titleText = 'ЦИКЛОГРАМА ВИХОВНИХ ЗАХОДІВ ' + (classText || '___') + ' КЛАСУ НА ' + semesterText + ' СЕМЕСТР ' + yearText + ' н.р.';
+    var table = new docx.Table({
+      width: { size: 100, type: docx.WidthType.PERCENTAGE },
+      rows: [headerRow].concat(dataRows)
+    });
+
+    var titleText = 'План виховної роботи класного керівника' + (className ? ' ' + className + ' класу' : '');
 
     var doc = new docx.Document({
       sections: [{
-        properties: {
-          page: {
-            size: { width: 11906, height: 16838, orientation: docx.PageOrientation.LANDSCAPE },
-            margin: { top: 720, right: 720, bottom: 720, left: 720 }
-          }
-        },
         children: [
+          new docx.Paragraph({ text: titleText, heading: docx.HeadingLevel.HEADING_1 }),
           new docx.Paragraph({
-            alignment: docx.AlignmentType.CENTER,
-            children: [new docx.TextRun({ text: titleText, bold: true, size: 26 })]
-          }),
-          new docx.Paragraph({
-            alignment: docx.AlignmentType.CENTER,
-            children: [new docx.TextRun({
-              text: 'Сформовано автоматично модулем "Mentor" SchoolOS · ' + new Date().toLocaleDateString('uk-UA'),
-              italics: true, size: 18, color: '808080'
-            })],
+            text: 'Сформовано автоматично модулем "Mentor" SchoolOS · ' + new Date().toLocaleDateString('uk-UA'),
             spacing: { after: 300 }
-          })
-        ].concat(monthParts)
+          }),
+          table
+        ]
       }]
     });
 
@@ -1669,7 +1840,7 @@
       var link = document.createElement('a');
       var safeSuffix = className ? '-' + className.replace(/[^A-Za-zА-Яа-яЇїІіЄєҐґ0-9\-]/g, '') : '';
       link.href = url;
-      link.download = 'tsyklohrama-vykhovnykh-zakhodiv' + safeSuffix + '.docx';
+      link.download = 'plan-vyhovnoi-roboty' + safeSuffix + '.docx';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
