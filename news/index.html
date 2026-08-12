@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <!-- © 2026 SchoolOS — всі права захищені (див. LICENSE) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новини освіти для школи — SchoolOS News</title>
+  <meta name="description" content="Важливе для школи: учні, вчителі, батьки, НУШ, НМТ, реформи, безпека, інклюзія та рішення МОН. Агрегатор з перевірених джерел — Освіта.ua, НУШ, УЦОЯО, освітній омбудсмен, МОН.">
+  <link rel="canonical" href="https://schoolosua.github.io/news/">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f3f7fa;
+      --glass-bg: rgba(255, 255, 255, 0.94);
+      --glass-border: rgba(255, 255, 255, 0.75);
+      --card-border-flat: rgba(226, 232, 240, 0.9);
+      --primary: #1e40af;
+      --primary-neon: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.15);
+      --accent: #0ea5e9;
+      --gold: #d4a13d;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+
+      --shadow-premium:
+        0 40px 80px rgba(15, 23, 42, 0.05),
+        0 10px 30px rgba(15, 23, 42, 0.03),
+        inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      --shadow-clay:
+        inset 0 -4px 12px rgba(0, 0, 0, 0.02),
+        inset 0 2px 6px rgba(255, 255, 255, 0.9),
+        0 20px 40px rgba(15, 23, 42, 0.03);
+      --dur-fast:.15s;--dur-base:.2s;--dur-slow:.3s;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.16) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.12) 0%, transparent 50%);
+      z-index: 0;
+      pointer-events: none;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-2%, 2%) scale(1.06); }
+    }
+
+    h1, h2, h3, h4 { font-family: 'Clash Display', sans-serif; font-weight: 600; letter-spacing: -0.01em; color: #090d16; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav { display: flex; justify-content: space-between; align-items: center; height: 90px; gap: 16px; }
+
+    .logo { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 1.4rem; font-family: 'Clash Display', sans-serif; }
+
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      border-radius: 10px;
+      transform: rotate(45deg);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 25px var(--primary-glow), inset 0 2px 4px rgba(255,255,255,0.4);
+      flex-shrink: 0;
+      animation: pulse-glow 3.2s ease-in-out infinite;
+    }
+
+    .logo-mark::after { content: ''; width: 10px; height: 10px; background: #ffffff; border-radius: 3px; }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 10px 25px var(--primary-glow), inset 0 2px 4px rgba(255,255,255,0.4); }
+      50%      { box-shadow: 0 10px 34px rgba(37, 99, 235, 0.32), inset 0 2px 4px rgba(255,255,255,0.4); }
+    }
+
+    .logo-flag {
+      width: 18px; height: 12px; border-radius: 3px; margin-top: 3px; margin-left: -6px;
+      background: linear-gradient(to bottom, #0057b7 0 50%, #ffd700 50% 100%);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+      flex-shrink: 0;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+
+    .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); transition: color var(--dur-fast); }
+    .nav-links a:hover { color: var(--primary-neon); }
+    .nav-links a.active { color: var(--primary-neon); font-weight: 600; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 24px; border-radius: 14px;
+      font-weight: 600; font-size: 0.95rem;
+      border: none; cursor: pointer;
+      transition: transform var(--dur-fast), box-shadow var(--dur-fast);
+    }
+
+    .btn-primary { background: linear-gradient(135deg, var(--primary-neon), var(--accent)); color: #ffffff; box-shadow: 0 12px 24px var(--primary-glow); }
+    .btn-primary:hover { transform: translateY(-2px); }
+
+    .btn-ghost { background: var(--glass-bg); color: var(--text); border: 1px solid var(--card-border-flat); box-shadow: var(--shadow-clay); }
+    .btn-ghost:hover { transform: translateY(-2px); }
+
+    /* Scroll-reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Hero */
+    .hero-section { padding: 72px 24px 40px; }
+
+    .marketing-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      padding: 8px 18px; border-radius: 999px;
+      font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+      box-shadow: var(--shadow-clay);
+      margin-bottom: 28px;
+      animation: float-badge 4s ease-in-out infinite;
+    }
+
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    .hero-section h1 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.12; margin: 0 0 20px; max-width: 640px; }
+    .hero-section h1 span { background: linear-gradient(135deg, var(--primary-neon), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-section p { max-width: 560px; margin: 0 0 20px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
+
+    .news-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--text-muted); font-size: 0.85rem; }
+    .news-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); opacity: 0.5; }
+
+    /* Categories */
+    .categories { padding: 8px 24px 28px; }
+    .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .chip {
+      padding: 9px 18px; border-radius: 999px;
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      box-shadow: var(--shadow-clay);
+      font-size: 0.88rem; font-weight: 500; color: var(--text-muted);
+      cursor: pointer; user-select: none;
+      transition: all var(--dur-fast);
+    }
+
+    .chip:hover { color: var(--primary-neon); transform: translateY(-1px); }
+    .chip.active { background: linear-gradient(135deg, var(--primary-neon), var(--accent)); color: #fff; border-color: transparent; box-shadow: 0 10px 22px var(--primary-glow); }
+
+    /* Sections */
+    .news-section { padding: 24px 24px 8px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .section-head h2 { font-size: 1.6rem; }
+    .section-head .count { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Top news */
+    .top-grid { display: grid; gap: 18px; grid-template-columns: 1fr; margin-bottom: 40px; }
+
+    .news-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-clay);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform var(--dur-base), box-shadow var(--dur-base);
+    }
+
+    .news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-premium); }
+
+    .news-card.top-card { padding: 26px 28px; border-radius: var(--radius-xl); background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(14,165,233,0.05)), var(--glass-bg); }
+
+    .card-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    .src-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em;
+      border: 1px solid;
+    }
+
+    .card-date { font-size: 0.8rem; color: var(--text-muted); }
+    .card-top-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+    .imp-badge { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+
+    .news-card h3 { font-size: 1.08rem; line-height: 1.35; }
+    .news-card.top-card h3 { font-size: 1.25rem; }
+    .news-card h3 a:hover { color: var(--primary-neon); }
+
+    .news-card .desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+    .card-foot { margin-top: auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .card-foot .more { font-size: 0.88rem; font-weight: 600; color: var(--primary-neon); }
+    .card-foot .multi-src { font-size: 0.78rem; color: var(--text-muted); }
+
+    .cat-tag { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); background: rgba(15, 23, 42, 0.05); padding: 3px 10px; border-radius: 999px; }
+
+    /* Latest grid */
+    .latest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .show-more-wrap { display: flex; justify-content: center; padding: 32px 24px 8px; }
+
+    /* Own news */
+    .own-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    /* Telegram */
+    .tg-block {
+      margin-top: 40px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08)), var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      box-shadow: var(--shadow-clay);
+      padding: 36px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .tg-block h3 { font-size: 1.25rem; margin-bottom: 6px; }
+    .tg-block p { color: var(--text-muted); font-size: 0.92rem; max-width: 460px; line-height: 1.55; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--card-border-flat); padding: 40px 24px; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-row p { color: var(--text-muted); font-size: 0.9rem; }
+    .footer-row a { color: var(--primary-neon); font-weight: 500; }
+    .footer-note { margin-top: 14px; color: var(--text-muted); font-size: 0.78rem; max-width: 760px; line-height: 1.5; }
+
+    .error-box { padding: 60px 24px; text-align: center; color: var(--text-muted); }
+
+    .loading { padding: 60px 24px; text-align: center; color: var(--text-muted); }
+    .spinner {
+      width: 34px; height: 34px; margin: 0 auto 14px;
+      border: 3px solid rgba(37, 99, 235, 0.15);
+      border-top-color: var(--primary-neon);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 1000px) {
+      .latest-grid { grid-template-columns: repeat(2, 1fr); }
+      .own-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-section { padding: 52px 16px 32px; }
+      .news-section, .categories { padding-left: 16px; padding-right: 16px; }
+      .latest-grid { grid-template-columns: 1fr; }
+      .news-card.top-card { padding: 20px; }
+      .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
+      .chip { flex-shrink: 0; }
+      .tg-block { padding: 26px 20px; }
+      .hero-section p { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="/" class="logo">
+        <div class="logo-mark"></div>
+        <div>SchoolOS</div>
+        <span class="logo-flag" aria-hidden="true" title="Слава Україні!"></span>
+      </a>
+      <div class="nav-links">
+        <a href="/#modules">Модулі</a>
+        <a href="/news/" class="active">Новини</a>
+        <a href="mailto:schoolosua@gmail.com">Контакти</a>
+      </div>
+      <a href="/" class="btn btn-primary">Повернутися на головну</a>
+    </div>
+  </header>
+
+  <section class="container hero-section">
+    <div class="marketing-badge">📰 Новини освіти для школи</div>
+    <h1>Важливе для школи. <span>Без інформаційного шуму.</span></h1>
+    <p>Учні, вчителі, батьки, НУШ, НМТ, реформи, безпека, інклюзія та рішення МОН — зібрано з перевірених офіційних джерел.</p>
+    <div class="news-meta" id="news-meta">
+      <span id="updated-label">Оновлення: завантаження…</span>
+      <span class="dot"></span>
+      <span id="items-count"></span>
+    </div>
+  </section>
+
+  <section class="categories container">
+    <div class="chips" id="category-chips"></div>
+  </section>
+
+  <section class="news-section container" id="top-section">
+    <div class="section-head reveal">
+      <h2>🔴 Головне</h2>
+      <span class="count" id="top-count"></span>
+    </div>
+    <div class="top-grid" id="top-news"></div>
+  </section>
+
+  <section class="news-section container" id="latest-section">
+    <div class="section-head reveal">
+      <h2>📰 Останні новини</h2>
+      <span class="count" id="latest-count"></span>
+    </div>
+    <div class="latest-grid" id="latest-news"></div>
+    <div class="show-more-wrap">
+      <button class="btn btn-ghost" id="show-more" type="button">Показати ще</button>
+    </div>
+  </section>
+
+  <section class="news-section container" id="own-section" style="display:none;">
+    <div class="section-head reveal">
+      <h2>🚀 Анонси SchoolOS</h2>
+    </div>
+    <div class="own-list" id="own-news"></div>
+  </section>
+
+  <div class="container">
+    <div class="tg-block reveal" id="tg-block" style="display:none;">
+      <div>
+        <h3>Отримуйте важливе для школи в Telegram</h3>
+        <p>Коротко й без зайвого інформаційного шуму — тільки те, що дійсно важливо для школи.</p>
+      </div>
+      <a class="btn btn-primary" id="tg-link" href="#" target="_blank" rel="noopener">Підписатися на канал</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <p>© 2026 SchoolOS · Всі права захищені</p>
+        <a href="mailto:schoolosua@gmail.com">schoolosua@gmail.com</a>
+      </div>
+      <p class="footer-note">Джерела: Освіта.ua, Нова українська школа, Український центр оцінювання якості освіти, Служба освітнього омбудсмена, МОН України. SchoolOS News зберігає лише заголовки, короткі описи та посилання на першоджерела.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Telegram-канал: підставте username, коли канал буде створено.
+      var TG_CHANNEL = "";
+      var TOP_COUNT = 4;
+      var PAGE_STEP = 6;
+      var INITIAL_LATEST = 12;
+      var CATEGORIES = ["Усі", "Школа", "Вчителі", "Учні", "НМТ", "НУШ", "Реформи", "Безпека", "Інклюзія", "ШІ"];
+
+      var SOURCE_COLORS = {
+        "МОН України": "#2563eb",
+        "Український центр оцінювання якості освіти": "#7c3aed",
+        "Освітній омбудсмен": "#0d9488",
+        "Освіта.ua": "#0284c7",
+        "Нова українська школа": "#d97706"
+      };
+
+      var feed = [];
+      var activeCategory = "Усі";
+      var visibleLatest = INITIAL_LATEST;
+
+      var els = {
+        chips: document.getElementById("category-chips"),
+        topSection: document.getElementById("top-section"),
+        topNews: document.getElementById("top-news"),
+        topCount: document.getElementById("top-count"),
+        latestNews: document.getElementById("latest-news"),
+        latestCount: document.getElementById("latest-count"),
+        showMore: document.getElementById("show-more"),
+        ownSection: document.getElementById("own-section"),
+        ownNews: document.getElementById("own-news"),
+        updatedLabel: document.getElementById("updated-label"),
+        itemsCount: document.getElementById("items-count"),
+        tgBlock: document.getElementById("tg-block"),
+        tgLink: document.getElementById("tg-link")
+      };
+
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+
+      function fmtDate(iso) {
+        if (!iso) return "";
+        var d = new Date(iso);
+        if (isNaN(d)) return "";
+        var now = new Date();
+        var diff = (now - d) / 3600000;
+        if (diff < 24) return "сьогодні";
+        if (diff < 48) return "вчора";
+        return d.toLocaleDateString("uk-UA", { day: "numeric", month: "long" });
+      }
+
+      function srcBadge(name) {
+        var color = SOURCE_COLORS[name] || "#475569";
+        return '<span class="src-badge" style="color:' + color + ';border-color:' + color + '33;background:' + color + '14;">' + esc(name) + "</span>";
+      }
+
+      function cardHtml(item, top) {
+        var html = '<article class="news-card' + (top ? " top-card" : "") + '">';
+        html += '<div class="card-top">' + srcBadge(item.source) + '<span class="card-date">' + fmtDate(item.published_at) + "</span>";
+        if (top) {
+          html += '<span class="card-top-right"><span class="imp-badge">⚡ Висока важливість</span></span>';
+        }
+        html += "</div>";
+        html += '<h3><a href="' + esc(item.url) + '" target="_blank" rel="noopener">' + esc(item.title) + "</a></h3>";
+        if (item.description) html += '<p class="desc">' + esc(item.description) + "</p>";
+        html += '<div class="card-foot">';
+        html += '<a class="more" href="' + esc(item.url) + '" target="_blank" rel="noopener">Читати →</a>';
+        if (item.sources && item.sources.length > 1) {
+          html += '<span class="multi-src">Джерела: ' + esc(item.sources.join(" • ")) + "</span>";
+        }
+        html += "</div>";
+        html += "</article>";
+        return html;
+      }
+
+      function filtered() {
+        if (activeCategory === "Усі") return feed.slice();
+        return feed.filter(function (it) { return it.category === activeCategory; });
+      }
+
+      function render() {
+        var list = filtered();
+        var top = list.slice(0, TOP_COUNT);
+        var latest = list.slice(TOP_COUNT);
+
+        els.topCount.textContent = top.length ? top.length + " матеріалів" : "";
+        els.latestCount.textContent = latest.length ? "Показано " + Math.min(visibleLatest, latest.length) + " із " + latest.length : "";
+
+        els.topNews.innerHTML = top.length ? top.map(function (it) { return cardHtml(it, true); }).join("") : "";
+        els.topSection.style.display = top.length ? "" : "none";
+
+        els.latestNews.innerHTML = latest.slice(0, visibleLatest).map(function (it) { return cardHtml(it, false); }).join("");
+        els.showMore.style.display = latest.length > visibleLatest ? "" : "none";
+      }
+
+      function initChips() {
+        els.chips.innerHTML = CATEGORIES.map(function (c) {
+          return '<button class="chip' + (c === activeCategory ? " active" : "") + '" type="button" data-cat="' + esc(c) + '">' + esc(c) + "</button>";
+        }).join("");
+        els.chips.addEventListener("click", function (e) {
+          var btn = e.target.closest(".chip");
+          if (!btn) return;
+          activeCategory = btn.getAttribute("data-cat");
+          visibleLatest = INITIAL_LATEST;
+          els.chips.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === btn); });
+          render();
+        });
+      }
+
+      function initReveal() {
+        var items = document.querySelectorAll(".reveal");
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        items.forEach(function (el) { observer.observe(el); });
+      }
+
+      function renderOwn(items) {
+        if (!items || !items.length) return;
+        els.ownSection.style.display = "";
+        els.ownNews.innerHTML = items.map(function (it) {
+          var body = '<article class="news-card">' +
+            '<div class="card-top"><span class="src-badge" style="color:#2563eb;border-color:#2563eb33;background:#2563eb14;">SchoolOS</span>' +
+            '<span class="card-date">' + fmtDate(it.date) + "</span></div>" +
+            '<h3>' + (it.url ? '<a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.title) + "</a>" : esc(it.title)) + "</h3>" +
+            (it.description ? '<p class="desc">' + esc(it.description) + "</p>" : "") +
+            "</article>";
+          return body;
+        }).join("");
+      }
+
+      function initTelegram() {
+        if (!TG_CHANNEL) return;
+        var url = "https://t.me/" + TG_CHANNEL;
+        els.tgLink.href = url;
+        els.tgBlock.style.display = "";
+      }
+
+      function load() {
+        initChips();
+        initReveal();
+        initTelegram();
+        els.showMore.addEventListener("click", function () {
+          visibleLatest += PAGE_STEP;
+          render();
+        });
+
+        Promise.all([
+          fetch("data/feed.json").then(function (r) { if (!r.ok) throw new Error("feed"); return r.json(); }),
+          fetch("data/meta.json").then(function (r) { if (!r.ok) throw new Error("meta"); return r.json(); }),
+          fetch("data/own.json").then(function (r) { if (!r.ok) throw new Error("own"); return r.json(); })
+        ]).then(function (results) {
+          feed = results[0] || [];
+          var meta = results[1] || {};
+          var own = results[2] || [];
+
+          feed.sort(function (a, b) {
+            var sa = a.importance_score || 0, sb = b.importance_score || 0;
+            if (sa !== sb) return sb - sa;
+            return (b.published_at || "").localeCompare(a.published_at || "");
+          });
+
+          if (meta.updated_at) {
+            els.updatedLabel.textContent = "Оновлено: " + new Date(meta.updated_at).toLocaleString("uk-UA", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+          } else {
+            els.updatedLabel.textContent = "Оновлено: сьогодні";
+          }
+          els.itemsCount.textContent = feed.length + " новин у стрічці";
+          render();
+          renderOwn(own);
+        }).catch(function () {
+          var box = document.createElement("div");
+          box.className = "error-box";
+          box.innerHTML = '<h3>Не вдалося завантажити новини</h3><p style="margin-top:8px;">Спробуйте оновити сторінку за кілька хвилин.</p>';
+          document.querySelector(".hero-section").after(box);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", load);
+    })();
+  </script>
+</body>
+</html>
