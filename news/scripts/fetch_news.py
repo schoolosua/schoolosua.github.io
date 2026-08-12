@@ -133,6 +133,21 @@ def strip_and_truncate(text, limit=DESC_LIMIT):
     return text
 
 
+def cleanup_description(it):
+    """Деякі джерела (канал МОН у Telegram) починають текст повідомлення
+    з того самого заголовка. Прибираємо дубль: «Коротко:» не має
+    повторювати заголовок. Допускається кілька символів-емодзі перед ним."""
+    title = (it.get("title") or "").strip()
+    desc = (it.get("description") or "").strip()
+    if not title or not desc:
+        return
+    m = re.match(r"^\W{0,4}" + re.escape(title), desc)
+    if not m:
+        return
+    rest = re.sub(r"^[\W\s]+", "", desc[m.end():])
+    it["description"] = strip_and_truncate(rest, DESC_LIMIT)
+
+
 def parse_dd_mm_yyyy(text):
     m = re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", text)
     if not m:
@@ -446,6 +461,7 @@ def main():
         it["_now"] = now
         it["category"] = find_category(it)
         it["school_relevant"] = school_relevant(it)
+        cleanup_description(it)
 
     for sid, meta in meta_sources.items():
         meta.setdefault("after_filter", 0)

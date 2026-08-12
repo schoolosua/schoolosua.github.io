@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12T06:59:47Z",
+  "updated_at": "2026-08-12T08:38:23Z",
   "totals": {
     "fetched": 63,
     "after_filter": 27,
@@ -17,14 +17,14 @@
     "nus": {
       "status": "ok",
       "fetched": 15,
-      "after_filter": 9,
-      "after_dedup": 9
+      "after_filter": 10,
+      "after_dedup": 10
     },
     "uctoao": {
       "status": "ok",
       "fetched": 8,
-      "after_filter": 1,
-      "after_dedup": 1
+      "after_filter": 0,
+      "after_dedup": 0
     },
     "ombudsman": {
       "status": "ok",
