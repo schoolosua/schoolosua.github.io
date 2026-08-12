@@ -1,0 +1,43 @@
+{
+  "updated_at": "2026-08-12T06:59:47Z",
+  "totals": {
+    "fetched": 63,
+    "after_filter": 27,
+    "after_dedup": 27,
+    "duplicates_merged": 0,
+    "feed": 27
+  },
+  "sources": {
+    "osvitaua": {
+      "status": "ok",
+      "fetched": 31,
+      "after_filter": 12,
+      "after_dedup": 12
+    },
+    "nus": {
+      "status": "ok",
+      "fetched": 15,
+      "after_filter": 9,
+      "after_dedup": 9
+    },
+    "uctoao": {
+      "status": "ok",
+      "fetched": 8,
+      "after_filter": 1,
+      "after_dedup": 1
+    },
+    "ombudsman": {
+      "status": "ok",
+      "fetched": 3,
+      "after_filter": 3,
+      "after_dedup": 3
+    },
+    "mon": {
+      "status": "ok",
+      "fetched": 6,
+      "after_filter": 2,
+      "after_dedup": 2
+    }
+  },
+  "warnings": []
+}
