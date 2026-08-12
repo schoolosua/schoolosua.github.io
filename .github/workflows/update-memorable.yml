@@ -1,4 +1,4 @@
-name: Update Memorable Dates
+﻿name: Update Memorable Dates
 
 # Пам'ятні дати (УІНП, ~380 запитів, кілька десятків хвилин)
 # — достатньо оновлювати раз на рік: середина липня
@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Завантажити код репозиторію
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Встановити Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 

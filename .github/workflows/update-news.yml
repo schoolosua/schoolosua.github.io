@@ -1,4 +1,4 @@
-name: Update SchoolOS News
+﻿name: Update SchoolOS News
 
 # Оновлення стрічки новин кожні 6 годин.
 # fetch_news.py -> feed.json (+meta.json) -> commit + push,
@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Завантажити код репозиторію
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Встановити Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
