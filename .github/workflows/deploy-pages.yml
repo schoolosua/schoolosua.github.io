@@ -40,6 +40,7 @@ jobs:
           cp favicon.svg favicon-32.png favicon-192.png apple-touch-icon.png site/
           cp -r chronos/dist/* site/chronos/
           cp -r schoolos-calendar site/
+          cp -r news site/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
