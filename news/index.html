@@ -207,6 +207,21 @@
     .section-head h2 { font-size: 1.6rem; }
     .section-head .count { font-size: 0.85rem; color: var(--text-muted); }
 
+    .section-title-icon { display: flex; align-items: center; gap: 12px; }
+    .title-icon-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      color: #ffffff;
+      box-shadow: 0 8px 18px var(--primary-glow);
+      flex-shrink: 0;
+    }
+    .title-icon-badge svg { width: 19px; height: 19px; fill: currentColor; }
+
     /* Top news */
     .top-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); margin-bottom: 40px; }
 
@@ -328,7 +343,7 @@
 
   <section class="news-section container" id="top-section">
     <div class="section-head reveal">
-      <h2>🔴 Головне</h2>
+      <h2 class="section-title-icon"><span class="title-icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></span>Головне</h2>
       <span class="count" id="top-count"></span>
     </div>
     <div class="top-grid" id="top-news"></div>
@@ -336,7 +351,7 @@
 
   <section class="news-section container" id="latest-section">
     <div class="section-head reveal">
-      <h2>📰 Останні новини</h2>
+      <h2 class="section-title-icon"><span class="title-icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></span>Останні новини</h2>
       <span class="count" id="latest-count"></span>
     </div>
     <div class="latest-grid" id="latest-news"></div>
@@ -347,7 +362,7 @@
 
   <section class="news-section container" id="own-section" style="display:none;">
     <div class="section-head reveal">
-      <h2>🚀 Анонси SchoolOS</h2>
+      <h2 class="section-title-icon"><span class="title-icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>Анонси SchoolOS</h2>
     </div>
     <div class="own-list" id="own-news"></div>
   </section>
