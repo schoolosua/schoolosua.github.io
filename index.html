@@ -1215,7 +1215,7 @@
           var d = new Date(top.published_at);
           tickerDate.textContent = d.toLocaleDateString('uk-UA', { day: 'numeric', month: 'long' });
         }
-        ticker.style.display = '';
+        ticker.style.display = 'block';
       })
       .catch(function () { ticker.style.display = 'none'; });
   </script>
