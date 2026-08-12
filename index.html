@@ -176,6 +176,73 @@
 
     .nav-links a:hover { color: var(--primary-neon); }
 
+    .news-ticker {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(14, 165, 233, 0.05));
+      border-bottom: 1px solid var(--glass-border);
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .news-ticker-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 9px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ticker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: ticker-pulse 2s ease-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45); }
+      70%  { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    .ticker-label {
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--primary-neon);
+      flex-shrink: 0;
+    }
+
+    .ticker-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    .ticker-title a { color: var(--text); font-weight: 500; }
+    .ticker-title a:hover { color: var(--primary-neon); }
+
+    .ticker-date { color: var(--text-muted); font-size: 0.78rem; flex-shrink: 0; }
+
+    .ticker-all {
+      margin-left: auto;
+      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--primary-neon);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+    .ticker-all:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .ticker-date { display: none; }
+      .news-ticker-inner { padding: 8px 16px; gap: 8px; }
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -690,6 +757,16 @@
     </div>
   </header>
 
+  <div class="news-ticker" id="news-ticker">
+    <div class="news-ticker-inner">
+      <span class="ticker-dot" aria-hidden="true"></span>
+      <span class="ticker-label">Останнє:</span>
+      <span class="ticker-title"><a id="ticker-link" href="/news/" target="_blank" rel="noopener"></a></span>
+      <span class="ticker-date" id="ticker-date"></span>
+      <a class="ticker-all" href="/news/">Усі новини →</a>
+    </div>
+  </div>
+
   <section class="container hero-section">
     <div class="hero-grid">
       <div class="hero-text">
@@ -1117,6 +1194,30 @@
         });
       }
     });
+
+    // Бігунок останньої новини під шапкою
+    var ticker = document.getElementById('news-ticker');
+    var tickerLink = document.getElementById('ticker-link');
+    var tickerDate = document.getElementById('ticker-date');
+
+    fetch('news/data/feed.json')
+      .then(function (r) { if (!r.ok) throw new Error('feed'); return r.json(); })
+      .then(function (items) {
+        if (!items || !items.length) return;
+        var top = items.slice().sort(function (a, b) {
+          var sa = a.importance_score || 0, sb = b.importance_score || 0;
+          if (sa !== sb) return sb - sa;
+          return (b.published_at || '').localeCompare(a.published_at || '');
+        })[0];
+        tickerLink.textContent = top.title;
+        tickerLink.href = top.url;
+        if (top.published_at) {
+          var d = new Date(top.published_at);
+          tickerDate.textContent = d.toLocaleDateString('uk-UA', { day: 'numeric', month: 'long' });
+        }
+        ticker.style.display = '';
+      })
+      .catch(function () { ticker.style.display = 'none'; });
   </script>
 
 </body>
