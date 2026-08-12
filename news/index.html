@@ -133,6 +133,7 @@
 
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
       padding: 12px 24px; border-radius: 14px;
       font-weight: 600; font-size: 0.95rem;
       border: none; cursor: pointer;
@@ -208,7 +209,7 @@
     .section-head .count { font-size: 0.85rem; color: var(--text-muted); }
 
     /* Top news */
-    .top-grid { display: grid; gap: 18px; grid-template-columns: 1fr; margin-bottom: 40px; }
+    .top-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); margin-bottom: 40px; }
 
     .news-card {
       background: var(--glass-bg);
@@ -224,7 +225,7 @@
 
     .news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-premium); }
 
-    .news-card.top-card { padding: 26px 28px; border-radius: var(--radius-xl); background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(14,165,233,0.05)), var(--glass-bg); }
+    .news-card.top-card { padding: 18px 20px; border-radius: var(--radius-lg); gap: 8px; background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(14,165,233,0.05)), var(--glass-bg); }
 
     .card-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
@@ -236,12 +237,10 @@
     }
 
     .card-date { font-size: 0.8rem; color: var(--text-muted); }
-    .card-top-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-
-    .imp-badge { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
 
     .news-card h3 { font-size: 1.08rem; line-height: 1.35; }
-    .news-card.top-card h3 { font-size: 1.25rem; }
+    .news-card.top-card h3 { font-size: 1.02rem; line-height: 1.35; }
+    .news-card.top-card .desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .news-card h3 a:hover { color: var(--primary-neon); }
 
     .news-card .desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
@@ -279,6 +278,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     @media (max-width: 1000px) {
+      .top-grid { grid-template-columns: 1fr; }
       .latest-grid { grid-template-columns: repeat(2, 1fr); }
       .own-list { grid-template-columns: 1fr; }
     }
@@ -320,7 +320,7 @@
       <span class="dot"></span>
       <span id="items-count"></span>
     </div>
-    <a class="btn btn-telegram" href="https://t.me/+lH0KGq5b8JM0Y2Uy" target="_blank" rel="noopener" aria-label="SchoolOS Освітні новини в Telegram">✈️ Підписатися в Telegram</a>
+    <a class="btn btn-telegram" href="https://t.me/+lH0KGq5b8JM0Y2Uy" target="_blank" rel="noopener" aria-label="SchoolOS Освітні новини в Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Підписатися в Telegram</a>
   </section>
 
   <section class="categories container">
@@ -420,11 +420,7 @@
 
       function cardHtml(item, top) {
         var html = '<article class="news-card' + (top ? " top-card" : "") + '">';
-        html += '<div class="card-top">' + srcBadge(item.source) + '<span class="card-date">' + fmtDate(item.published_at) + "</span>";
-        if (top) {
-          html += '<span class="card-top-right"><span class="imp-badge">⚡ Висока важливість</span></span>';
-        }
-        html += "</div>";
+        html += '<div class="card-top">' + srcBadge(item.source) + '<span class="card-date">' + fmtDate(item.published_at) + "</span></div>";
         html += '<h3><a href="' + esc(item.url) + '" target="_blank" rel="noopener">' + esc(item.title) + "</a></h3>";
         if (item.description) html += '<p class="desc">' + esc(item.description) + "</p>";
         html += '<div class="card-foot">';
