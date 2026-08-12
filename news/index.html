@@ -150,30 +150,39 @@
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
     /* Hero */
-    .hero-section { padding: 72px 24px 40px; }
+    /* Компактний хедер новин */
+    .news-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      padding: 28px 24px 10px;
+    }
 
-    .marketing-badge {
-      display: inline-flex; align-items: center; gap: 8px;
+    .news-bar .marketing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: var(--glass-bg);
       border: 1px solid var(--card-border-flat);
-      padding: 8px 18px; border-radius: 999px;
-      font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
       box-shadow: var(--shadow-clay);
-      margin-bottom: 28px;
-      animation: float-badge 4s ease-in-out infinite;
     }
-
-    @keyframes float-badge {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-6px); }
-    }
-
-    .hero-section h1 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.12; margin: 0 0 20px; max-width: 640px; }
-    .hero-section h1 span { background: linear-gradient(135deg, var(--primary-neon), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-section p { max-width: 560px; margin: 0 0 20px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
 
     .news-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--text-muted); font-size: 0.85rem; }
     .news-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); opacity: 0.5; }
+
+    .btn-telegram {
+      background: linear-gradient(135deg, #37aee2, #229ed9);
+      color: #ffffff;
+      box-shadow: 0 12px 24px rgba(42, 171, 238, 0.3);
+    }
+    .btn-telegram:hover { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(42, 171, 238, 0.38); }
 
     /* Categories */
     .categories { padding: 8px 24px 28px; }
@@ -250,24 +259,6 @@
     /* Own news */
     .own-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-    /* Telegram */
-    .tg-block {
-      margin-top: 40px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08)), var(--glass-bg);
-      border: 1px solid var(--card-border-flat);
-      box-shadow: var(--shadow-clay);
-      padding: 36px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .tg-block h3 { font-size: 1.25rem; margin-bottom: 6px; }
-    .tg-block p { color: var(--text-muted); font-size: 0.92rem; max-width: 460px; line-height: 1.55; }
-
     /* Footer */
     footer { border-top: 1px solid var(--card-border-flat); padding: 40px 24px; }
     .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
@@ -294,14 +285,13 @@
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
-      .hero-section { padding: 52px 16px 32px; }
+      .news-bar { padding: 20px 16px 8px; }
       .news-section, .categories { padding-left: 16px; padding-right: 16px; }
       .latest-grid { grid-template-columns: 1fr; }
       .news-card.top-card { padding: 20px; }
       .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
       .chip { flex-shrink: 0; }
-      .tg-block { padding: 26px 20px; }
-      .hero-section p { max-width: 100%; }
+      .btn-telegram { width: 100%; }
     }
   </style>
 </head>
@@ -323,15 +313,14 @@
     </div>
   </header>
 
-  <section class="container hero-section">
-    <div class="marketing-badge">📰 Новини освіти для школи</div>
-    <h1>Важливе для школи. <span>Без інформаційного шуму.</span></h1>
-    <p>Учні, вчителі, батьки, НУШ, НМТ, реформи, безпека, інклюзія та рішення МОН — зібрано з перевірених офіційних джерел.</p>
+  <section class="container news-bar">
     <div class="news-meta" id="news-meta">
+      <span class="marketing-badge">📰 Новини освіти для школи</span>
       <span id="updated-label">Оновлення: завантаження…</span>
       <span class="dot"></span>
       <span id="items-count"></span>
     </div>
+    <a class="btn btn-telegram" href="https://t.me/+lH0KGq5b8JM0Y2Uy" target="_blank" rel="noopener" aria-label="SchoolOS Освітні новини в Telegram">✈️ Підписатися в Telegram</a>
   </section>
 
   <section class="categories container">
@@ -364,16 +353,6 @@
     <div class="own-list" id="own-news"></div>
   </section>
 
-  <div class="container">
-    <div class="tg-block reveal" id="tg-block" style="display:none;">
-      <div>
-        <h3>Отримуйте важливе для школи в Telegram</h3>
-        <p>Коротко й без зайвого інформаційного шуму — тільки те, що дійсно важливо для школи.</p>
-      </div>
-      <a class="btn btn-primary" id="tg-link" href="#" target="_blank" rel="noopener">Підписатися на канал</a>
-    </div>
-  </div>
-
   <footer>
     <div class="container">
       <div class="footer-row">
@@ -386,8 +365,6 @@
 
   <script>
     (function () {
-      // Telegram-канал: підставте username, коли канал буде створено.
-      var TG_CHANNEL = "";
       var TOP_COUNT = 4;
       var PAGE_STEP = 6;
       var INITIAL_LATEST = 12;
@@ -416,9 +393,7 @@
         ownSection: document.getElementById("own-section"),
         ownNews: document.getElementById("own-news"),
         updatedLabel: document.getElementById("updated-label"),
-        itemsCount: document.getElementById("items-count"),
-        tgBlock: document.getElementById("tg-block"),
-        tgLink: document.getElementById("tg-link")
+        itemsCount: document.getElementById("items-count")
       };
 
       function esc(s) {
@@ -523,17 +498,9 @@
         }).join("");
       }
 
-      function initTelegram() {
-        if (!TG_CHANNEL) return;
-        var url = "https://t.me/" + TG_CHANNEL;
-        els.tgLink.href = url;
-        els.tgBlock.style.display = "";
-      }
-
       function load() {
         initChips();
         initReveal();
-        initTelegram();
         els.showMore.addEventListener("click", function () {
           visibleLatest += PAGE_STEP;
           render();
@@ -566,7 +533,7 @@
           var box = document.createElement("div");
           box.className = "error-box";
           box.innerHTML = '<h3>Не вдалося завантажити новини</h3><p style="margin-top:8px;">Спробуйте оновити сторінку за кілька хвилин.</p>';
-          document.querySelector(".hero-section").after(box);
+          document.querySelector(".news-bar").after(box);
         });
       }
 
