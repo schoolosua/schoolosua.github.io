@@ -32,10 +32,17 @@ jobs:
         working-directory: news
         run: python -u scripts/fetch_news.py
 
+      - name: Опублікувати новини в Telegram
+        working-directory: news
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -u scripts/post_telegram.py
+
       - name: Зберегти зміни в репозиторій (commit + push)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add news/data/feed.json news/data/meta.json
+          git add news/data/feed.json news/data/meta.json news/data/telegram_sent.json
           git diff --staged --quiet && echo "Змін немає" || git commit -m "Автооновлення стрічки новин (SchoolOS News)"
           git push
