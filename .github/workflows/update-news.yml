@@ -1,0 +1,41 @@
+name: Update SchoolOS News
+
+# Оновлення стрічки новин кожні 6 годин.
+# fetch_news.py -> feed.json (+meta.json) -> commit + push,
+# а далі deploy-pages.yml автоматично оновлює сайт.
+# Стрічку оновлює ТІЛЬКИ цей скрипт: ручне редагування feed.json
+# буде перезаписане наступним запуском. Ручні матеріали — через own.json.
+on:
+  schedule:
+    # 00:00, 06:00, 12:00, 18:00 (UTC) = 03:00, 09:00, 15:00, 21:00 (Київ)
+    - cron: "0 */6 * * *"
+  # Дозволяє запустити вручну кнопкою на GitHub (для перевірки)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Завантажити код репозиторію
+        uses: actions/checkout@v4
+
+      - name: Встановити Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Запустити збір новин
+        working-directory: news
+        run: python -u scripts/fetch_news.py
+
+      - name: Зберегти зміни в репозиторій (commit + push)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add news/data/feed.json news/data/meta.json
+          git diff --staged --quiet && echo "Змін немає" || git commit -m "Автооновлення стрічки новин (SchoolOS News)"
+          git push
