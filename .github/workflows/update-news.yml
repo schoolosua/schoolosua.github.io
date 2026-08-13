@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   update-news:
@@ -46,3 +47,10 @@ jobs:
           git add news/data/feed.json news/data/meta.json news/data/telegram_sent.json
           git diff --staged --quiet && echo "Змін немає" || git commit -m "Автооновлення стрічки новин (SchoolOS News)"
           git push
+
+      - name: Оновити сайт (deploy)
+        # Пущ від GITHUB_TOKEN не запускає deploy-pages автоматично,
+        # тому викликаємо його явно через workflow_dispatch.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-pages.yml
