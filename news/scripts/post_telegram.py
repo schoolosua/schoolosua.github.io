@@ -86,7 +86,8 @@ def format_post(item):
     source = item.get("source", "")
 
     parts = [HEADER, ""]
-    parts.append(f"<b>{escape_html(title)}</b>")
+    # Telegram рендерить посилання синім — заголовок стає клікабельним
+    parts.append(f"<b><a href=\"{url}\">{escape_html(title)}</a></b>")
     if desc:
         parts.append(f"Коротко: {escape_html(desc)}")
         parts.append("")
