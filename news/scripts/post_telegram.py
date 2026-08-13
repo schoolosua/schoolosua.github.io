@@ -3,7 +3,7 @@
 SchoolOS News — постинг у Telegram (етап 4).
 
 Ланцюг: feed.json -> нові новини (не в telegram_sent.json) ->
-importance_score >= 80 -> максимум MAX_POSTS -> Telegram Bot API ->
+importance_score >= MIN_SCORE -> максимум MAX_POSTS -> Telegram Bot API ->
 запис відправлених URL у telegram_sent.json (щоб не дублювати).
 
 Стан: news/data/telegram_sent.json — список {"url", "sent_at"}; історія
@@ -38,7 +38,7 @@ SENT_PATH = os.path.join(DATA_DIR, "telegram_sent.json")
 
 API_URL = "https://api.telegram.org/bot{token}/sendMessage"
 TIMEOUT = 30
-MIN_SCORE = 80
+MIN_SCORE = 60
 MAX_POSTS = 4
 MAX_HISTORY = 1000
 HEADER = "📰 Головне в освіті"
