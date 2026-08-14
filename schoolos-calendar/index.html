@@ -1537,10 +1537,28 @@
       .split(/\s+/)
       .filter(function(w){ return w.length >= 3; });
   }
+  // Еквівалентні стебла: «Різдво Господнє» = «Різдво Христове» тощо.
+  var STEM_EQUIV = {
+    'господн': 'христов'
+  };
+  function wordsMatch(a, b){
+    if (a === b) return true;
+    var sa = a.slice(0, Math.min(a.length, 7));
+    var sb = b.slice(0, Math.min(b.length, 7));
+    if ((STEM_EQUIV[sa] && STEM_EQUIV[sa] === sb) ||
+        (STEM_EQUIV[sb] && STEM_EQUIV[sb] === sa)) return true;
+    if (a.length >= 6 && b.length >= 6){
+      var p = Math.min(a.length, b.length, 5);
+      return a.slice(0, p) === b.slice(0, p);
+    }
+    return false;
+  }
   function wordOverlap(a, b){
     var A = Array.from(new Set(a)), B = Array.from(new Set(b));
     if (!A.length || !B.length) return 0;
-    var common = A.filter(function(w){ return B.indexOf(w) !== -1; }).length;
+    var common = A.filter(function(w){
+      return B.some(function(v){ return wordsMatch(w, v); });
+    }).length;
     return common / Math.min(A.length, B.length);
   }
 

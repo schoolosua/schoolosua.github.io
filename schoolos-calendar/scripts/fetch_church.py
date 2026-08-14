@@ -108,6 +108,7 @@ def find_ugcc_post(year: int) -> str:
 
 def clean_name(name: str) -> str:
     """Нормалізує назву празника з календаря УГКЦ."""
+    name = re.sub(r"&nbsp;|\u00a0", " ", name)
     name = re.sub(r"\s+", " ", name).strip()
     low = name.lower()
     low = re.sub(r"гніх", "Господнє", low)
@@ -331,7 +332,7 @@ def save(source_name, url, entries, year, prefix):
     """Записує всі події без вирізання дублікатів з іншими джерелами:
     перекриття (УГКЦ/ПЦУ + офіційне) розв’язує фронтенд пігулками."""
     items = [{
-        "date": date_str, "name": name, "type": "релігійне",
+        "date": date_str, "name": clean_name(name), "type": "релігійне",
         "source": source_name, "url": url,
     } for date_str, name in entries]
     items.sort(key=lambda x: x["date"])
