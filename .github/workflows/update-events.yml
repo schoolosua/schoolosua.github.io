@@ -5,8 +5,10 @@ on:
   schedule:
     # 1 липня о 06:00 (UTC)
     - cron: "0 6 1 7 *"
-    # 1 грудня о 06:00 (UTC)
+    # 1 грудня о 06:00 (UTC) — разом із церковними святами
     - cron: "0 6 1 12 *"
+    # 1 січня о 06:00 (UTC) — контрольне оновлення церковних свят
+    - cron: "0 6 1 1 *"
   # Дозволяє запустити вручну кнопкою на GitHub (для перевірки)
   workflow_dispatch:
 
@@ -46,6 +48,19 @@ jobs:
       - name: Оновити пам'ятні літературні дати (НБУ для дітей)
         working-directory: schoolos-calendar
         run: python -u scripts/fetch_chl.py
+
+      - name: Визначити поточний місяць (для церковних оновлень)
+        id: month
+        run: echo "month=$(date -u +%m)" >> "$GITHUB_OUTPUT"
+
+      # Церковні календарі (УГКЦ/ПЦУ) оновлюємо двічі на рік:
+      # 1 грудня (новий рік уже опублікований) і 1 січня (контрольне).
+      - name: Оновити релігійні свята (УГКЦ / ПЦУ)
+        if: ${{ steps.month.outputs.month == '01' || steps.month.outputs.month == '12' }}
+        working-directory: schoolos-calendar
+        run: |
+          pip install pypdf
+          python -u scripts/fetch_church.py
 
       - name: Записати дату оновлення
         working-directory: schoolos-calendar
