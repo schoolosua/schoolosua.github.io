@@ -1373,7 +1373,11 @@
         .then(function(res){ if (!res.ok) throw new Error('not found'); return res.json(); })
         .then(function(list){
           return list.map(function(item){
-            return Object.assign({}, item, { type: item.type || src.fallbackType });
+            var ev = Object.assign({}, item, { type: item.type || src.fallbackType });
+            // Захист від HTML-сутностей, що протікають з парсерів джерел
+            ev.name = String(ev.name == null ? '' : ev.name)
+              .replace(/&nbsp;|&#160;|\u00a0/g, ' ');
+            return ev;
           });
         })
         .catch(function(){ return []; });
