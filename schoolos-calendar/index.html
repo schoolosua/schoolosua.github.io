@@ -371,6 +371,10 @@
     background: linear-gradient(135deg, #0d9488, #0f766e);
     box-shadow: 0 10px 20px rgba(13, 148, 136, 0.25);
   }
+  .chip.active[data-value="релігійне"] {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    box-shadow: 0 10px 20px rgba(217, 119, 6, 0.25);
+  }
   .chip.active[data-value="summer"] {
     background: linear-gradient(135deg, #f59e0b, #d97706);
     box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
@@ -541,9 +545,19 @@
   .tag-оон      { color: #a78bfa; background: rgba(139, 92, 246, 0.12); }
   .tag-день     { color: #e11d48; background: rgba(225, 29, 72, 0.1); }
   .tag-офіційне { color: #0d9488; background: rgba(13, 148, 136, 0.12); }
+  .tag-релігійне { color: #b45309; background: rgba(217, 119, 6, 0.14); }
   .tag-шкільна  { color: var(--green); background: rgba(16, 185, 129, 0.12); }
   .tag-власне   { color: var(--purple); background: rgba(124, 58, 237, 0.1); }
   .tag-age      { color: var(--text-muted); background: #f1f5f9; border: 1px solid var(--card-border-flat); }
+
+  /* Додаткові пігулки-джерела («УГКЦ», «ПЦУ», «офіційне (ВРУ)»…) */
+  .tag.src-pill {
+    color: var(--text-muted);
+    background: #eef2f6;
+    border: 1px solid var(--card-border-flat);
+  }
+  .src-pill.pill-угкц { color: #0f766e; background: rgba(13, 148, 136, 0.1); border-color: rgba(13, 148, 136, 0.25); }
+  .src-pill.pill-пцу  { color: #b45309; background: rgba(217, 119, 6, 0.1); border-color: rgba(217, 119, 6, 0.28); }
 
   .empty-state {
     text-align:center;
@@ -1139,6 +1153,7 @@
           <button class="chip" data-value="державне">Державні свята</button>
           <button class="chip" data-value="офіційне">Офіційні (ВРУ)</button>
           <button class="chip" data-value="памятна">Пам'ятні дати</button>
+          <button class="chip" data-value="релігійне">Релігійні</button>
           <button class="chip" data-value="оон">Дні ООН</button>
           <button class="chip" data-value="день">Свята-події</button>
           <button class="chip" data-value="власне">Власні заходи</button>
@@ -1170,6 +1185,7 @@
       <a href="https://www.un.org/en/observances/list-days-weeks" target="_blank" rel="noopener">ООН</a> ·
       <a href="https://daytoday.ua" target="_blank" rel="noopener">daytoday.ua</a> ·
       <a href="https://zakon.rada.gov.ua/laws/main/days" target="_blank" rel="noopener">Верховна Рада</a> ·
+      <a href="https://chl.kiev.ua/default.aspx?id=5289" target="_blank" rel="noopener">НБУ для дітей</a> ·
       оновлюється автоматично через GitHub Actions
     </span>
     <span>© 2026 SchoolOS · Всі права захищені</span>
@@ -1265,8 +1281,11 @@
   YEARS.forEach(function(y){
     SOURCES.push({ file: 'data/holidays-' + y + '.json', fallbackType: 'державне' });
     SOURCES.push({ file: 'data/memorable-' + y + '.json', fallbackType: 'памятна' });
+    SOURCES.push({ file: 'data/chl-' + y + '.json', fallbackType: 'памятна' });
     SOURCES.push({ file: 'data/un-days-' + y + '.json', fallbackType: 'оон' });
     SOURCES.push({ file: 'data/rada-' + y + '.json', fallbackType: 'офіційне' });
+    SOURCES.push({ file: 'data/ugcc-' + y + '.json', fallbackType: 'релігійне' });
+    SOURCES.push({ file: 'data/pcu-' + y + '.json', fallbackType: 'релігійне' });
   });
   DAYTODAY_YEARS.forEach(function(y){
     SOURCES.push({ file: 'data/daytoday-' + y + '.json', fallbackType: 'день' });
@@ -1375,20 +1394,13 @@
     merged = merged.filter(function(ev){ return !isBlocked(ev); });
     merged = merged.filter(function(ev){ return isValidDate(ev.date); });
 
-    // Дедуплікація: одна подія може бути в кількох джерелах (Новий рік,
-    // День Соборності тощо). Пріоритет: офіційне ВРУ > державне > решта.
-    // Залишаємо найкращий запис незалежно від порядку завантаження джерел.
-    var PRIORITY = { 'офіційне': 0, 'державне': 1, 'памятна': 2, 'оон': 3, 'день': 4, 'шкільна': 5 };
-    var best = {};
-    merged.forEach(function(ev){
-      var key = ev.date + '|' + (ev.name || '').toLowerCase().trim();
-      var pr = PRIORITY[ev.type] != null ? PRIORITY[ev.type] : 99;
-      var prev = best[key];
-      if (!prev || pr < prev.pr){
-        best[key] = { pr: pr, ev: ev };
-      }
-    });
-    merged = Object.keys(best).map(function(k){ return best[k].ev; });
+    // Дедуплікація = ЗЛИТТЯ. Одна й та сама подія може бути в кількох
+    // джерелах (Новий рік, Великдень тощо — тепер це НЕ втрачаємо). Події
+    // на ту саму дату з суттєво спільними словами в назві зводяться в одну
+    // картку, на якій показуються всі пігулки-джерела (УГКЦ, ПЦУ,
+    // офіційне ВРУ, державне…). «Основною» стає подія з вищим пріоритетом.
+    var PRIORITY = { 'офіційне': 0, 'державне': 1, 'релігійне': 2, 'памятна': 3, 'оон': 4, 'день': 5, 'шкільна': 6 };
+    merged = mergeDuplicates(merged);
 
     merged.sort(function(a, b){ return a.date.localeCompare(b.date); });
       state.events = merged.concat(loadCustomEvents());
@@ -1497,8 +1509,105 @@
     }, 150);
   });
 
+  // ---- Злиття дублікатів у одну картку з кількома пігулками-джерелами ----
+  var PILL_LABEL = {
+    'державне': 'державне',
+    'офіційне': 'офіційне (ВРУ)',
+    'памятна': "пам'ятна",
+    'оон': 'ООН',
+    'день': 'свято-подія',
+    'власне': 'власне',
+    'шкільна': 'шкільна'
+  };
+  var TYPE_PRIMARY_LABEL = {
+    'релігійне': 'релігійне свято',
+    'офіційне': 'офіційне свято',
+    'державне': 'державне свято',
+    'памятна': "пам'ятна дата",
+    'оон': 'день ООН',
+    'день': 'свято-подія',
+    'власне': 'власний захід',
+    'шкільна': 'шкільна подія'
+  };
+
+  function normWords(s){
+    return (s || '').toLowerCase()
+      .replace(/[^\p{L}\p{N}\s]+/gu, ' ')
+      .split(/\s+/)
+      .filter(function(w){ return w.length >= 3; });
+  }
+  function wordOverlap(a, b){
+    var A = Array.from(new Set(a)), B = Array.from(new Set(b));
+    if (!A.length || !B.length) return 0;
+    var common = A.filter(function(w){ return B.indexOf(w) !== -1; }).length;
+    return common / Math.min(A.length, B.length);
+  }
+
+  function pillLabel(ev){
+    if (ev.type === 'релігійне'){
+      var s = ev.source || '';
+      if (/УГКЦ/.test(s)) return 'УГКЦ';
+      if (/ПЦУ/.test(s)) return 'ПЦУ';
+      return 'церковне';
+    }
+    if (ev.category === 'релігійне') return 'релігійне';
+    return PILL_LABEL[ev.type] || ev.type;
+  }
+  function pillClass(label){
+    return 'pill-' + String(label).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-');
+  }
+
+  function mergeDuplicates(list){
+    var byDate = {};
+    list.forEach(function(ev){
+      (byDate[ev.date] = byDate[ev.date] || []).push(ev);
+    });
+    var out = [];
+    Object.keys(byDate).forEach(function(date){
+      var clusters = [];
+      byDate[date].forEach(function(ev){
+        var wordsA = normWords(ev.name);
+        var joined = -1;
+        for (var i = 0; i < clusters.length; i++){
+          if (wordOverlap(wordsA, normWords(clusters[i].rep.name)) >= 0.6){
+            joined = i; break;
+          }
+        }
+        if (joined === -1) clusters.push({ rep: ev, members: [ev] });
+        else clusters[joined].members.push(ev);
+      });
+      clusters.forEach(function(cl){
+        var best = null, pr = 99;
+        cl.members.forEach(function(m){
+          var p = PRIORITY[m.type] != null ? PRIORITY[m.type] : 99;
+          if (best === null || p < pr){ best = m; pr = p; }
+        });
+        var m = Object.assign({}, best);
+        var labels = [], types = {};
+        cl.members.forEach(function(mm){
+          types[mm.type] = true;
+          if (mm.category === 'релігійне') types['релігійне'] = true;
+          var lab = pillLabel(mm);
+          if (lab && labels.indexOf(lab) === -1) labels.push(lab);
+        });
+        m._pills = labels;
+        m._types = Array.from(Object.keys(types));
+        out.push(m);
+      });
+    });
+    return out;
+  }
+
   function matchesFilters(ev){
-    if (state.types.size && !state.types.has(ev.type)) return false;
+    if (state.types.size){
+      var hits = state.types.has(ev.type);
+      if (!hits && ev._types){
+        for (var ti = 0; ti < ev._types.length; ti++){
+          if (state.types.has(ev._types[ti])){ hits = true; break; }
+        }
+      }
+      if (!hits) return false;
+    }
 
     if (state.academicYear != null && getAcademicYearStart(ev.date) !== state.academicYear) return false;
 
@@ -1567,18 +1676,20 @@
     var monShort = MONTH_NAMES[d.getMonth()].slice(0,3).toLowerCase();
     var dowShort = DOW_SHORT[d.getDay()];
     var typeClass = 'tag-' + (ev.type || 'шкільна');
-    var typeLabel = ev.type === 'державне' ? 'державне свято'
-                   : ev.type === 'офіційне' ? 'офіційне свято'
-                   : ev.type === 'памятна' ? "пам'ятна дата"
-                   : ev.type === 'оон' ? 'день ООН'
-                   : ev.type === 'день' ? 'свято-подія'
-                   : ev.type === 'власне' ? 'власний захід'
-                   : 'шкільна подія';
+    var typeLabel = TYPE_PRIMARY_LABEL[ev.type] || 'шкільна подія';
 
     var nameHtml = escapeHtml(ev.name);
     if (ev.url){
       nameHtml = '<a class="event-link" href="' + escapeHtml(ev.url) + '" target="_blank" rel="noopener">' + nameHtml + '</a>';
     }
+
+    // Додаткові пігулки-джерела (ті, що відрізняються від основного тегу)
+    var sourcePills = '';
+    var mainLabelNorm = String(typeLabel).toLowerCase();
+    (ev._pills || []).forEach(function(label){
+      if (String(label).toLowerCase() === mainLabelNorm) return;
+      sourcePills += '<span class="tag src-pill ' + pillClass(label) + '">' + escapeHtml(label) + '</span>';
+    });
 
     var planItem = getPlanItem(ev);
     var isChecked = !!planItem;
@@ -1596,6 +1707,7 @@
           '<div class="event-name">' + nameHtml + '</div>' +
           '<div class="event-meta">' +
             '<span class="tag ' + typeClass + '">' + typeLabel + '</span>' +
+            sourcePills +
             (ev.type === 'власне'
               ? '<button class="event-remove" type="button" data-id="' + escapeAttr(ev.id) + '" title="Видалити захід">✕</button>'
               : '') +
