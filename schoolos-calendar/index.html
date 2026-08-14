@@ -1541,14 +1541,17 @@
       .split(/\s+/)
       .filter(function(w){ return w.length >= 3; });
   }
-  // Еквівалентні стебла: «Різдво Господнє» = «Різдво Христове» тощо.
+  // Еквівалентні стебла: «Різдво Господнє» = «Різдво Христове»,
+  // «Іоан Предтеча» = «Іван Хреститель» тощо (за першими 5 літерами).
   var STEM_EQUIV = {
-    'господн': 'христов'
+    'госпо': 'христ',
+    'іоан': 'іван',
+    'предт': 'хрест'
   };
   function wordsMatch(a, b){
     if (a === b) return true;
-    var sa = a.slice(0, Math.min(a.length, 7));
-    var sb = b.slice(0, Math.min(b.length, 7));
+    var sa = a.slice(0, 5);
+    var sb = b.slice(0, 5);
     if ((STEM_EQUIV[sa] && STEM_EQUIV[sa] === sb) ||
         (STEM_EQUIV[sb] && STEM_EQUIV[sb] === sa)) return true;
     if (a.length >= 6 && b.length >= 6){
