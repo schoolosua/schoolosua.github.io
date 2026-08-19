@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-19T03:14:39Z",
+  "updated_at": "2026-08-19T07:58:38Z",
   "totals": {
-    "fetched": 55,
-    "after_filter": 26,
-    "after_dedup": 26,
+    "fetched": 63,
+    "after_filter": 25,
+    "after_dedup": 25,
     "duplicates_merged": 0,
-    "feed": 26
+    "feed": 25
   },
   "sources": {
     "osvitaua": {
@@ -17,12 +17,12 @@
     "nus": {
       "status": "ok",
       "fetched": 15,
-      "after_filter": 10,
-      "after_dedup": 10
+      "after_filter": 9,
+      "after_dedup": 9
     },
     "uctoao": {
-      "status": "error",
-      "error": "порожня відповідь",
+      "status": "ok",
+      "fetched": 8,
       "after_filter": 0,
       "after_dedup": 0
     },
@@ -39,7 +39,5 @@
       "after_dedup": 4
     }
   },
-  "warnings": [
-    "uctoao: порожня відповідь"
-  ]
+  "warnings": []
 }
