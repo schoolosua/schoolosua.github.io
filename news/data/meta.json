@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-18T19:18:27Z",
+  "updated_at": "2026-08-19T03:14:39Z",
   "totals": {
-    "fetched": 63,
+    "fetched": 55,
     "after_filter": 26,
     "after_dedup": 26,
     "duplicates_merged": 0,
@@ -21,8 +21,8 @@
       "after_dedup": 10
     },
     "uctoao": {
-      "status": "ok",
-      "fetched": 8,
+      "status": "error",
+      "error": "порожня відповідь",
       "after_filter": 0,
       "after_dedup": 0
     },
@@ -39,5 +39,7 @@
       "after_dedup": 4
     }
   },
-  "warnings": []
+  "warnings": [
+    "uctoao: порожня відповідь"
+  ]
 }
