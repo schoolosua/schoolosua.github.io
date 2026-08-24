@@ -424,6 +424,78 @@
   }
   .quick-nav-item:hover { color: var(--primary-neon); border-color: var(--primary-neon); }
 
+  /* ---- Згортання панелі фільтрів (ПК): тонка пігулка-перемикач ---- */
+  .controls-toggle-row { display: none; }
+  .controls-body { overflow: hidden; }
+
+  @media (min-width: 641px) {
+    .controls-toggle-row {
+      display: flex;
+      justify-content: center;
+      padding: 2px 0 8px;
+    }
+    .controls-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border-flat);
+      border-radius: 999px;
+      padding: 6px 18px;
+      cursor: pointer;
+      box-shadow: var(--shadow-clay);
+      backdrop-filter: blur(10px);
+      transition: color 150ms ease, box-shadow 200ms ease, transform 100ms ease-out;
+    }
+    .controls-toggle:hover {
+      color: var(--text);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+    }
+    .controls-toggle:active { transform: scale(0.96); }
+    .controls-toggle:focus-visible { outline: 2px solid var(--primary-neon); outline-offset: 2px; }
+
+    .controls-toggle .chev {
+      display: inline-block;
+      font-size: 0.66rem;
+      line-height: 1;
+      transition: transform 300ms cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    /* Згорнуто — стрілка вказує вниз (розгорнути) */
+    .controls.collapsed .controls-toggle .chev { transform: rotate(180deg); }
+
+    .filters-badge {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary-neon), var(--accent));
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .filters-badge.show { display: inline-flex; }
+
+    .controls-body { transition: height 340ms cubic-bezier(0.33, 1, 0.68, 1); }
+    .controls { transition: border-color 250ms ease, padding 250ms ease; }
+    .controls.collapsed { border-bottom-color: transparent; padding-bottom: 2px; }
+    .controls.no-anim,
+    .controls.no-anim .controls-body,
+    .controls.no-anim .chev { transition: none !important; }
+  }
+
+  @media (max-width: 640px) {
+    .controls-toggle-row { display: none; }
+    .controls-body { height: auto !important; }
+  }
+
   /* ==========================================================
      СПИСОК ПОДІЙ
      ========================================================== */
@@ -1105,6 +1177,15 @@
   </section>
 
   <div class="controls">
+    <div class="controls-toggle-row">
+      <button type="button" id="filters-toggle" class="controls-toggle" aria-expanded="true" aria-controls="controls-body">
+        <span>Фільтри</span>
+        <span class="filters-badge" id="filters-badge" aria-hidden="true"></span>
+        <span class="chev" aria-hidden="true">▴</span>
+      </button>
+    </div>
+
+    <div class="controls-body" id="controls-body">
     <div class="controls-inner">
 
       <div class="filter-group filter-group-search" id="filter-search">
@@ -1167,6 +1248,7 @@
     </div>
 
     <div class="quick-nav" id="quick-nav"></div>
+    </div>
   </div>
 
   <main>
@@ -1491,6 +1573,105 @@
   setupMultiToggle('filter-semester', function(selected){ state.semesters = selected; });
   setupMultiToggle('filter-month', function(selected){ state.months = selected; });
 
+  // ==============================================================
+  // ПАНЕЛЬ ФІЛЬТРІВ НА ПК: під час скролу згортається у тонку
+  // пігулку «Фільтри» по центру. Клік розгортає/згортає; на початку
+  // сторінки панель завжди розгорнута. Бейдж показує кількість
+  // активних фільтрів (поза типовими значеннями за замовчуванням).
+  // ==============================================================
+  var controlsEl = document.querySelector('.controls');
+  var controlsBody = document.getElementById('controls-body');
+  var filtersToggleBtn = document.getElementById('filters-toggle');
+  var filtersBadgeEl = document.getElementById('filters-badge');
+  var FILTERS_TOP = 240;          // вище цієї висоти панель завжди розгорнута
+  var filtersCollapsed = false;
+  var lastScrollY = window.scrollY || 0;
+
+  function isDesktopFilters(){
+    return window.innerWidth >= 641;
+  }
+
+  function setFiltersCollapsed(collapse, instant){
+    if (!isDesktopFilters() || collapse === filtersCollapsed) return;
+    filtersCollapsed = collapse;
+    if (filtersToggleBtn) filtersToggleBtn.setAttribute('aria-expanded', collapse ? 'false' : 'true');
+    controlsEl.classList.toggle('collapsed', collapse);
+
+    if (instant){
+      controlsEl.classList.add('no-anim');
+      controlsBody.style.height = collapse ? '0px' : '';
+      void controlsBody.offsetHeight;
+      controlsEl.classList.remove('no-anim');
+      return;
+    }
+
+    if (collapse){
+      controlsBody.style.height = controlsBody.getBoundingClientRect().height + 'px';
+      void controlsBody.offsetHeight;
+      controlsBody.style.height = '0px';
+    } else {
+      var startH = controlsBody.getBoundingClientRect().height;
+      var targetH = controlsBody.scrollHeight;
+      controlsBody.style.height = startH + 'px';
+      void controlsBody.offsetHeight;
+      controlsBody.style.height = targetH + 'px';
+      controlsBody.addEventListener('transitionend', function onEnd(ev){
+        if (ev.propertyName !== 'height') return;
+        controlsBody.removeEventListener('transitionend', onEnd);
+        if (!filtersCollapsed) controlsBody.style.height = '';
+      });
+    }
+  }
+
+  if (filtersToggleBtn){
+    filtersToggleBtn.addEventListener('click', function(){
+      setFiltersCollapsed(!filtersCollapsed);
+    });
+  }
+
+  window.addEventListener('scroll', function(){
+    if (!isDesktopFilters()) return;
+    var y = window.scrollY || 0;
+    var dy = y - lastScrollY;
+    lastScrollY = y;
+    if (y <= FILTERS_TOP){
+      setFiltersCollapsed(false);
+    } else if (dy > 4 && !filtersCollapsed){
+      // авто-згортання лише при скролі вниз
+      setFiltersCollapsed(true);
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', function(){
+    if (!isDesktopFilters()){
+      controlsBody.style.height = '';
+      filtersCollapsed = false;
+      controlsEl.classList.remove('collapsed');
+      if (filtersToggleBtn) filtersToggleBtn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // Сторінка відкрита не зверху (оновлення посеред списку) — згортаємо одразу
+  if (isDesktopFilters() && (window.scrollY || 0) > FILTERS_TOP){
+    lastScrollY = window.scrollY;
+    setFiltersCollapsed(true, true);
+  }
+
+  // Кількість фільтрів, які користувач змінив вручну
+  function activeFilterCount(){
+    var semDefault = state.semesters.size === 1 && state.semesters.has(currentSemesterKey());
+    var n = state.types.size + state.months.size + (state.search ? 1 : 0);
+    if (!semDefault) n += state.semesters.size;
+    return n;
+  }
+
+  function updateFiltersBadge(){
+    if (!filtersBadgeEl) return;
+    var n = activeFilterCount();
+    filtersBadgeEl.textContent = n > 9 ? '9+' : String(n);
+    filtersBadgeEl.classList.toggle('show', n > 0);
+  }
+
   // За замовчуванням в фільтрі "Семестр" активний той семестр, що йде
   // просто зараз (влітку — майбутній I семестр наступного навчального року)
   (function initSemesterDefault(){
@@ -1653,6 +1834,7 @@
   }
 
   function render(){
+    updateFiltersBadge();
     var container = document.getElementById('event-container');
     var quickNav = document.getElementById('quick-nav');
     var filtered = state.events.filter(matchesFilters);
