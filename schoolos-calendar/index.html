@@ -1583,7 +1583,6 @@
   var controlsBody = document.getElementById('controls-body');
   var filtersToggleBtn = document.getElementById('filters-toggle');
   var filtersBadgeEl = document.getElementById('filters-badge');
-  var FILTERS_TOP = 240;          // вище цієї висоти панель завжди розгорнута
   var filtersCollapsed = false;
   var lastScrollY = window.scrollY || 0;
   var filtersPointerOver = false; // курсор над панеллю — не ховаємо
@@ -1647,7 +1646,14 @@
     var y = window.scrollY || 0;
     var dy = y - lastScrollY;
     lastScrollY = y;
-    if (y <= FILTERS_TOP){
+
+    // Поріг = верх першої події календару (#event-container): поки він
+    // нижче липкої шапки (~78px) — панель розгорнута; дістав подію — згорнули.
+    var target = document.getElementById('event-container');
+    if (!target) return;
+    var reachedEvents = target.getBoundingClientRect().top <= 96;
+
+    if (!reachedEvents){
       setFiltersCollapsed(false);
     } else if (dy > 4 && !filtersCollapsed &&
                !filtersPointerOver && Date.now() > filtersManualUntil){
