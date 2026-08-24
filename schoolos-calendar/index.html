@@ -1586,6 +1586,8 @@
   var FILTERS_TOP = 240;          // вище цієї висоти панель завжди розгорнута
   var filtersCollapsed = false;
   var lastScrollY = window.scrollY || 0;
+  var filtersPointerOver = false; // курсор над панеллю — не ховаємо
+  var filtersManualUntil = 0;     // час, до якого авто-згортання придушене
 
   function isDesktopFilters(){
     return window.innerWidth >= 641;
@@ -1623,9 +1625,20 @@
     }
   }
 
+  // Поки курсор над панеллю — жодного авто-згортання
+  controlsEl.addEventListener('pointerenter', function(){ filtersPointerOver = true; });
+  controlsEl.addEventListener('pointerleave', function(){ filtersPointerOver = false; });
+
   if (filtersToggleBtn){
     filtersToggleBtn.addEventListener('click', function(){
+      var wasCollapsed = filtersCollapsed;
       setFiltersCollapsed(!filtersCollapsed);
+      if (wasCollapsed){
+        // щойно розгорнули вручну — короткий захист від інерції скролу,
+        // щоб панель не сховалась перш ніж людина встигне щось обрати
+        filtersManualUntil = Date.now() + 1500;
+        lastScrollY = window.scrollY || 0;
+      }
     });
   }
 
@@ -1636,8 +1649,9 @@
     lastScrollY = y;
     if (y <= FILTERS_TOP){
       setFiltersCollapsed(false);
-    } else if (dy > 4 && !filtersCollapsed){
-      // авто-згортання лише при скролі вниз
+    } else if (dy > 4 && !filtersCollapsed &&
+               !filtersPointerOver && Date.now() > filtersManualUntil){
+      // авто-згортання лише при реальному скролі вниз
       setFiltersCollapsed(true);
     }
   }, { passive: true });
@@ -1651,11 +1665,8 @@
     }
   });
 
-  // Сторінка відкрита не зверху (оновлення посеред списку) — згортаємо одразу
-  if (isDesktopFilters() && (window.scrollY || 0) > FILTERS_TOP){
-    lastScrollY = window.scrollY;
-    setFiltersCollapsed(true, true);
-  }
+  // При завантаженні панель завжди розгорнута; якщо браузер відновив
+  // скрол посеред списку — наступний scroll-подія сама її згорне.
 
   // Кількість фільтрів, які користувач змінив вручну
   function activeFilterCount(){
