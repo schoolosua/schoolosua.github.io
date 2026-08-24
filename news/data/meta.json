@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-24T03:33:43Z",
+  "updated_at": "2026-08-24T08:26:52Z",
   "totals": {
-    "fetched": 62,
+    "fetched": 64,
     "after_filter": 30,
     "after_dedup": 30,
     "duplicates_merged": 0,
@@ -29,14 +29,14 @@
     "ombudsman": {
       "status": "ok",
       "fetched": 3,
-      "after_filter": 2,
-      "after_dedup": 2
+      "after_filter": 1,
+      "after_dedup": 1
     },
     "mon": {
       "status": "ok",
-      "fetched": 5,
-      "after_filter": 2,
-      "after_dedup": 2
+      "fetched": 7,
+      "after_filter": 3,
+      "after_dedup": 3
     }
   },
   "warnings": []
