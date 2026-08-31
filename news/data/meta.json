@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-08-31T00:06:25Z",
+  "updated_at": "2026-08-31T06:06:12Z",
   "totals": {
     "fetched": 62,
-    "after_filter": 26,
+    "after_filter": 27,
     "after_dedup": 26,
-    "duplicates_merged": 0,
+    "duplicates_merged": 1,
     "feed": 26
   },
   "sources": {
@@ -17,7 +17,7 @@
     "nus": {
       "status": "ok",
       "fetched": 15,
-      "after_filter": 13,
+      "after_filter": 14,
       "after_dedup": 13
     },
     "uctoao": {
