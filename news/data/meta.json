@@ -1,30 +1,30 @@
 {
-  "updated_at": "2026-09-07T11:31:12Z",
+  "updated_at": "2026-09-07T17:10:32Z",
   "totals": {
-    "fetched": 47,
-    "after_filter": 30,
-    "after_dedup": 21,
-    "duplicates_merged": 9,
-    "feed": 21
+    "fetched": 68,
+    "after_filter": 41,
+    "after_dedup": 36,
+    "duplicates_merged": 5,
+    "feed": 36
   },
   "sources": {
     "osvitaua": {
       "status": "ok",
       "fetched": 31,
-      "after_filter": 20,
-      "after_dedup": 11
+      "after_filter": 18,
+      "after_dedup": 13
     },
     "nus": {
-      "status": "error",
-      "error": "порожня відповідь",
-      "after_filter": 0,
-      "after_dedup": 0
+      "status": "ok",
+      "fetched": 15,
+      "after_filter": 10,
+      "after_dedup": 10
     },
     "uctoao": {
-      "status": "error",
-      "error": "порожня відповідь",
-      "after_filter": 0,
-      "after_dedup": 0
+      "status": "ok",
+      "fetched": 8,
+      "after_filter": 4,
+      "after_dedup": 4
     },
     "ombudsman": {
       "status": "ok",
@@ -34,13 +34,10 @@
     },
     "mon": {
       "status": "ok",
-      "fetched": 13,
-      "after_filter": 8,
-      "after_dedup": 8
+      "fetched": 11,
+      "after_filter": 7,
+      "after_dedup": 7
     }
   },
-  "warnings": [
-    "nus: порожня відповідь",
-    "uctoao: порожня відповідь"
-  ]
+  "warnings": []
 }
