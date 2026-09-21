@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-21T11:54:53Z",
+  "updated_at": "2026-09-21T17:49:25Z",
   "totals": {
     "fetched": 68,
     "after_filter": 38,
@@ -11,14 +11,14 @@
     "osvitaua": {
       "status": "ok",
       "fetched": 31,
-      "after_filter": 16,
-      "after_dedup": 16
+      "after_filter": 17,
+      "after_dedup": 17
     },
     "nus": {
       "status": "ok",
       "fetched": 15,
-      "after_filter": 13,
-      "after_dedup": 13
+      "after_filter": 12,
+      "after_dedup": 12
     },
     "uctoao": {
       "status": "ok",
