@@ -1,24 +1,24 @@
 {
-  "updated_at": "2026-10-01T03:58:43Z",
+  "updated_at": "2026-10-01T12:22:38Z",
   "totals": {
-    "fetched": 62,
-    "after_filter": 32,
-    "after_dedup": 31,
+    "fetched": 66,
+    "after_filter": 34,
+    "after_dedup": 33,
     "duplicates_merged": 1,
-    "feed": 31
+    "feed": 33
   },
   "sources": {
     "osvitaua": {
       "status": "ok",
       "fetched": 31,
-      "after_filter": 15,
-      "after_dedup": 14
+      "after_filter": 16,
+      "after_dedup": 15
     },
     "nus": {
       "status": "ok",
       "fetched": 15,
-      "after_filter": 13,
-      "after_dedup": 13
+      "after_filter": 14,
+      "after_dedup": 14
     },
     "uctoao": {
       "status": "ok",
@@ -34,7 +34,7 @@
     },
     "mon": {
       "status": "ok",
-      "fetched": 5,
+      "fetched": 9,
       "after_filter": 4,
       "after_dedup": 4
     }
