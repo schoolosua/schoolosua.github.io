@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-04T04:09:55Z",
+  "updated_at": "2026-10-04T11:44:41Z",
   "totals": {
-    "fetched": 61,
-    "after_filter": 30,
-    "after_dedup": 30,
+    "fetched": 62,
+    "after_filter": 31,
+    "after_dedup": 31,
     "duplicates_merged": 0,
-    "feed": 30
+    "feed": 31
   },
   "sources": {
     "osvitaua": {
@@ -34,9 +34,9 @@
     },
     "mon": {
       "status": "ok",
-      "fetched": 4,
-      "after_filter": 3,
-      "after_dedup": 3
+      "fetched": 5,
+      "after_filter": 4,
+      "after_dedup": 4
     }
   },
   "warnings": []
