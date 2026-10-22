@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-22T03:09:25Z",
+  "updated_at": "2026-10-22T11:06:32Z",
   "totals": {
-    "fetched": 63,
+    "fetched": 65,
     "after_filter": 33,
     "after_dedup": 33,
     "duplicates_merged": 0,
@@ -34,7 +34,7 @@
     },
     "mon": {
       "status": "ok",
-      "fetched": 6,
+      "fetched": 8,
       "after_filter": 2,
       "after_dedup": 2
     }
