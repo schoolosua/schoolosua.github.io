@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-11-02T04:14:13Z",
+  "updated_at": "2026-11-02T14:41:22Z",
   "totals": {
     "fetched": 64,
-    "after_filter": 35,
-    "after_dedup": 35,
+    "after_filter": 33,
+    "after_dedup": 33,
     "duplicates_merged": 0,
-    "feed": 35
+    "feed": 33
   },
   "sources": {
     "osvitaua": {
       "status": "ok",
       "fetched": 31,
-      "after_filter": 17,
-      "after_dedup": 17
+      "after_filter": 15,
+      "after_dedup": 15
     },
     "nus": {
       "status": "ok",
