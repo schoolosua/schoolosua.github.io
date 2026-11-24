@@ -1,24 +1,24 @@
 {
-  "updated_at": "2026-11-24T03:46:01Z",
+  "updated_at": "2026-11-24T16:55:41Z",
   "totals": {
-    "fetched": 47,
-    "after_filter": 25,
-    "after_dedup": 25,
+    "fetched": 63,
+    "after_filter": 35,
+    "after_dedup": 35,
     "duplicates_merged": 0,
-    "feed": 25
+    "feed": 35
   },
   "sources": {
     "osvitaua": {
       "status": "ok",
       "fetched": 31,
-      "after_filter": 14,
-      "after_dedup": 14
+      "after_filter": 13,
+      "after_dedup": 13
     },
     "nus": {
-      "status": "error",
-      "error": "порожня відповідь",
-      "after_filter": 0,
-      "after_dedup": 0
+      "status": "ok",
+      "fetched": 15,
+      "after_filter": 10,
+      "after_dedup": 10
     },
     "uctoao": {
       "status": "ok",
@@ -34,12 +34,10 @@
     },
     "mon": {
       "status": "ok",
-      "fetched": 5,
-      "after_filter": 3,
-      "after_dedup": 3
+      "fetched": 6,
+      "after_filter": 4,
+      "after_dedup": 4
     }
   },
-  "warnings": [
-    "nus: порожня відповідь"
-  ]
+  "warnings": []
 }
